@@ -22,7 +22,7 @@ export const insuranceContractsOperations: INodeProperties[] = [
 			options: [
 				{
 					name: 'Create a New Insurance Contract',
-					value: 'listTransactions',
+					value: 'createInsuranceContract',
 					action: 'Create a new insurance contract',
 				},
 				{
@@ -32,12 +32,12 @@ export const insuranceContractsOperations: INodeProperties[] = [
 				},
 				{
 					name: 'Upload a PDF Document for a Specific Insurance Contract',
-					value: 'uploadTransaction',
+					value: 'uploadInsuranceDocument',
 					action: 'Upload a PDF document for a specific insurance contract',
 				},
 				{
 					name: 'Delete Uploaded Document',
-					value: 'deleteUploaded',
+					value: 'deleteInsuranceDocument',
 					action: 'Delete uploaded document',
 				},
 			],
@@ -240,7 +240,7 @@ export const insuranceContractsOperations: INodeProperties[] = [
 							'insuranceContracts',
 						],
 						operation: [
-							'uploadTransaction',
+							'uploadInsuranceDocument',
 						],
 					},
 				},
@@ -258,7 +258,7 @@ export const insuranceContractsOperations: INodeProperties[] = [
 							'insuranceContracts',
 						],
 						operation: [
-							'uploadTransaction',
+							'uploadInsuranceDocument',
 						],
 					},
 				},

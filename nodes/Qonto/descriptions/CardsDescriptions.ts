@@ -33,7 +33,7 @@ export const cardsOperations: INodeProperties[] = [
 				},
 				{
 					name: 'Retrieve Card Data View URL',
-					value: 'retieveCard',
+					value: 'retrieveCard',
 					action: 'Retrieve card data view URL',
 				},
 			],

@@ -1,14 +1,15 @@
 # n8n-nodes-qonto
 
-This is an n8n community node. It lets you use GitHub Issues in your n8n workflows.
+This is an n8n community node. It lets you use Qonto banking API in your n8n workflows.
+
+Qonto is a business banking platform that provides banking services for SMEs and freelancers. This node allows you to automate operations with your Qonto account, including managing transactions, transfers, beneficiaries, and more.
 
 [n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/sustainable-use-license/) workflow automation platform.
 
-[Installation](#installation)
-[Operations](#operations)
-[Credentials](#credentials)
-[Compatibility](#compatibility)
-[Usage](#usage)
+[Installation](#installation)  
+[Operations](#operations)  
+[Credentials](#credentials)  
+[Compatibility](#compatibility)  
 [Resources](#resources)
 
 ## Installation
@@ -17,51 +18,51 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 ## Operations
 
-- Issues
-    - Get an issue
-    - Get many issues in a repository
-    - Create a new issue
-- Issue Comments
-    - Get many issue comments
+This node supports the following Qonto resources:
+
+- **Organizations**: Get organization and bank accounts information
+- **Transactions**: List and retrieve transactions
+- **External Transfers**: Create and list external transfers
+- **Beneficiaries**: Manage beneficiaries (list, show, create, trust/untrust)
+- **Labels**: Manage transaction labels
+- **Memberships**: Manage organization memberships
+- **Attachments**: Upload and retrieve attachments
+- **Attachments in a Transaction**: Manage attachments linked to transactions
+- **Cards**: Manage cards (list, retrieve, create)
+- **Requests**: Manage payment requests
+- **Statements**: Retrieve account statements
+- **Internal Transactions**: List internal transactions
+- **Supplier Invoices**: Manage supplier invoices
+- **Client Invoices**: Manage client invoices
+- **Credit Notes**: Manage credit notes
+- **Clients**: Manage clients
+- **Teams**: Manage teams
+- **Insurance Contracts**: Manage insurance contracts
 
 ## Credentials
 
-You can use either access token or OAuth2 to use this node.
+This node supports two authentication methods:
 
-### Access token
+### Login and Secret Key (API Key)
 
-1. Open your GitHub profile [Settings](https://github.com/settings/profile).
-2. In the left navigation, select [Developer settings](https://github.com/settings/apps).
-3. In the left navigation, under Personal access tokens, select Tokens (classic).
-4. Select Generate new token > Generate new token (classic).
-5. Enter a descriptive name for your token in the Note field, like n8n integration.
-6. Select the Expiration you'd like for the token, or select No expiration.
-7. Select Scopes for your token. For most of the n8n GitHub nodes, add the `repo` scope.
-    - A token without assigned scopes can only access public information.
-8. Select Generate token.
-9. Copy the token.
-
-Refer to [Creating a personal access token (classic)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) for more information. Refer to Scopes for OAuth apps for more information on GitHub scopes.
-
-![Generated Access token in GitHub](https://docs.github.com/assets/cb-17251/mw-1440/images/help/settings/personal-access-tokens.webp)
+1. Log in to your Qonto account
+2. Go to Settings > API & Integrations
+3. Generate an API key
+4. Use the login (e.g., `scep-1111`) and secret key for authentication
+5. Select your environment (Production or Sandbox)
+6. For sandbox access, you may need to provide an X-Qonto-Staging-Token
 
 ### OAuth2
 
-If you're self-hosting n8n, create a new GitHub [OAuth app](https://docs.github.com/en/apps/oauth-apps):
+1. Create an OAuth2 application in your Qonto account
+2. Configure the OAuth2 credentials in n8n with:
+   - Client ID
+   - Client Secret
+   - Environment (Production or Sandbox)
+   - Scopes required for your operations
+3. For sandbox access with Machine-to-Machine, provide X-Qonto-Staging-Token
 
-1. Open your GitHub profile [Settings](https://github.com/settings/profile).
-2. In the left navigation, select [Developer settings](https://github.com/settings/apps).
-3. In the left navigation, select OAuth apps.
-4. Select New OAuth App.
-    - If you haven't created an app before, you may see Register a new application instead. Select it.
-5. Enter an Application name, like n8n integration.
-6. Enter the Homepage URL for your app's website.
-7. If you'd like, add the optional Application description, which GitHub displays to end-users.
-8. From n8n, copy the OAuth Redirect URL and paste it into the GitHub Authorization callback URL.
-9. Select Register application.
-10. Copy the Client ID and Client Secret this generates and add them to your n8n credential.
-
-Refer to the [GitHub Authorizing OAuth apps documentation](https://docs.github.com/en/apps/oauth-apps/using-oauth-apps/authorizing-oauth-apps) for more information on the authorization process.
+Refer to the [Qonto API documentation](https://api-doc.qonto.com/docs/business-api) for more information.
 
 ## Compatibility
 
@@ -70,4 +71,5 @@ Compatible with n8n@1.60.0 or later
 ## Resources
 
 * [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
-* [GitHub API docs](https://docs.github.com/en/rest/issues)
+* [Qonto API documentation](https://api-doc.qonto.com/docs/business-api)
+* [Qonto website](https://qonto.com)

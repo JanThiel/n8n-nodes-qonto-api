@@ -13,6 +13,6 @@ export * from './MembershipsDescriptions';
 export * from './OrganizationsDescriptions';
 export * from './RequestsDescriptions';
 export * from './StatementsDescriptions';
-export * from './SuplierInvoicesDescriptions';
+export * from './SupplierInvoicesDescriptions';
 export * from './TeamsDescriptions';
 export * from './TransactionsDescriptions';

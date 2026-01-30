@@ -182,7 +182,7 @@ export const beneficiariesOperations: INodeProperties[] = [
 					'beneficiaries',
 				],
 				operation: [
-					'untrustBeneficiary',
+					'untrustBeneficiaries',
 				],
 			},
 		},

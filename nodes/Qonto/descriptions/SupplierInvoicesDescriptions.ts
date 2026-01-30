@@ -1,9 +1,9 @@
-// suplierInvoicesOperations.ts
+// supplierInvoicesOperations.ts
 
 import { INodeProperties } from 'n8n-workflow';
 
 // Descriptions for the "Get a list of supplier invoices for an organization" operation
-export const suplierInvoicesOperations: INodeProperties[] = [
+export const supplierInvoicesOperations: INodeProperties[] = [
 
 // ------------------------
 //      SUPPLIER INVOICES
@@ -17,7 +17,7 @@ export const suplierInvoicesOperations: INodeProperties[] = [
 	displayOptions: {
 		show: {
 			resource: [
-				'suplierInvoices',
+				'supplierInvoices',
 			],
 		},
 	},
@@ -47,7 +47,7 @@ export const suplierInvoicesOperations: INodeProperties[] = [
 				displayOptions: {
 					show: {
 						resource: [
-							'suplierInvoices',
+							'supplierInvoices',
 						],
 						operation: [
 							'getSupplierInvoices',
@@ -65,7 +65,7 @@ export const suplierInvoicesOperations: INodeProperties[] = [
 				displayOptions: {
 					show: {
 						resource: [
-							'suplierInvoices',
+							'supplierInvoices',
 						],
 						operation: [
 							'getSupplierInvoices',
@@ -87,7 +87,7 @@ export const suplierInvoicesOperations: INodeProperties[] = [
 				displayOptions: {
 					show: {
 						resource: [
-							'suplierInvoices',
+							'supplierInvoices',
 						],
 						operation: [
 							'getSupplierInvoices',
@@ -104,7 +104,7 @@ export const suplierInvoicesOperations: INodeProperties[] = [
 				displayOptions: {
 					show: {
 						resource: [
-							'suplierInvoices',
+							'supplierInvoices',
 						],
 						operation: [
 							'getSupplierInvoices',
@@ -126,7 +126,7 @@ export const suplierInvoicesOperations: INodeProperties[] = [
 				displayOptions: {
 					show: {
 						resource: [
-							'suplierInvoices',
+							'supplierInvoices',
 						],
 						operation: [
 							'createSupplierInvoices',
@@ -144,7 +144,7 @@ export const suplierInvoicesOperations: INodeProperties[] = [
 				displayOptions: {
 					show: {
 						resource: [
-							'suplierInvoices',
+							'supplierInvoices',
 						],
 						operation: [
 							'createSupplierInvoices',
