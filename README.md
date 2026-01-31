@@ -1,5 +1,23 @@
 # n8n-nodes-qonto
 
+> **📦 Installation Note**
+> 
+> This repository contains the code for the **`n8n-nodes-qonto-api`** node. Use this name when installing the Community Node into n8n.
+> 
+> **Alternative Node:** [`n8n-nodes-qonto`](https://github.com/DtNeo/n8n-qonto-node)  
+> This node was created to address several limitations found in the original `n8n-nodes-qonto` implementation. Key improvements include:
+> - **Fixed Sandbox Environment Handling**: Proper support for Qonto's sandbox environment for testing
+> - **Enhanced API Coverage**: More comprehensive support for Qonto API resources
+> - **Better OAuth2 Support**: Improved authentication options with OAuth2
+> 
+> The broken sandbox handling of the original node was the main motivation for creating this improved version.
+
+> **🤖 Development Notice**
+> 
+> This node was primarily developed using AI Agents and subsequently manually reviewed and improved to ensure quality and reliability.
+> 
+> If you encounter any issues or have suggestions, please [open an issue](https://github.com/JanThiel/n8n-nodes-qonto/issues) and we'll get it fixed!
+
 This is an n8n community node. It lets you use Qonto banking API in your n8n workflows.
 
 Qonto is a business banking platform that provides banking services for SMEs and freelancers. This node allows you to automate operations with your Qonto account, including managing transactions, transfers, beneficiaries, and more.
