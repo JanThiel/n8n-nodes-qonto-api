@@ -14,7 +14,7 @@
 
 > **🤖 Development Notice**
 > 
-> This node was primarily developed using AI Agents and subsequently manually reviewed and improved to ensure quality and reliability.
+> This node was primarily developed using AI agents and subsequently manually reviewed and improved to ensure quality and reliability.
 > 
 > If you encounter any issues or have suggestions, please [open an issue](https://github.com/JanThiel/n8n-nodes-qonto/issues) and we'll get it fixed!
 
