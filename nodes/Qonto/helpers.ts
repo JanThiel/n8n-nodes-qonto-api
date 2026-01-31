@@ -11,14 +11,28 @@ import {
 
 /**
  * Format a DateTime value to ISO 8601 format required by Qonto API.
- * The Qonto API requires DateTime values in the format: "2025-12-20T10:00:00.000Z"
+ * The Qonto API requires DateTime values in the format: "2025-12-20T10:00:00Z"
  *
  * @param {string} dateTimeValue - The input DateTime value from the n8n UI
- * @returns {string} - The formatted DateTime string in ISO 8601 format with UTC timezone
+ * @returns {string} - The formatted DateTime string in ISO 8601 format with UTC timezone (without milliseconds)
  */
 export function formatDateTime(dateTimeValue: string): string {
 	const date = new Date(dateTimeValue);
-	return date.toISOString();
+	// Format as ISO 8601 without milliseconds: "2025-12-20T10:00:00Z"
+	return date.toISOString().replace(/\.\d{3}Z$/, 'Z');
+}
+
+/**
+ * Format a Date value to date-only format required by Qonto API.
+ * The Qonto API requires Date values in the format: "2025-12-20"
+ *
+ * @param {string} dateValue - The input Date value from the n8n UI
+ * @returns {string} - The formatted Date string in YYYY-MM-DD format
+ */
+export function formatDate(dateValue: string): string {
+	const date = new Date(dateValue);
+	// Format as date only: "2025-12-20"
+	return date.toISOString().split('T')[0];
 }
 
 /**

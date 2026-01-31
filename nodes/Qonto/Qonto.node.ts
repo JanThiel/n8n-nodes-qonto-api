@@ -8,6 +8,7 @@ import {
 
 import {
 	formatDateTime,
+	formatDate,
 	handleListing,
 	qontoApiRequest
 } from './helpers';
@@ -205,7 +206,7 @@ if (resource === 'externalTransfers') {
 			reference:      this.getNodeParameter('reference', i)      as string,
 			note:           this.getNodeParameter('note', i)           as string,
 			currency:       this.getNodeParameter('currency', i)       as string,
-			scheduled_date: formatDateTime(this.getNodeParameter('scheduled_date', i) as string),
+			scheduled_date: formatDate(this.getNodeParameter('scheduled_date', i) as string),
 			amount:         this.getNodeParameter('amount', i)         as string,
 			attachment_ids: this.getNodeParameter('attachment_ids', i) as IDataObject,
 		};
@@ -246,7 +247,7 @@ if (resource === 'externalTransfers') {
 			reference:              this.getNodeParameter('reference', i)              as string,
 			note:                   this.getNodeParameter('note', i)                   as string,
 			currency:               this.getNodeParameter('currency', i)               as string,
-			scheduled_date:         formatDateTime(this.getNodeParameter('scheduled_date', i) as string),
+			scheduled_date:         formatDate(this.getNodeParameter('scheduled_date', i) as string),
 			amount:                 this.getNodeParameter('amount', i)                 as string,
 			attachment_ids:         this.getNodeParameter('attachment_ids', i)         as IDataObject,
 		};
@@ -276,10 +277,10 @@ if (resource === 'externalTransfers') {
 		const filters = this.getNodeParameter('filters', i) as IDataObject;
 		if (!isEmpty(filters)) {
 			if (filters.scheduled_date_from) {
-				query.scheduled_date_from = formatDateTime(filters.scheduled_date_from as string);
+				query.scheduled_date_from = formatDate(filters.scheduled_date_from as string);
 			}
 			if (filters.scheduled_date_to) {
-				query.scheduled_date_to = formatDateTime(filters.scheduled_date_to as string);
+				query.scheduled_date_to = formatDate(filters.scheduled_date_to as string);
 			}
 			if (filters.status && (filters.status as string[]).length > 0) {
 				query['status[]'] = filters.status;
@@ -387,15 +388,122 @@ if (resource === 'beneficiaries') {
 
 	// -----------------------------------------
 	// UNTRUST A LIST OF BENEFICIARIES
-	// PATCH /beneficiaries/untrust
+	// PATCH /sepa/beneficiaries/untrust
 	// -----------------------------------------
 	if (operation === 'untrustBeneficiaries') {
-		const endpoint = 'beneficiaries/untrust';
+		const endpoint = 'sepa/beneficiaries/untrust';
 
-		const ids = this.getNodeParameter('ids', i) as string[];
+		const idsRaw = this.getNodeParameter('ids', i) as string;
+		const ids = idsRaw.split(',').map((id: string) => id.trim());
 
 		const body: IDataObject = {
 			ids,
+		};
+
+		responseData = await qontoApiRequest.call(
+			this,
+			headers,
+			'PATCH',
+			endpoint,
+			body,
+			{},
+		);
+	}
+
+	// -----------------------------------------
+	// TRUST A LIST OF BENEFICIARIES
+	// PATCH /sepa/beneficiaries/trust
+	// -----------------------------------------
+	if (operation === 'trustBeneficiaries') {
+		const endpoint = 'sepa/beneficiaries/trust';
+
+		const idsRaw = this.getNodeParameter('ids', i) as string;
+		const ids = idsRaw.split(',').map((id: string) => id.trim());
+
+		const body: IDataObject = {
+			ids,
+		};
+
+		responseData = await qontoApiRequest.call(
+			this,
+			headers,
+			'PATCH',
+			endpoint,
+			body,
+			{},
+		);
+	}
+
+	// -----------------------------------------
+	// ADD A SEPA BENEFICIARY
+	// POST /sepa/beneficiaries
+	// -----------------------------------------
+	if (operation === 'createBeneficiary') {
+		const endpoint = 'sepa/beneficiaries';
+
+		const beneficiaryData: IDataObject = {
+			name: this.getNodeParameter('beneficiaryName', i) as string,
+			iban: this.getNodeParameter('iban', i) as string,
+		};
+
+		// Add optional fields
+		const additionalOptions = this.getNodeParameter('additionalOptions', i, {}) as IDataObject;
+		if (additionalOptions.bic) {
+			beneficiaryData.bic = additionalOptions.bic;
+		}
+		if (additionalOptions.email) {
+			beneficiaryData.email = additionalOptions.email;
+		}
+		if (additionalOptions.activityTag) {
+			beneficiaryData.activity_tag = additionalOptions.activityTag;
+		}
+
+		const body: IDataObject = {
+			beneficiary: beneficiaryData,
+		};
+
+		headers = {
+			...headers,
+			'Content-Type': 'application/json',
+		};
+
+		responseData = await qontoApiRequest.call(
+			this,
+			headers,
+			'POST',
+			endpoint,
+			body,
+			{},
+		);
+	}
+
+	// -----------------------------------------
+	// UPDATE A SEPA BENEFICIARY
+	// PATCH /sepa/beneficiaries/:id
+	// -----------------------------------------
+	if (operation === 'updateBeneficiary') {
+		const id = this.getNodeParameter('id', i) as string;
+		const endpoint = `sepa/beneficiaries/${id}`;
+		const updateFields = this.getNodeParameter('updateFields', i, {}) as IDataObject;
+
+		const beneficiaryData: IDataObject = {};
+		if (updateFields.name) {
+			beneficiaryData.name = updateFields.name;
+		}
+		if (updateFields.email) {
+			beneficiaryData.email = updateFields.email;
+		}
+		if (updateFields.activityTag) {
+			beneficiaryData.activity_tag = updateFields.activityTag;
+		}
+
+		const body: IDataObject = {
+			beneficiary: beneficiaryData,
+		};
+
+		headers = {
+			...headers,
+			'Content-Type': 'application/json',
 		};
 
 		responseData = await qontoApiRequest.call(
@@ -1025,8 +1133,8 @@ if (resource === 'clientsInvoices') {
 
 		const filters = this.getNodeParameter('filters', i) as IDataObject;
 		if (!isEmpty(filters)) {
-			if (filters.status && (filters.status as string[]).length > 0) {
-				query['filter[status]'] = (filters.status as string[]).join(',');
+			if (filters.status) {
+				query['filter[status]'] = filters.status;
 			}
 			if (filters.created_at_from) {
 				query['filter[created_at_from]'] = formatDateTime(filters.created_at_from as string);
@@ -1039,15 +1147,6 @@ if (resource === 'clientsInvoices') {
 			}
 			if (filters.updated_at_to) {
 				query['filter[updated_at_to]'] = formatDateTime(filters.updated_at_to as string);
-			}
-			if (filters.due_date) {
-				query['filter[due_date]'] = formatDateTime(filters.due_date as string);
-			}
-			if (filters.due_date_from) {
-				query['filter[due_date_from]'] = formatDateTime(filters.due_date_from as string);
-			}
-			if (filters.due_date_to) {
-				query['filter[due_date_to]'] = formatDateTime(filters.due_date_to as string);
 			}
 			if (typeof filters.exclude_imported !== 'undefined') {
 				query.exclude_imported = filters.exclude_imported;
@@ -1075,20 +1174,73 @@ if (resource === 'clientsInvoices') {
 	if (operation === 'createClientInvoice') {
 		const endpoint = 'client_invoices';
 
-		const organizationId = this.getNodeParameter('organizationId', i) as string;
-		const clientInvoice = this.getNodeParameter('clientInvoice', i) as IDataObject;
+		const clientId = this.getNodeParameter('clientId', i) as string;
+		const issueDate = formatDate(this.getNodeParameter('issueDate', i) as string);
+		const dueDate = formatDate(this.getNodeParameter('dueDate', i) as string);
+		const currency = this.getNodeParameter('currency', i) as string;
+		const paymentIban = this.getNodeParameter('paymentIban', i) as string;
+		const itemsData = this.getNodeParameter('items', i) as IDataObject;
+
+		// Build items array
+		const items: IDataObject[] = [];
+		if (itemsData.item && Array.isArray(itemsData.item)) {
+			for (const item of itemsData.item as IDataObject[]) {
+				const invoiceItem: IDataObject = {
+					title: item.title,
+					quantity: item.quantity,
+					unit_price: {
+						value: item.unitPriceValue,
+						currency: item.unitPriceCurrency,
+					},
+					vat_rate: item.vatRate,
+				};
+				if (item.description) {
+					invoiceItem.description = item.description;
+				}
+				if (item.unit) {
+					invoiceItem.unit = item.unit;
+				}
+				items.push(invoiceItem);
+			}
+		}
 
 		const body: IDataObject = {
-			organization_id: organizationId,
-			client_invoice: {
-				invoice_number: clientInvoice.invoiceNumber,
-				invoice_date:   clientInvoice.invoiceDate,
-				due_date:       clientInvoice.dueDate,
-				amount:         clientInvoice.amount,
-				currency:       clientInvoice.currency,
-				description:    clientInvoice.description,
+			client_id: clientId,
+			issue_date: issueDate,
+			due_date: dueDate,
+			currency,
+			payment_methods: {
+				iban: paymentIban,
 			},
+			items,
 		};
+
+		// Add optional fields
+		const additionalOptions = this.getNodeParameter('additionalOptions', i, {}) as IDataObject;
+		if (additionalOptions.status) {
+			body.status = additionalOptions.status;
+		}
+		if (additionalOptions.number) {
+			body.number = additionalOptions.number;
+		}
+		if (additionalOptions.purchaseOrder) {
+			body.purchase_order = additionalOptions.purchaseOrder;
+		}
+		if (additionalOptions.termsAndConditions) {
+			body.terms_and_conditions = additionalOptions.termsAndConditions;
+		}
+		if (additionalOptions.header) {
+			body.header = additionalOptions.header;
+		}
+		if (additionalOptions.footer) {
+			body.footer = additionalOptions.footer;
+		}
+		if (additionalOptions.performanceStartDate) {
+			body.performance_start_date = formatDate(additionalOptions.performanceStartDate as string);
+		}
+		if (additionalOptions.performanceEndDate) {
+			body.performance_end_date = formatDate(additionalOptions.performanceEndDate as string);
+		}
 
 		headers = {
 			...headers,
@@ -1101,6 +1253,78 @@ if (resource === 'clientsInvoices') {
 			'POST',
 			endpoint,
 			body,
+			{},
+		);
+	}
+
+	// -----------------------------------------
+	// UPDATE A DRAFT CLIENT INVOICE
+	// PATCH /client_invoices/:id
+	// -----------------------------------------
+	if (operation === 'updateClientInvoice') {
+		const invoiceId = this.getNodeParameter('invoiceId', i) as string;
+		const endpoint = `client_invoices/${invoiceId}`;
+		const updateFields = this.getNodeParameter('updateFields', i, {}) as IDataObject;
+
+		const body: IDataObject = {};
+
+		if (updateFields.clientId) {
+			body.client_id = updateFields.clientId;
+		}
+		if (updateFields.issueDate) {
+			body.issue_date = formatDate(updateFields.issueDate as string);
+		}
+		if (updateFields.dueDate) {
+			body.due_date = formatDate(updateFields.dueDate as string);
+		}
+		if (updateFields.number) {
+			body.number = updateFields.number;
+		}
+		if (updateFields.purchaseOrder) {
+			body.purchase_order = updateFields.purchaseOrder;
+		}
+		if (updateFields.termsAndConditions) {
+			body.terms_and_conditions = updateFields.termsAndConditions;
+		}
+		if (updateFields.header) {
+			body.header = updateFields.header;
+		}
+		if (updateFields.footer) {
+			body.footer = updateFields.footer;
+		}
+		if (updateFields.paymentIban) {
+			body.payment_methods = { iban: updateFields.paymentIban };
+		}
+
+		headers = {
+			...headers,
+			'Content-Type': 'application/json',
+		};
+
+		responseData = await qontoApiRequest.call(
+			this,
+			headers,
+			'PATCH',
+			endpoint,
+			body,
+			{},
+		);
+	}
+
+	// -----------------------------------------
+	// SHOW A CLIENT INVOICE
+	// GET /client_invoices/:id
+	// -----------------------------------------
+	if (operation === 'showClientInvoice') {
+		const invoiceId = this.getNodeParameter('invoiceId', i) as string;
+		const endpoint = `client_invoices/${invoiceId}`;
+
+		responseData = await qontoApiRequest.call(
+			this,
+			headers,
+			'GET',
+			endpoint,
+			{},
 			{},
 		);
 	}
@@ -1225,19 +1449,76 @@ if (resource === 'clients') {
 	if (operation === 'createClient') {
 		const endpoint = 'clients';
 
-		const organizationId = this.getNodeParameter('organizationId', i) as string;
-
-		const clientData = {
-			name:         this.getNodeParameter('clientName', i) as string,
-			email:        this.getNodeParameter('email', i) as string,
-			phone_number: this.getNodeParameter('phoneNumber', i, null) as string | null,
-			address:      this.getNodeParameter('address', i, null) as string | null,
-		};
+		const kind = this.getNodeParameter('kind', i) as string;
+		const clientName = this.getNodeParameter('clientName', i, '') as string;
+		const firstName = this.getNodeParameter('firstName', i, '') as string;
+		const lastName = this.getNodeParameter('lastName', i, '') as string;
+		const email = this.getNodeParameter('email', i, '') as string;
 
 		const body: IDataObject = {
-			organization_id: organizationId,
-			client: clientData,
+			kind,
 		};
+
+		if (clientName) {
+			body.name = clientName;
+		}
+		if (firstName) {
+			body.first_name = firstName;
+		}
+		if (lastName) {
+			body.last_name = lastName;
+		}
+		if (email) {
+			body.email = email;
+		}
+
+		// Add optional fields
+		const additionalOptions = this.getNodeParameter('additionalOptions', i, {}) as IDataObject;
+		if (additionalOptions.vatNumber) {
+			body.vat_number = additionalOptions.vatNumber;
+		}
+		if (additionalOptions.taxIdentificationNumber) {
+			body.tax_identification_number = additionalOptions.taxIdentificationNumber;
+		}
+		if (additionalOptions.currency) {
+			body.currency = additionalOptions.currency;
+		}
+		if (additionalOptions.locale) {
+			body.locale = additionalOptions.locale;
+		}
+		if (additionalOptions.recipientCode) {
+			body.recipient_code = additionalOptions.recipientCode;
+		}
+		if (additionalOptions.eInvoicingAddress) {
+			body.e_invoicing_address = additionalOptions.eInvoicingAddress;
+		}
+		if (additionalOptions.phoneCountryCode || additionalOptions.phoneNumber) {
+			body.phone = {
+				country_code: additionalOptions.phoneCountryCode || '',
+				number: additionalOptions.phoneNumber || '',
+			};
+		}
+		if (additionalOptions.extraEmails) {
+			body.extra_emails = (additionalOptions.extraEmails as string).split(',').map((e: string) => e.trim());
+		}
+		if (additionalOptions.billingStreetAddress || additionalOptions.billingCity || additionalOptions.billingZipCode || additionalOptions.billingCountryCode) {
+			body.billing_address = {};
+			if (additionalOptions.billingStreetAddress) {
+				(body.billing_address as IDataObject).street_address = additionalOptions.billingStreetAddress;
+			}
+			if (additionalOptions.billingCity) {
+				(body.billing_address as IDataObject).city = additionalOptions.billingCity;
+			}
+			if (additionalOptions.billingZipCode) {
+				(body.billing_address as IDataObject).zip_code = additionalOptions.billingZipCode;
+			}
+			if (additionalOptions.billingProvinceCode) {
+				(body.billing_address as IDataObject).province_code = additionalOptions.billingProvinceCode;
+			}
+			if (additionalOptions.billingCountryCode) {
+				(body.billing_address as IDataObject).country_code = additionalOptions.billingCountryCode;
+			}
+		}
 
 		headers = {
 			...headers,
@@ -1253,6 +1534,87 @@ if (resource === 'clients') {
 			{},
 		);
 	}
+
+	// -----------------------------------------
+	// UPDATE A CLIENT
+	// PATCH /clients/:id
+	// -----------------------------------------
+	if (operation === 'updateClient') {
+		const clientId = this.getNodeParameter('clientId', i) as string;
+		const endpoint = `clients/${clientId}`;
+		const updateFields = this.getNodeParameter('updateFields', i, {}) as IDataObject;
+
+		const body: IDataObject = {};
+
+		if (updateFields.name) {
+			body.name = updateFields.name;
+		}
+		if (updateFields.firstName) {
+			body.first_name = updateFields.firstName;
+		}
+		if (updateFields.lastName) {
+			body.last_name = updateFields.lastName;
+		}
+		if (updateFields.email) {
+			body.email = updateFields.email;
+		}
+		if (updateFields.vatNumber) {
+			body.vat_number = updateFields.vatNumber;
+		}
+		if (updateFields.taxIdentificationNumber) {
+			body.tax_identification_number = updateFields.taxIdentificationNumber;
+		}
+		if (updateFields.currency) {
+			body.currency = updateFields.currency;
+		}
+		if (updateFields.locale) {
+			body.locale = updateFields.locale;
+		}
+		if (updateFields.recipientCode) {
+			body.recipient_code = updateFields.recipientCode;
+		}
+		if (updateFields.eInvoicingAddress) {
+			body.e_invoicing_address = updateFields.eInvoicingAddress;
+		}
+		if (updateFields.phoneCountryCode || updateFields.phoneNumber) {
+			body.phone = {
+				country_code: updateFields.phoneCountryCode || '',
+				number: updateFields.phoneNumber || '',
+			};
+		}
+		if (updateFields.billingStreetAddress || updateFields.billingCity || updateFields.billingZipCode || updateFields.billingCountryCode) {
+			body.billing_address = {};
+			if (updateFields.billingStreetAddress) {
+				(body.billing_address as IDataObject).street_address = updateFields.billingStreetAddress;
+			}
+			if (updateFields.billingCity) {
+				(body.billing_address as IDataObject).city = updateFields.billingCity;
+			}
+			if (updateFields.billingZipCode) {
+				(body.billing_address as IDataObject).zip_code = updateFields.billingZipCode;
+			}
+			if (updateFields.billingProvinceCode) {
+				(body.billing_address as IDataObject).province_code = updateFields.billingProvinceCode;
+			}
+			if (updateFields.billingCountryCode) {
+				(body.billing_address as IDataObject).country_code = updateFields.billingCountryCode;
+			}
+		}
+
+		headers = {
+			...headers,
+			'Content-Type': 'application/json',
+		};
+
+		responseData = await qontoApiRequest.call(
+			this,
+			headers,
+			'PATCH',
+			endpoint,
+			body,
+			{},
+		);
+	}
 }
 
 // ------------------------
@@ -1262,13 +1624,10 @@ if (resource === 'teams') {
 
 	// -----------------------------------------
 	// LIST TEAMS IN AN ORGANIZATION
-	// GET /teams?organization_id=xxx
+	// GET /teams
 	// -----------------------------------------
 	if (operation === 'listTeams') {
 		const endpoint = 'teams';
-
-		const organizationId = this.getNodeParameter('organizationId', i) as string;
-		query.organization_id = organizationId;
 
 		responseData = await handleListing.call(
 			this,
@@ -1288,15 +1647,8 @@ if (resource === 'teams') {
 	if (operation === 'createTeam') {
 		const endpoint = 'teams';
 
-		const organizationId = this.getNodeParameter('organizationId', i) as string;
-		const teamData = {
-			name:        this.getNodeParameter('teamName', i) as string,
-			description: this.getNodeParameter('teamDescription', i, null) as string | null,
-		};
-
 		const body: IDataObject = {
-			organization_id: organizationId,
-			team: teamData,
+			name: this.getNodeParameter('teamName', i) as string,
 		};
 
 		headers = {
@@ -1391,20 +1743,44 @@ if (resource === 'insuranceContracts') {
 	if (operation === 'createInsuranceContract') {
 		const endpoint = 'insurance_contracts';
 
-		const organizationId = this.getNodeParameter('organizationId', i) as string;
-
-		const endDate = this.getNodeParameter('endDate', i, null) as string | null;
-
-		const contractData = {
-			name:             this.getNodeParameter('contractName', i) as string,
-			start_date:       formatDateTime(this.getNodeParameter('startDate', i) as string),
-			end_date:         endDate ? formatDateTime(endDate) : null,
-			coverage_details: this.getNodeParameter('coverageDetails', i, null) as string | null,
+		const contractData: IDataObject = {
+			name: this.getNodeParameter('contractName', i) as string,
+			contract_id: this.getNodeParameter('contractId', i) as string,
+			origin: this.getNodeParameter('origin', i) as string,
+			provider_slug: this.getNodeParameter('providerSlug', i) as string,
+			type: this.getNodeParameter('contractType', i) as string,
+			status: this.getNodeParameter('status', i) as string,
 		};
 
+		// Add optional fields
+		const additionalOptions = this.getNodeParameter('additionalOptions', i, {}) as IDataObject;
+		if (additionalOptions.troubleshootingUrl) {
+			contractData.troubleshooting_url = additionalOptions.troubleshootingUrl;
+		}
+		if (additionalOptions.serviceUrl) {
+			contractData.service_url = additionalOptions.serviceUrl;
+		}
+		if (additionalOptions.expirationDate) {
+			contractData.expiration_date = formatDate(additionalOptions.expirationDate as string);
+		}
+		if (additionalOptions.startDate) {
+			contractData.start_date = formatDate(additionalOptions.startDate as string);
+		}
+		if (additionalOptions.renewalDate) {
+			contractData.renewal_date = formatDate(additionalOptions.renewalDate as string);
+		}
+		if (additionalOptions.paymentFrequency) {
+			contractData.payment_frequency = additionalOptions.paymentFrequency;
+		}
+		if (additionalOptions.priceValue || additionalOptions.priceCurrency) {
+			contractData.price = {
+				value: additionalOptions.priceValue || '',
+				currency: additionalOptions.priceCurrency || 'EUR',
+			};
+		}
+
 		const body: IDataObject = {
-			organization_id: organizationId,
-			contract: contractData,
+			insurance_contract: contractData,
 		};
 
 		headers = {
@@ -1442,22 +1818,60 @@ if (resource === 'insuranceContracts') {
 
 	// -----------------------------------------
 	// UPDATE AN INSURANCE CONTRACT
-	// PATCH /insurance_contracts/:contract_id
+	// PATCH /insurance_contracts/:id
 	// -----------------------------------------
 	if (operation === 'updateInsuranceContract') {
-		const contractId = this.getNodeParameter('contractId', i) as string;
-		const endpoint = `insurance_contracts/${contractId}`;
+		const contractIdToUpdate = this.getNodeParameter('contractIdToUpdate', i) as string;
+		const endpoint = `insurance_contracts/${contractIdToUpdate}`;
+		const updateFields = this.getNodeParameter('updateFields', i, {}) as IDataObject;
 
-		const endDate = this.getNodeParameter('endDate', i, null) as string | null;
+		const contractData: IDataObject = {};
 
-		const updateData: IDataObject = {
-			name:             this.getNodeParameter('contractName', i, null) as string | null,
-			end_date:         endDate ? formatDateTime(endDate) : null,
-			coverage_details: this.getNodeParameter('coverageDetails', i, null) as string | null,
-		};
+		if (updateFields.name) {
+			contractData.name = updateFields.name;
+		}
+		if (updateFields.contractId) {
+			contractData.contract_id = updateFields.contractId;
+		}
+		if (updateFields.origin) {
+			contractData.origin = updateFields.origin;
+		}
+		if (updateFields.providerSlug) {
+			contractData.provider_slug = updateFields.providerSlug;
+		}
+		if (updateFields.type) {
+			contractData.type = updateFields.type;
+		}
+		if (updateFields.status) {
+			contractData.status = updateFields.status;
+		}
+		if (updateFields.troubleshootingUrl) {
+			contractData.troubleshooting_url = updateFields.troubleshootingUrl;
+		}
+		if (updateFields.serviceUrl) {
+			contractData.service_url = updateFields.serviceUrl;
+		}
+		if (updateFields.expirationDate) {
+			contractData.expiration_date = formatDate(updateFields.expirationDate as string);
+		}
+		if (updateFields.startDate) {
+			contractData.start_date = formatDate(updateFields.startDate as string);
+		}
+		if (updateFields.renewalDate) {
+			contractData.renewal_date = formatDate(updateFields.renewalDate as string);
+		}
+		if (updateFields.paymentFrequency) {
+			contractData.payment_frequency = updateFields.paymentFrequency;
+		}
+		if (updateFields.priceValue || updateFields.priceCurrency) {
+			contractData.price = {
+				value: updateFields.priceValue || '',
+				currency: updateFields.priceCurrency || 'EUR',
+			};
+		}
 
 		const body: IDataObject = {
-			contract: updateData,
+			insurance_contract: contractData,
 		};
 
 		headers = {
@@ -1477,21 +1891,24 @@ if (resource === 'insuranceContracts') {
 
 	// -----------------------------------------
 	// UPLOAD A PDF FOR A SPECIFIC CONTRACT
-	// POST /insurance_contracts/:contract_id/upload
+	// POST /insurance_contracts/:id/attachments
 	// -----------------------------------------
-	if (operation === 'uploadInsuranceContractPDF') {
+	if (operation === 'uploadInsuranceDocument') {
 		const contractId = this.getNodeParameter('contractId', i) as string;
-		const pdfFile = this.getNodeParameter('pdfFile', i) as string;
+		const binaryProperty = this.getNodeParameter('binaryProperty', i) as string;
+		const endpoint = `insurance_contracts/${contractId}/attachments`;
 
-		const endpoint = `insurance_contracts/${contractId}/upload`;
+		const binaryData = this.helpers.assertBinaryData(i, binaryProperty);
+		const dataBuffer = await this.helpers.getBinaryDataBuffer(i, binaryProperty);
 
-		const body: IDataObject = {
-			pdf_file: pdfFile,
-		};
-
-		headers = {
-			...headers,
-			'Content-Type': 'application/json',
+		const formData: IDataObject = {
+			file: {
+				value: dataBuffer,
+				options: {
+					filename: binaryData.fileName || 'attachment',
+					contentType: binaryData.mimeType || 'application/octet-stream',
+				},
+			},
 		};
 
 		responseData = await qontoApiRequest.call(
@@ -1499,7 +1916,27 @@ if (resource === 'insuranceContracts') {
 			headers,
 			'POST',
 			endpoint,
-			body,
+			formData,
+			{},
+			true,
+		);
+	}
+
+	// -----------------------------------------
+	// DELETE UPLOADED DOCUMENT
+	// DELETE /insurance_contracts/:id/attachments/:attachment_id
+	// -----------------------------------------
+	if (operation === 'deleteInsuranceDocument') {
+		const contractId = this.getNodeParameter('contractId', i) as string;
+		const attachmentId = this.getNodeParameter('attachmentId', i) as string;
+		const endpoint = `insurance_contracts/${contractId}/attachments/${attachmentId}`;
+
+		responseData = await qontoApiRequest.call(
+			this,
+			headers,
+			'DELETE',
+			endpoint,
+			{},
 			{},
 		);
 	}
@@ -1540,23 +1977,68 @@ if (resource === 'cards') {
 	}
 
 	// -----------------------------------------
-	// CREATE A NEW VIRTUAL CARD
+	// CREATE A CARD
 	// POST /cards
 	// -----------------------------------------
-	if (operation === 'createNew') {
+	if (operation === 'createCard') {
 		const endpoint = 'cards';
 
-		const organizationId = this.getNodeParameter('organizationId', i) as string;
-
 		const cardData: IDataObject = {
-			type:            this.getNodeParameter('cardType', i) as string,
-			name:            this.getNodeParameter('cardName', i) as string,
-			spending_limit:  this.getNodeParameter('spendingLimit', i, null) as number | null,
-			currency:        this.getNodeParameter('currency', i) as string,
+			holder_id: this.getNodeParameter('holderId', i) as string,
+			bank_account_id: this.getNodeParameter('bankAccountId', i) as string,
+			card_level: this.getNodeParameter('cardLevel', i) as string,
+			payment_monthly_limit: this.getNodeParameter('paymentMonthlyLimit', i) as number,
 		};
 
+		// Add optional fields
+		const additionalOptions = this.getNodeParameter('additionalOptions', i, {}) as IDataObject;
+		if (additionalOptions.organizationId) {
+			cardData.organization_id = additionalOptions.organizationId;
+		}
+		if (additionalOptions.initiatorId) {
+			cardData.initiator_id = additionalOptions.initiatorId;
+		}
+		if (additionalOptions.atmOption !== undefined) {
+			cardData.atm_option = additionalOptions.atmOption;
+		}
+		if (additionalOptions.atmMonthlyLimit) {
+			cardData.atm_monthly_limit = additionalOptions.atmMonthlyLimit;
+		}
+		if (additionalOptions.atmDailyLimitOption !== undefined) {
+			cardData.atm_daily_limit_option = additionalOptions.atmDailyLimitOption;
+		}
+		if (additionalOptions.atmDailyLimit) {
+			cardData.atm_daily_limit = additionalOptions.atmDailyLimit;
+		}
+		if (additionalOptions.nfcOption !== undefined) {
+			cardData.nfc_option = additionalOptions.nfcOption;
+		}
+		if (additionalOptions.onlineOption !== undefined) {
+			cardData.online_option = additionalOptions.onlineOption;
+		}
+		if (additionalOptions.foreignOption !== undefined) {
+			cardData.foreign_option = additionalOptions.foreignOption;
+		}
+		if (additionalOptions.paymentDailyLimitOption !== undefined) {
+			cardData.payment_daily_limit_option = additionalOptions.paymentDailyLimitOption;
+		}
+		if (additionalOptions.paymentDailyLimit) {
+			cardData.payment_daily_limit = additionalOptions.paymentDailyLimit;
+		}
+		if (additionalOptions.paymentTransactionLimitOption !== undefined) {
+			cardData.payment_transaction_limit_option = additionalOptions.paymentTransactionLimitOption;
+		}
+		if (additionalOptions.paymentTransactionLimit) {
+			cardData.payment_transaction_limit = additionalOptions.paymentTransactionLimit;
+		}
+		if (additionalOptions.shipToBusiness !== undefined) {
+			cardData.ship_to_business = additionalOptions.shipToBusiness;
+		}
+		if (additionalOptions.cardDesign) {
+			cardData.card_design = additionalOptions.cardDesign;
+		}
+
 		const body: IDataObject = {
-			organization_id: organizationId,
 			card: cardData,
 		};
 
@@ -1571,6 +2053,156 @@ if (resource === 'cards') {
 			'POST',
 			endpoint,
 			body,
+			{},
+		);
+	}
+
+	// -----------------------------------------
+	// RETRIEVE CARD DATA VIEW URL
+	// GET /cards/:id/data_view
+	// -----------------------------------------
+	if (operation === 'retrieveCard') {
+		const cardId = this.getNodeParameter('cardId', i) as string;
+		const endpoint = `cards/${cardId}/data_view`;
+
+		responseData = await qontoApiRequest.call(
+			this,
+			headers,
+			'GET',
+			endpoint,
+			{},
+			{},
+		);
+	}
+
+	// -----------------------------------------
+	// UPDATE CARD LIMITS
+	// PATCH /cards/:id/limits
+	// -----------------------------------------
+	if (operation === 'updateCardLimits') {
+		const cardId = this.getNodeParameter('cardId', i) as string;
+		const endpoint = `cards/${cardId}/limits`;
+		const updateLimits = this.getNodeParameter('updateLimits', i, {}) as IDataObject;
+
+		const cardData: IDataObject = {};
+		if (updateLimits.paymentMonthlyLimit !== undefined) {
+			cardData.payment_monthly_limit = updateLimits.paymentMonthlyLimit;
+		}
+		if (updateLimits.atmMonthlyLimit !== undefined) {
+			cardData.atm_monthly_limit = updateLimits.atmMonthlyLimit;
+		}
+		if (updateLimits.atmDailyLimitOption !== undefined) {
+			cardData.atm_daily_limit_option = updateLimits.atmDailyLimitOption;
+		}
+		if (updateLimits.atmDailyLimit !== undefined) {
+			cardData.atm_daily_limit = updateLimits.atmDailyLimit;
+		}
+		if (updateLimits.paymentDailyLimitOption !== undefined) {
+			cardData.payment_daily_limit_option = updateLimits.paymentDailyLimitOption;
+		}
+		if (updateLimits.paymentDailyLimit !== undefined) {
+			cardData.payment_daily_limit = updateLimits.paymentDailyLimit;
+		}
+		if (updateLimits.paymentTransactionLimitOption !== undefined) {
+			cardData.payment_transaction_limit_option = updateLimits.paymentTransactionLimitOption;
+		}
+		if (updateLimits.paymentTransactionLimit !== undefined) {
+			cardData.payment_transaction_limit = updateLimits.paymentTransactionLimit;
+		}
+
+		const body: IDataObject = {
+			card: cardData,
+		};
+
+		headers = {
+			...headers,
+			'Content-Type': 'application/json',
+		};
+
+		responseData = await qontoApiRequest.call(
+			this,
+			headers,
+			'PATCH',
+			endpoint,
+			body,
+			{},
+		);
+	}
+
+	// -----------------------------------------
+	// UPDATE CARD OPTIONS
+	// PATCH /cards/:id/options
+	// -----------------------------------------
+	if (operation === 'updateCardOptions') {
+		const cardId = this.getNodeParameter('cardId', i) as string;
+		const endpoint = `cards/${cardId}/options`;
+		const updateOptions = this.getNodeParameter('updateOptions', i, {}) as IDataObject;
+
+		const cardData: IDataObject = {};
+		if (updateOptions.atmOption !== undefined) {
+			cardData.atm_option = updateOptions.atmOption;
+		}
+		if (updateOptions.nfcOption !== undefined) {
+			cardData.nfc_option = updateOptions.nfcOption;
+		}
+		if (updateOptions.onlineOption !== undefined) {
+			cardData.online_option = updateOptions.onlineOption;
+		}
+		if (updateOptions.foreignOption !== undefined) {
+			cardData.foreign_option = updateOptions.foreignOption;
+		}
+
+		const body: IDataObject = {
+			card: cardData,
+		};
+
+		headers = {
+			...headers,
+			'Content-Type': 'application/json',
+		};
+
+		responseData = await qontoApiRequest.call(
+			this,
+			headers,
+			'PATCH',
+			endpoint,
+			body,
+			{},
+		);
+	}
+
+	// -----------------------------------------
+	// LOCK A CARD
+	// PUT /cards/:id/lock
+	// -----------------------------------------
+	if (operation === 'lockCard') {
+		const cardId = this.getNodeParameter('cardId', i) as string;
+		const endpoint = `cards/${cardId}/lock`;
+
+		responseData = await qontoApiRequest.call(
+			this,
+			headers,
+			'PUT',
+			endpoint,
+			{},
+			{},
+		);
+	}
+
+	// -----------------------------------------
+	// UNLOCK A CARD
+	// PUT /cards/:id/unlock
+	// -----------------------------------------
+	if (operation === 'unlockCard') {
+		const cardId = this.getNodeParameter('cardId', i) as string;
+		const endpoint = `cards/${cardId}/unlock`;
+
+		responseData = await qontoApiRequest.call(
+			this,
+			headers,
+			'PUT',
+			endpoint,
+			{},
 			{},
 		);
 	}
