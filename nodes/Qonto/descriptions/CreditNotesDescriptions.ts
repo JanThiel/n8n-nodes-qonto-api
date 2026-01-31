@@ -98,27 +98,15 @@ import { INodeProperties } from 'n8n-workflow';
         },
         options: [
             {
-                displayName: 'Status',
-                name: 'status',
-                type: 'options',
-                options: [
-                    { name: 'All', value: 'all' },
-                    { name: 'Pending', value: 'pending' },
-                    { name: 'Used', value: 'used' },
-                ],
-                default: 'all',
-                description: 'Filter credit notes by their status',
-            },
-            {
-                displayName: 'Start Date',
-                name: 'start_date',
+                displayName: 'Created At From',
+                name: 'created_at_from',
                 type: 'dateTime',
                 default: '',
                 description: 'Fetch credit notes created after this date',
             },
             {
-                displayName: 'End Date',
-                name: 'end_date',
+                displayName: 'Created At To',
+                name: 'created_at_to',
                 type: 'dateTime',
                 default: '',
                 description: 'Fetch credit notes created before this date',

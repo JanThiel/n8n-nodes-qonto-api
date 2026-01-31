@@ -1072,14 +1072,11 @@ if (resource === 'creditNotes') {
 
 		const filters = this.getNodeParameter('filters', i) as IDataObject;
 		if (!isEmpty(filters)) {
-			if (filters.status && filters.status !== 'all') {
-				query.status = filters.status;
+			if (filters.created_at_from) {
+				query.created_at_from = filters.created_at_from;
 			}
-			if (filters.start_date) {
-				query.start_date = filters.start_date;
-			}
-			if (filters.end_date) {
-				query.end_date = filters.end_date;
+			if (filters.created_at_to) {
+				query.created_at_to = filters.created_at_to;
 			}
 		}
 
@@ -1127,14 +1124,17 @@ if (resource === 'clients') {
 
 		const filters = this.getNodeParameter('filters', i) as IDataObject;
 		if (!isEmpty(filters)) {
-			if (filters.status && filters.status !== 'all') {
-				query.status = filters.status;
+			if (filters.tax_identification_number) {
+				query['filter[tax_identification_number]'] = filters.tax_identification_number;
 			}
-			if (filters.start_date) {
-				query.start_date = filters.start_date;
+			if (filters.vat_number) {
+				query['filter[vat_number]'] = filters.vat_number;
 			}
-			if (filters.end_date) {
-				query.end_date = filters.end_date;
+			if (filters.email) {
+				query['filter[email]'] = filters.email;
+			}
+			if (filters.name) {
+				query['filter[name]'] = filters.name;
 			}
 		}
 
