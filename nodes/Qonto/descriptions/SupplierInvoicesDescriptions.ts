@@ -2,7 +2,7 @@
 
 import { INodeProperties } from 'n8n-workflow';
 
-// Descriptions for the "Get a list of supplier invoices for an organization" operation
+// Descriptions for the "Get a list of supplier invoices" operation
 export const supplierInvoicesOperations: INodeProperties[] = [
 
 // ------------------------
@@ -23,9 +23,9 @@ export const supplierInvoicesOperations: INodeProperties[] = [
 	},
 	options: [
 		{
-			name: 'Get a List of Supplier Invoices for an Organization',
+			name: 'Get a List of Supplier Invoices',
 			value: 'getSupplierInvoices',
-			action: 'Get a list of supplier invoices for an organization',
+			action: 'Get a list of supplier invoices',
 		},
 		{
 			name: 'Create Supplier Invoices with Attachments',
@@ -37,7 +37,7 @@ export const supplierInvoicesOperations: INodeProperties[] = [
 },
 
 // ------------------------
-//      SUPPLIER INVOICES - Get a list of supplier invoices for an organization
+//      SUPPLIER INVOICES - Get a list of supplier invoices
 // ------------------------
 
 	{
