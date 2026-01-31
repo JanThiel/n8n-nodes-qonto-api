@@ -397,7 +397,7 @@ if (resource === 'beneficiaries') {
 // ------------------------
 //      ATTACHMENTS
 // ------------------------
-if (resource === 'attachments') {
+if (resource === 'attachment') {
 
 	// -----------------------------------------
 	// UPLOAD AN ATTACHMENT
@@ -920,12 +920,12 @@ if (resource === 'supplierInvoices') {
 	// GET A LIST OF SUPPLIER INVOICES
 	// GET /supplier_invoices
 	// -----------------------------------------
-	if (operation === 'listSupplierInvoices') {
+	if (operation === 'getSupplierInvoices') {
 		const endpoint = 'supplier_invoices';
 
 		const filters = this.getNodeParameter('filters', i) as IDataObject;
 		if (!isEmpty(filters)) {
-			if (filters.status) {
+			if (filters.status && filters.status !== 'all') {
 				query.status = filters.status;
 			}
 			if (filters.start_date) {
@@ -987,18 +987,18 @@ if (resource === 'supplierInvoices') {
 // ------------------------
 //      CLIENT INVOICES
 // ------------------------
-if (resource === 'clientInvoices') {
+if (resource === 'clientsInvoices') {
 
 	// -----------------------------------------
 	// GET A LIST OF CLIENT INVOICES
 	// GET /client_invoices
 	// -----------------------------------------
-	if (operation === 'listClientInvoices') {
+	if (operation === 'listInvoices') {
 		const endpoint = 'client_invoices';
 
 		const filters = this.getNodeParameter('filters', i) as IDataObject;
 		if (!isEmpty(filters)) {
-			if (filters.status) {
+			if (filters.status && filters.status !== 'all') {
 				query.status = filters.status;
 			}
 			if (filters.start_date) {
@@ -1067,12 +1067,12 @@ if (resource === 'creditNotes') {
 	// GET A LIST OF CREDIT NOTES
 	// GET /credit_notes
 	// -----------------------------------------
-	if (operation === 'listCreditNotes') {
+	if (operation === 'getListCreditNotes') {
 		const endpoint = 'credit_notes';
 
 		const filters = this.getNodeParameter('filters', i) as IDataObject;
 		if (!isEmpty(filters)) {
-			if (filters.status) {
+			if (filters.status && filters.status !== 'all') {
 				query.status = filters.status;
 			}
 			if (filters.start_date) {
@@ -1098,7 +1098,7 @@ if (resource === 'creditNotes') {
 	// GET DETAILS OF A SPECIFIC CREDIT NOTE
 	// GET /credit_notes/:credit_note_id
 	// -----------------------------------------
-	if (operation === 'getCreditNoteDetails') {
+	if (operation === 'getDetailsCreditNotes') {
 		const creditNoteId = this.getNodeParameter('creditNoteId', i) as string;
 		const endpoint = `credit_notes/${creditNoteId}`;
 
@@ -1122,12 +1122,12 @@ if (resource === 'clients') {
 	// GET A LIST OF CLIENTS
 	// GET /clients
 	// -----------------------------------------
-	if (operation === 'listClients') {
+	if (operation === 'getListClients') {
 		const endpoint = 'clients';
 
 		const filters = this.getNodeParameter('filters', i) as IDataObject;
 		if (!isEmpty(filters)) {
-			if (filters.status) {
+			if (filters.status && filters.status !== 'all') {
 				query.status = filters.status;
 			}
 			if (filters.start_date) {
@@ -1455,12 +1455,12 @@ if (resource === 'cards') {
 	if (operation === 'listCards') {
 		const endpoint = 'cards';
 
-		const organizationId = this.getNodeParameter('organizationId', i) as string;
-		query.organization_id = organizationId;
-
 		const filters = this.getNodeParameter('filters', i) as IDataObject;
 		if (!isEmpty(filters)) {
-			if (filters.status) {
+			if (filters.organizationId) {
+				query.organization_id = filters.organizationId;
+			}
+			if (filters.status && filters.status !== 'all') {
 				query.status = filters.status;
 			}
 		}
@@ -1480,7 +1480,7 @@ if (resource === 'cards') {
 	// CREATE A NEW VIRTUAL CARD
 	// POST /cards
 	// -----------------------------------------
-	if (operation === 'createVirtualCard') {
+	if (operation === 'createNew') {
 		const endpoint = 'cards';
 
 		const organizationId = this.getNodeParameter('organizationId', i) as string;

@@ -44,45 +44,83 @@ export const cardsOperations: INodeProperties[] = [
 	//      cards - List cards
 	// ------------------------
 
+	{
+		displayName: 'Return All',
+		name: 'returnAll',
+		type: 'boolean',
+		default: false,
+		description: 'Whether to return all results or only up to a given limit',
+		displayOptions: {
+			show: {
+				resource: [
+					'cards',
+				],
+				operation: [
+					'listCards',
+				],
+			},
+		},
+	},
+	{
+		displayName: 'Limit',
+		name: 'limit',
+		type: 'number',
+		displayOptions: {
+			show: {
+				resource: [
+					'cards',
+				],
+				operation: [
+					'listCards',
+				],
+				returnAll: [
+					false,
+				],
+			},
+		},
+		typeOptions: {
+			minValue: 1,
+		},
+		default: 50,
+		description: 'Max number of results to return',
+	},
     {
-        displayName: 'Organization ID',
-        name: 'organizationId',
-        type: 'string',
-				displayOptions: {
-					show: {
-						resource: [
-							'cards',
-						],
-						operation: [
-							'listCards',
-						],
-					},
-				},
-        default: '',
-        required: true,
-        description: 'The unique identifier of the organization whose cards are to be listed',
-    },
-    {
-        displayName: 'Status',
-        name: 'status',
-        type: 'options',
-				displayOptions: {
-					show: {
-						resource: [
-							'cards',
-						],
-						operation: [
-							'listCards',
-						],
-					},
-				},
+        displayName: 'Filters',
+        name: 'filters',
+        type: 'collection',
+        placeholder: 'Add Filter',
+        default: {},
+        displayOptions: {
+            show: {
+                resource: [
+                    'cards',
+                ],
+                operation: [
+                    'listCards',
+                ],
+            },
+        },
         options: [
-            { name: 'All', value: 'all' },
-            { name: 'Active', value: 'active' },
-            { name: 'Inactive', value: 'inactive' },
+            {
+                displayName: 'Organization ID',
+                name: 'organizationId',
+                type: 'string',
+                default: '',
+                description: 'The unique identifier of the organization whose cards are to be listed',
+            },
+            {
+                displayName: 'Status',
+                name: 'status',
+                type: 'options',
+                options: [
+                    { name: 'All', value: 'all' },
+                    { name: 'Active', value: 'active' },
+                    { name: 'Inactive', value: 'inactive' },
+                ],
+                default: 'all',
+                description: 'Filter cards by their status',
+            },
         ],
-        default: 'all',
-        description: 'Filter cards by their status',
     },
 
   // ------------------------

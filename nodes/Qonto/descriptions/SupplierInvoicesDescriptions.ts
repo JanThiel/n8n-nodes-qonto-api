@@ -40,79 +40,90 @@ export const supplierInvoicesOperations: INodeProperties[] = [
 //      SUPPLIER INVOICES - Get a list of supplier invoices for an organization
 // ------------------------
 
+	{
+		displayName: 'Return All',
+		name: 'returnAll',
+		type: 'boolean',
+		default: false,
+		description: 'Whether to return all results or only up to a given limit',
+		displayOptions: {
+			show: {
+				resource: [
+					'supplierInvoices',
+				],
+				operation: [
+					'getSupplierInvoices',
+				],
+			},
+		},
+	},
+	{
+		displayName: 'Limit',
+		name: 'limit',
+		type: 'number',
+		displayOptions: {
+			show: {
+				resource: [
+					'supplierInvoices',
+				],
+				operation: [
+					'getSupplierInvoices',
+				],
+				returnAll: [
+					false,
+				],
+			},
+		},
+		typeOptions: {
+			minValue: 1,
+		},
+		default: 50,
+		description: 'Max number of results to return',
+	},
     {
-        displayName: 'Organization ID',
-        name: 'organizationId',
-        type: 'string',
-				displayOptions: {
-					show: {
-						resource: [
-							'supplierInvoices',
-						],
-						operation: [
-							'getSupplierInvoices',
-						],
-					},
-				},
-        default: '',
-        required: true,
-        description: 'The unique identifier of the organization whose supplier invoices are to be fetched',
-    },
-    {
-        displayName: 'Status',
-        name: 'status',
-        type: 'options',
-				displayOptions: {
-					show: {
-						resource: [
-							'supplierInvoices',
-						],
-						operation: [
-							'getSupplierInvoices',
-						],
-					},
-				},
+        displayName: 'Filters',
+        name: 'filters',
+        type: 'collection',
+        placeholder: 'Add Filter',
+        default: {},
+        displayOptions: {
+            show: {
+                resource: [
+                    'supplierInvoices',
+                ],
+                operation: [
+                    'getSupplierInvoices',
+                ],
+            },
+        },
         options: [
-            { name: 'All', value: 'all' },
-            { name: 'Pending', value: 'pending' },
-            { name: 'Paid', value: 'paid' },
+            {
+                displayName: 'Status',
+                name: 'status',
+                type: 'options',
+                options: [
+                    { name: 'All', value: 'all' },
+                    { name: 'Pending', value: 'pending' },
+                    { name: 'Paid', value: 'paid' },
+                ],
+                default: 'all',
+                description: 'Filter supplier invoices by their payment status',
+            },
+            {
+                displayName: 'Start Date',
+                name: 'start_date',
+                type: 'dateTime',
+                default: '',
+                description: 'Fetch invoices created after this date',
+            },
+            {
+                displayName: 'End Date',
+                name: 'end_date',
+                type: 'dateTime',
+                default: '',
+                description: 'Fetch invoices created before this date',
+            },
         ],
-        default: 'all',
-        description: 'Filter supplier invoices by their payment status',
-    },
-    {
-        displayName: 'Start Date',
-        name: 'startDate',
-        type: 'dateTime',
-				displayOptions: {
-					show: {
-						resource: [
-							'supplierInvoices',
-						],
-						operation: [
-							'getSupplierInvoices',
-						],
-					},
-				},
-        default: '',
-        description: 'Fetch invoices created after this date',
-    },
-    {
-        displayName: 'End Date',
-        name: 'endDate',
-        type: 'dateTime',
-				displayOptions: {
-					show: {
-						resource: [
-							'supplierInvoices',
-						],
-						operation: [
-							'getSupplierInvoices',
-						],
-					},
-				},
-        default: '',
-        description: 'Fetch invoices created before this date',
     },
 
 // ------------------------
