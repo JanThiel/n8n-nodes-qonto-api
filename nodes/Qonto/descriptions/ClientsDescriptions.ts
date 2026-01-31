@@ -64,79 +64,90 @@ export const clientsOperations: INodeProperties[] = [
 	//      clients - Get a list of clients
 	// ------------------------
 
+	{
+		displayName: 'Return All',
+		name: 'returnAll',
+		type: 'boolean',
+		default: false,
+		description: 'Whether to return all results or only up to a given limit',
+		displayOptions: {
+			show: {
+				resource: [
+					'clients',
+				],
+				operation: [
+					'getListClients',
+				],
+			},
+		},
+	},
+	{
+		displayName: 'Limit',
+		name: 'limit',
+		type: 'number',
+		displayOptions: {
+			show: {
+				resource: [
+					'clients',
+				],
+				operation: [
+					'getListClients',
+				],
+				returnAll: [
+					false,
+				],
+			},
+		},
+		typeOptions: {
+			minValue: 1,
+		},
+		default: 50,
+		description: 'Max number of results to return',
+	},
     {
-        displayName: 'Organization ID',
-        name: 'organizationId',
-        type: 'string',
-				displayOptions: {
-					show: {
-						resource: [
-							'clients',
-						],
-						operation: [
-							'getListClients',
-						],
-					},
-				},
-        default: '',
-        required: true,
-        description: 'The unique identifier of the organization whose clients are to be fetched',
-    },
-    {
-        displayName: 'Status',
-        name: 'status',
-        type: 'options',
-				displayOptions: {
-					show: {
-						resource: [
-							'clients',
-						],
-						operation: [
-							'getListClients',
-						],
-					},
-				},
+        displayName: 'Filters',
+        name: 'filters',
+        type: 'collection',
+        placeholder: 'Add Filter',
+        default: {},
+        displayOptions: {
+            show: {
+                resource: [
+                    'clients',
+                ],
+                operation: [
+                    'getListClients',
+                ],
+            },
+        },
         options: [
-            { name: 'All', value: 'all' },
-            { name: 'Active', value: 'active' },
-            { name: 'Inactive', value: 'inactive' },
+            {
+                displayName: 'Status',
+                name: 'status',
+                type: 'options',
+                options: [
+                    { name: 'All', value: 'all' },
+                    { name: 'Active', value: 'active' },
+                    { name: 'Inactive', value: 'inactive' },
+                ],
+                default: 'all',
+                description: 'Filter clients by their status',
+            },
+            {
+                displayName: 'Start Date',
+                name: 'start_date',
+                type: 'dateTime',
+                default: '',
+                description: 'Fetch clients created after this date',
+            },
+            {
+                displayName: 'End Date',
+                name: 'end_date',
+                type: 'dateTime',
+                default: '',
+                description: 'Fetch clients created before this date',
+            },
         ],
-        default: 'all',
-        description: 'Filter clients by their status',
-    },
-    {
-        displayName: 'Start Date',
-        name: 'startDate',
-        type: 'dateTime',
-				displayOptions: {
-					show: {
-						resource: [
-							'clients',
-						],
-						operation: [
-							'getListClients',
-						],
-					},
-				},
-        default: '',
-        description: 'Fetch clients created after this date',
-    },
-    {
-        displayName: 'End Date',
-        name: 'endDate',
-        type: 'dateTime',
-				displayOptions: {
-					show: {
-						resource: [
-							'clients',
-						],
-						operation: [
-							'getListClients',
-						],
-					},
-				},
-        default: '',
-        description: 'Fetch clients created before this date',
     },
 
 	// ------------------------

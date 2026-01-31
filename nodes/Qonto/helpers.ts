@@ -6,7 +6,46 @@ import {
 	NodeApiError,
 	IHttpRequestMethods,
 	IHttpRequestOptions,
+	JsonObject,
 } from 'n8n-workflow';
+
+/**
+ * Extract error message from Qonto API error response
+ */
+function extractErrorMessage(error: unknown): string {
+	if (error && typeof error === 'object') {
+		const err = error as JsonObject;
+		// Check for Qonto API error format
+		if (err.message) {
+			return String(err.message);
+		}
+		if (err.error) {
+			return String(err.error);
+		}
+		if (err.errors && Array.isArray(err.errors)) {
+			return err.errors.map((e: unknown) => {
+				if (typeof e === 'string') return e;
+				if (e && typeof e === 'object' && 'message' in e) return String((e as JsonObject).message);
+				return JSON.stringify(e);
+			}).join(', ');
+		}
+		// Check for response body with error
+		if (err.response && typeof err.response === 'object') {
+			const response = err.response as JsonObject;
+			if (response.body && typeof response.body === 'object') {
+				const body = response.body as JsonObject;
+				if (body.message) return String(body.message);
+				if (body.error) return String(body.error);
+			}
+		}
+		// Check for cause with response
+		if (err.cause && typeof err.cause === 'object') {
+			const cause = err.cause as JsonObject;
+			if (cause.message) return String(cause.message);
+		}
+	}
+	return '';
+}
 
 /**
  * Make an API request to Qonto
@@ -68,11 +107,20 @@ export async function qontoApiRequest(
 	}
 
 	// Handle authentication
-	if (authenticationMethod === 'logKey') {
-		options.headers!.Authorization = `${credentials.login}:${credentials.secretKey}`;
-		return await this.helpers.httpRequest!(options);
-	} else {
-		return await this.helpers.httpRequestWithAuthentication!.call(this, 'qontoOAuth2Api', options);
+	try {
+		if (authenticationMethod === 'logKey') {
+			options.headers!.Authorization = `${credentials.login}:${credentials.secretKey}`;
+			return await this.helpers.httpRequest!(options);
+		} else {
+			return await this.helpers.httpRequestWithAuthentication!.call(this, 'qontoOAuth2Api', options);
+		}
+	} catch (error: unknown) {
+		// Extract and surface API error message
+		const apiErrorMessage = extractErrorMessage(error);
+		if (apiErrorMessage) {
+			throw new NodeApiError(this.getNode(), error as JsonObject, { message: apiErrorMessage });
+		}
+		throw new NodeApiError(this.getNode(), error as JsonObject);
 	}
 }
 
@@ -132,7 +180,12 @@ export async function handleListing(
 		}
 
 		return returnData;
-	} catch (error) {
-		throw new NodeApiError(this.getNode(), error);
+	} catch (error: unknown) {
+		// Extract and surface API error message
+		const apiErrorMessage = extractErrorMessage(error);
+		if (apiErrorMessage) {
+			throw new NodeApiError(this.getNode(), error as JsonObject, { message: apiErrorMessage });
+		}
+		throw new NodeApiError(this.getNode(), error as JsonObject);
 	}
 }
