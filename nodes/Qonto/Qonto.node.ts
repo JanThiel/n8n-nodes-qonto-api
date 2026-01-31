@@ -1153,7 +1153,7 @@ if (resource === 'clients') {
 	// GET CLIENT DETAILS
 	// GET /clients/:client_id
 	// -----------------------------------------
-	if (operation === 'getclients') {
+	if (operation === 'getClientDetails') {
 		const clientId = this.getNodeParameter('clientId', i) as string;
 		const endpoint = `clients/${clientId}`;
 

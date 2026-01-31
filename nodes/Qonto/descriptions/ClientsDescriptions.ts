@@ -23,7 +23,7 @@ export const clientsOperations: INodeProperties[] = [
 			options: [
 				{
 					name: 'Get Clients Details',
-					value: 'getclients',
+					value: 'getClientDetails',
 					action: 'Get clients details',
 				},
 				{
@@ -37,7 +37,7 @@ export const clientsOperations: INodeProperties[] = [
 					action: 'Create a client',
 				},
 			],
-			default: 'getclients',
+			default: 'getClientDetails',
 		},
 	// ------------------------
 	//      clients - Get client's details
@@ -52,7 +52,7 @@ export const clientsOperations: INodeProperties[] = [
 							'clients',
 						],
 						operation: [
-							'getclients',
+							'getClientDetails',
 						],
 					},
 				},

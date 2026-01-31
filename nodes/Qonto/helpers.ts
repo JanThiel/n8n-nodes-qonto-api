@@ -10,6 +10,17 @@ import {
 } from 'n8n-workflow';
 
 /**
+ * Format a single error item into a string
+ */
+function formatErrorItem(item: unknown): string {
+	if (typeof item === 'string') return item;
+	if (item && typeof item === 'object' && 'message' in item) {
+		return String((item as JsonObject).message);
+	}
+	return JSON.stringify(item);
+}
+
+/**
  * Extract error message from Qonto API error response
  */
 function extractErrorMessage(error: unknown): string {
@@ -23,11 +34,7 @@ function extractErrorMessage(error: unknown): string {
 			return String(err.error);
 		}
 		if (err.errors && Array.isArray(err.errors)) {
-			return err.errors.map((e: unknown) => {
-				if (typeof e === 'string') return e;
-				if (e && typeof e === 'object' && 'message' in e) return String((e as JsonObject).message);
-				return JSON.stringify(e);
-			}).join(', ');
+			return err.errors.map(formatErrorItem).join(', ');
 		}
 		// Check for response body with error
 		if (err.response && typeof err.response === 'object') {
