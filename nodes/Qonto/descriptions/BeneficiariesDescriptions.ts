@@ -22,6 +22,11 @@ resource: [
 },
 options: [
 {
+name: 'Add a SEPA Beneficiary',
+value: 'createBeneficiary',
+action: 'Add a SEPA beneficiary',
+},
+{
 name: 'List Beneficiaries',
 value: 'listBeneficiaries',
 action: 'List beneficiaries',
@@ -32,16 +37,6 @@ value: 'showBeneficiary',
 action: 'Show beneficiary',
 },
 {
-name: 'Add a SEPA Beneficiary',
-value: 'createBeneficiary',
-action: 'Add a SEPA beneficiary',
-},
-{
-name: 'Update a SEPA Beneficiary',
-value: 'updateBeneficiary',
-action: 'Update a SEPA beneficiary',
-},
-{
 name: 'Trust Beneficiaries',
 value: 'trustBeneficiaries',
 action: 'Trust beneficiaries',
@@ -50,6 +45,11 @@ action: 'Trust beneficiaries',
 name: 'Untrust Beneficiaries',
 value: 'untrustBeneficiaries',
 action: 'Untrust beneficiaries',
+},
+{
+name: 'Update a SEPA Beneficiary',
+value: 'updateBeneficiary',
+action: 'Update a SEPA beneficiary',
 },
 ],
 default: 'listBeneficiaries',
