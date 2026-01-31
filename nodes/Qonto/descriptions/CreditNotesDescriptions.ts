@@ -2,7 +2,7 @@
 
 import { INodeProperties } from 'n8n-workflow';
 
-// Descriptions for the "Get a list of credit notes for an organization" operation
+// Descriptions for the "Get a list of credit notes" operation
 	export const creditNotesOperations: INodeProperties[] = [
 
 		// ------------------------
@@ -23,21 +23,21 @@ import { INodeProperties } from 'n8n-workflow';
 				},
 				options: [
 					{
-						name: 'Get a List of Credit Notes for an Organization',
+						name: 'Get a List of Credit Notes',
 						value: 'getListCreditNotes',
-						action: 'Get a list of credit notes for an organization',
+						action: 'Get a list of credit notes',
 					},
 					{
-						name: 'Get Details of Credit Note for an Organization',
+						name: 'Get Details of Credit Note',
 						value: 'getDetailsCreditNotes',
-						action: 'Get details of credit note for an organization',
+						action: 'Get details of credit note',
 					},
 
 				],
 				default: 'getListCreditNotes',
 			},
 		// ------------------------
-		//      creditNotes - Get a list of credit notes for an organization
+		//      creditNotes - Get a list of credit notes
 		// ------------------------
 
 	{
@@ -127,7 +127,7 @@ import { INodeProperties } from 'n8n-workflow';
     },
 
 		// ------------------------
-		//      creditNotes - Get details of credit note for an organization
+		//      creditNotes - Get details of credit note
 		// ------------------------
 
     {
