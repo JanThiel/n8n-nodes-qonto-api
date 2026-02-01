@@ -1,0 +1,30 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "logKey",
+        "resource": "memberships"
+      },
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "733af5b9-da4c-447c-8b50-e078c5eebbd4",
+      "name": "List memberships",
+      "credentials": {
+        "qontoApi": {
+          "id": "8C1EjV55kleADhx0",
+          "name": "Qonto account"
+        }
+      }
+    }
+  ],
+  "connections": {},
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "697009c6787039415d6853f2a1567357986959145b8b2f84ad63476d14659b22"
+  }
+}
