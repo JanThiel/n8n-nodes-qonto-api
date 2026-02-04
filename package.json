@@ -1,6 +1,6 @@
 {
     "name": "n8n-nodes-qonto-api",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "description": "n8n node for Qonto banking API - manage transactions, transfers, beneficiaries, and more",
     "license": "MIT",
     "homepage": "",
