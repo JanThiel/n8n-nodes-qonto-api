@@ -60,6 +60,19 @@ This node supports the following Qonto resources:
 - **Teams**: Manage teams
 - **Insurance Contracts**: Manage insurance contracts
 
+## Workflow Examples
+
+### Complete Operations Demonstration
+
+A comprehensive n8n workflow demonstrating **all operations for all resources** is available in the [`examples/`](examples/) directory:
+
+- **[qonto-all-operations-workflow.json](examples/qonto-all-operations-workflow.json)**: Import-ready workflow with 56 operations across 18 resources
+- All Create operations include realistic example data
+- Update operations are connected to Create operations using returned IDs
+- Perfect for learning the API or testing your credentials
+
+See the [examples README](examples/README.md) for detailed documentation.
+
 ## Example Use Cases
 
 This section provides practical examples of how to use the Qonto node in real-world automation scenarios.

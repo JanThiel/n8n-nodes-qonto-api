@@ -1,0 +1,1461 @@
+{
+  "name": "Qonto API - All Operations Demonstration",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "start-node",
+      "name": "When clicking 'Test workflow'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "organizations",
+        "operation": "getOrganization"
+      },
+      "id": "org-get",
+      "name": "Organization - Get Organization",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        460,
+        300
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "transactions",
+        "operation": "listTransactions",
+        "returnAll": false,
+        "limit": 10
+      },
+      "id": "trans-list",
+      "name": "Transaction - List Transactions",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        100
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "transactions",
+        "operation": "showTransaction",
+        "transactionId": "transaction-uuid-example"
+      },
+      "id": "trans-get",
+      "name": "Transaction - Retrieve Transaction",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        200
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "beneficiaries",
+        "operation": "listBeneficiaries",
+        "returnAll": false,
+        "limit": 10
+      },
+      "id": "ben-list",
+      "name": "Beneficiary - List Beneficiaries",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        300
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "beneficiaries",
+        "operation": "showBeneficiary",
+        "id": "beneficiary-uuid-example"
+      },
+      "id": "ben-show",
+      "name": "Beneficiary - Show Beneficiary",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        400
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "beneficiaries",
+        "operation": "createBeneficiary",
+        "beneficiaryName": "John Doe Ltd",
+        "iban": "DE89370400440532013000",
+        "additionalOptions": {
+          "bic": "COBADEFFXXX",
+          "email": "john.doe@example.com",
+          "activityTag": "supplier_payment"
+        }
+      },
+      "id": "ben-create",
+      "name": "Beneficiary - Add SEPA Beneficiary",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        500
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "beneficiaries",
+        "operation": "updateBeneficiary",
+        "id": "={{ $json.id }}",
+        "updateFields": {
+          "name": "John Doe Limited",
+          "email": "john.doe.updated@example.com"
+        }
+      },
+      "id": "ben-update",
+      "name": "Beneficiary - Update SEPA Beneficiary",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        900,
+        500
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "beneficiaries",
+        "operation": "trustBeneficiaries",
+        "ids": "beneficiary-uuid-1,beneficiary-uuid-2"
+      },
+      "id": "ben-trust",
+      "name": "Beneficiary - Trust Beneficiaries",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        600
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "beneficiaries",
+        "operation": "untrustBeneficiaries",
+        "ids": "beneficiary-uuid-3,beneficiary-uuid-4"
+      },
+      "id": "ben-untrust",
+      "name": "Beneficiary - Untrust Beneficiaries",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        700
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "externalTransfers",
+        "operation": "listExternalTransfers",
+        "returnAll": false,
+        "limit": 10
+      },
+      "id": "ext-list",
+      "name": "External Transfer - List External Transfers",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        800
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "externalTransfers",
+        "operation": "showExternalTransfer",
+        "externalTransferId": "transfer-uuid-example"
+      },
+      "id": "ext-show",
+      "name": "External Transfer - Show External Transfer",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        900
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "externalTransfers",
+        "operation": "createAnExternalTransfer",
+        "idempotency_key": "{{ $now.toISOString() }}-transfer-1",
+        "beneficiary_id": "beneficiary-uuid-example",
+        "debit_iban": "FR7630001007941234567890185",
+        "reference": "Invoice Payment #12345",
+        "currency": "EUR",
+        "amount": "250.50",
+        "additionalFields": {
+          "note": "Monthly invoice payment",
+          "scheduled_date": "2026-02-15"
+        }
+      },
+      "id": "ext-create",
+      "name": "External Transfer - Create External Transfer",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        1000
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "externalTransfers",
+        "operation": "createExternalTransfersWithCreditorData",
+        "debit_iban": "FR7630001007941234567890185",
+        "credit_iban": "DE89370400440532013000",
+        "credit_account_name": "Jane Smith Consulting",
+        "credit_account_currency": "EUR",
+        "currency": "EUR",
+        "amount": "1500.00",
+        "additionalFields": {
+          "reference": "Consulting Services Q1 2026",
+          "note": "Quarterly payment for consulting services",
+          "idempotency_key": "{{ $now.toISOString() }}-transfer-2"
+        }
+      },
+      "id": "ext-create-creditor",
+      "name": "External Transfer - Create with Creditor Data",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        1100
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "internalTransactions",
+        "operation": "createInternalTransfer",
+        "idempotency_key": "{{ $now.toISOString() }}-internal-1",
+        "debit_iban": "FR7630001007941234567890185",
+        "credit_iban": "FR7630001007941234567890186",
+        "reference": "Internal Budget Reallocation",
+        "amount": "5000.00",
+        "currency": "EUR"
+      },
+      "id": "int-create",
+      "name": "Internal Transaction - Create Internal Transfer",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        1200
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "labels",
+        "operation": "listLabels",
+        "returnAll": false,
+        "limit": 50
+      },
+      "id": "label-list",
+      "name": "Label - List Labels",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        1300
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "labels",
+        "operation": "showLabel",
+        "labelId": "label-uuid-example"
+      },
+      "id": "label-show",
+      "name": "Label - Show Label",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        1400
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "memberships",
+        "operation": "listMemberships",
+        "returnAll": false,
+        "limit": 50
+      },
+      "id": "member-list",
+      "name": "Membership - List Memberships",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        1500
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "memberships",
+        "operation": "showMembership",
+        "membershipId": "membership-uuid-example"
+      },
+      "id": "member-show",
+      "name": "Membership - Get Details of Membership",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        1600
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "memberships",
+        "operation": "createMembership",
+        "email": "new.member@example.com",
+        "first_name": "Alice",
+        "last_name": "Johnson",
+        "role": "employee",
+        "additionalFields": {
+          "team_id": "team-uuid-example"
+        }
+      },
+      "id": "member-create",
+      "name": "Membership - Create and Invite Membership",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        1700
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "cards",
+        "operation": "listCards",
+        "returnAll": false,
+        "limit": 20
+      },
+      "id": "card-list",
+      "name": "Card - List Cards",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        1800
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "cards",
+        "operation": "createCard",
+        "holderId": "member-uuid-example",
+        "bankAccountId": "account-uuid-example",
+        "cardLevel": "virtual",
+        "paymentMonthlyLimit": 100000,
+        "additionalOptions": {
+          "atmMonthlyLimit": 50000,
+          "atmOption": true,
+          "nfcOption": true,
+          "onlineOption": true,
+          "foreignOption": true,
+          "paymentDailyLimit": 50000,
+          "paymentTransactionLimit": 10000
+        }
+      },
+      "id": "card-create",
+      "name": "Card - Create a Card",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        1900
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "cards",
+        "operation": "lockCard",
+        "cardId": "={{ $json.id }}"
+      },
+      "id": "card-lock",
+      "name": "Card - Lock Card",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        900,
+        1900
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "cards",
+        "operation": "unlockCard",
+        "cardId": "={{ $json.id }}"
+      },
+      "id": "card-unlock",
+      "name": "Card - Unlock Card",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        1900
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "cards",
+        "operation": "retrieveCardDataViewUrl",
+        "cardId": "card-uuid-example"
+      },
+      "id": "card-view-url",
+      "name": "Card - Retrieve Card Data View URL",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        2000
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "cards",
+        "operation": "updateCardLimits",
+        "cardId": "card-uuid-example",
+        "updateLimits": {
+          "atmDailyLimit": 20000,
+          "atmMonthlyLimit": 60000,
+          "paymentDailyLimit": 100000,
+          "paymentMonthlyLimit": 300000,
+          "paymentTransactionLimit": 50000
+        }
+      },
+      "id": "card-update-limits",
+      "name": "Card - Update Card Limits",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        2100
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "cards",
+        "operation": "updateCardOptions",
+        "cardId": "card-uuid-example",
+        "updateOptions": {
+          "atmOption": false,
+          "nfcOption": true,
+          "onlineOption": true,
+          "foreignOption": false
+        }
+      },
+      "id": "card-update-options",
+      "name": "Card - Update Card Options",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        2200
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "attachment",
+        "operation": "uploadAttachment",
+        "binaryPropertyName": "data",
+        "additionalFields": {
+          "fileName": "receipt.pdf"
+        }
+      },
+      "id": "attach-upload",
+      "name": "Attachment - Upload Attachment",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        2300
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "attachment",
+        "operation": "showAttachment",
+        "attachmentId": "attachment-uuid-example"
+      },
+      "id": "attach-show",
+      "name": "Attachment - Show Attachment",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        2400
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "attachmentsInATransaction",
+        "operation": "listAttachmentsInATransaction",
+        "transactionId": "transaction-uuid-example"
+      },
+      "id": "attach-tx-list",
+      "name": "Attachments in Transaction - List Attachments",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        2500
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "attachmentsInATransaction",
+        "operation": "uploadAttachmentToATransaction",
+        "transactionId": "transaction-uuid-example",
+        "binaryPropertyName": "data",
+        "additionalFields": {
+          "fileName": "invoice.pdf"
+        }
+      },
+      "id": "attach-tx-upload",
+      "name": "Attachments in Transaction - Upload Attachment",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        2600
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "attachmentsInATransaction",
+        "operation": "removeAnAttachmentFromATransaction",
+        "transactionId": "transaction-uuid-example",
+        "attachmentId": "attachment-uuid-example"
+      },
+      "id": "attach-tx-remove",
+      "name": "Attachments in Transaction - Remove an Attachment",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        2700
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "attachmentsInATransaction",
+        "operation": "removeAllAttachmentsFromATransaction",
+        "transactionId": "transaction-uuid-example"
+      },
+      "id": "attach-tx-remove-all",
+      "name": "Attachments in Transaction - Remove All Attachments",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        2800
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "requests",
+        "operation": "listRequests",
+        "returnAll": false,
+        "limit": 20
+      },
+      "id": "req-list",
+      "name": "Request - List Requests",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        2900
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "requests",
+        "operation": "approveRequest",
+        "requestId": "request-uuid-example"
+      },
+      "id": "req-approve",
+      "name": "Request - Approve a Request",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        3000
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "requests",
+        "operation": "declineRequest",
+        "requestId": "request-uuid-example"
+      },
+      "id": "req-decline",
+      "name": "Request - Decline a Request",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        3100
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "statements",
+        "operation": "listStatements",
+        "returnAll": false,
+        "limit": 10
+      },
+      "id": "stmt-list",
+      "name": "Statement - List Statements",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        3200
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "statements",
+        "operation": "showStatement",
+        "statementId": "statement-uuid-example"
+      },
+      "id": "stmt-show",
+      "name": "Statement - Show Statement",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        3300
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "clients",
+        "operation": "getListClients",
+        "returnAll": false,
+        "limit": 20
+      },
+      "id": "client-list",
+      "name": "Client - Get a List of Clients",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        3400
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "clients",
+        "operation": "getClientDetails",
+        "clientId": "client-uuid-example"
+      },
+      "id": "client-get",
+      "name": "Client - Get Clients Details",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        3500
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "clients",
+        "operation": "createClient",
+        "kind": "company",
+        "additionalOptions": {
+          "clientName": "Acme Corporation",
+          "email": "contact@acme-corp.com",
+          "billingCity": "Paris",
+          "billingCountryCode": "FR",
+          "billingStreetAddress": "123 Rue de Rivoli",
+          "billingZipCode": "75001",
+          "currency": "EUR",
+          "phoneCountryCode": "+33",
+          "phoneNumber": "142345678",
+          "taxIdentificationNumber": "FR12345678901",
+          "vatNumber": "FR12345678901"
+        }
+      },
+      "id": "client-create",
+      "name": "Client - Create a Client",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        3600
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "clients",
+        "operation": "updateClient",
+        "clientId": "={{ $json.id }}",
+        "updateFields": {
+          "clientName": "Acme Corporation Ltd",
+          "email": "info@acme-corp.com",
+          "billingCity": "Lyon"
+        }
+      },
+      "id": "client-update",
+      "name": "Client - Update a Client",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        900,
+        3600
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "clientsInvoices",
+        "operation": "listClientInvoices",
+        "returnAll": false,
+        "limit": 20
+      },
+      "id": "client-inv-list",
+      "name": "Client Invoice - List Client Invoices",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        3700
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "clientsInvoices",
+        "operation": "showClientInvoice",
+        "invoiceId": "invoice-uuid-example"
+      },
+      "id": "client-inv-show",
+      "name": "Client Invoice - Show Client Invoice",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        3800
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "clientsInvoices",
+        "operation": "createClientInvoice",
+        "clientId": "client-uuid-example",
+        "issueDate": "2026-02-01",
+        "dueDate": "2026-03-01",
+        "currency": "EUR",
+        "paymentIban": "FR7630001007941234567890185",
+        "items": {
+          "items": [
+            {
+              "title": "Web Development Services",
+              "description": "Frontend development for e-commerce platform",
+              "quantity": "40",
+              "unit": "hours",
+              "unitPriceValue": "100.00",
+              "unitPriceCurrency": "EUR",
+              "vatRate": "20"
+            },
+            {
+              "title": "Backend API Development",
+              "description": "REST API implementation and database design",
+              "quantity": "30",
+              "unit": "hours",
+              "unitPriceValue": "120.00",
+              "unitPriceCurrency": "EUR",
+              "vatRate": "20"
+            }
+          ]
+        },
+        "additionalOptions": {
+          "number": "INV-2026-001",
+          "header": "Thank you for your business!",
+          "footer": "Payment terms: Net 30 days",
+          "status": "draft",
+          "purchaseOrder": "PO-12345"
+        }
+      },
+      "id": "client-inv-create",
+      "name": "Client Invoice - Create a Client Invoice",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        3900
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "clientsInvoices",
+        "operation": "updateClientInvoice",
+        "invoiceId": "={{ $json.id }}",
+        "updateFields": {
+          "dueDate": "2026-03-15",
+          "header": "Thank you for your continued partnership!",
+          "status": "pending"
+        }
+      },
+      "id": "client-inv-update",
+      "name": "Client Invoice - Update a Draft Client Invoice",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        900,
+        3900
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "creditNotes",
+        "operation": "getListOfCreditNotes",
+        "returnAll": false,
+        "limit": 20
+      },
+      "id": "credit-list",
+      "name": "Credit Note - Get a List of Credit Notes",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        4000
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "creditNotes",
+        "operation": "getDetailsOfCreditNote",
+        "creditNoteId": "credit-note-uuid-example"
+      },
+      "id": "credit-get",
+      "name": "Credit Note - Get Details of Credit Note",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        4100
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "supplierInvoices",
+        "operation": "getListOfSupplierInvoices",
+        "returnAll": false,
+        "limit": 20
+      },
+      "id": "supp-inv-list",
+      "name": "Supplier Invoice - Get a List of Supplier Invoices",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        4200
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "supplierInvoices",
+        "operation": "createSupplierInvoices",
+        "organizationId": "org-uuid-example",
+        "supplierInvoices": {
+          "invoices": [
+            {
+              "invoiceNumber": "SUPP-2026-001",
+              "invoiceDate": "2026-01-15",
+              "amount": 1500,
+              "currency": "EUR",
+              "attachmentIds": "attachment-uuid-1,attachment-uuid-2"
+            },
+            {
+              "invoiceNumber": "SUPP-2026-002",
+              "invoiceDate": "2026-01-20",
+              "amount": 2500,
+              "currency": "EUR",
+              "attachmentIds": "attachment-uuid-3"
+            }
+          ]
+        }
+      },
+      "id": "supp-inv-create",
+      "name": "Supplier Invoice - Create Supplier Invoices",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        4300
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "teams",
+        "operation": "listTeams",
+        "returnAll": false,
+        "limit": 50
+      },
+      "id": "team-list",
+      "name": "Team - List Teams in an Organization",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        4400
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "teams",
+        "operation": "createTeam",
+        "teamName": "Marketing Department"
+      },
+      "id": "team-create",
+      "name": "Team - Create a New Team",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        4500
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "insuranceContracts",
+        "operation": "getInsuranceContract",
+        "contractId": "contract-uuid-example"
+      },
+      "id": "insurance-get",
+      "name": "Insurance Contract - Get Insurance Contract",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        4600
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "insuranceContracts",
+        "operation": "createInsuranceContract",
+        "contractName": "Professional Liability Insurance",
+        "contractId": "EXT-INS-2026-001",
+        "origin": "external",
+        "providerSlug": "axa-insurance",
+        "contractType": "liability",
+        "status": "active",
+        "additionalOptions": {
+          "startDate": "2026-02-01",
+          "expirationDate": "2027-01-31",
+          "renewalDate": "2027-01-01",
+          "paymentFrequency": "yearly",
+          "priceCurrency": "EUR",
+          "priceValue": "1200.00",
+          "serviceUrl": "https://www.axa.com/services"
+        }
+      },
+      "id": "insurance-create",
+      "name": "Insurance Contract - Create Insurance Contract",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        4700
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "insuranceContracts",
+        "operation": "updateInsuranceContract",
+        "contractIdToUpdate": "={{ $json.id }}",
+        "updateFields": {
+          "name": "Professional Liability Insurance - Premium",
+          "status": "active",
+          "priceValue": "1500.00",
+          "expirationDate": "2027-06-30"
+        }
+      },
+      "id": "insurance-update",
+      "name": "Insurance Contract - Update Insurance Contract",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        900,
+        4700
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "insuranceContracts",
+        "operation": "uploadDocument",
+        "contractId": "contract-uuid-example",
+        "binaryPropertyName": "data"
+      },
+      "id": "insurance-upload",
+      "name": "Insurance Contract - Upload PDF Document",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        4800
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "insuranceContracts",
+        "operation": "deleteDocument",
+        "contractId": "contract-uuid-example",
+        "documentId": "document-uuid-example"
+      },
+      "id": "insurance-delete-doc",
+      "name": "Insurance Contract - Delete Uploaded Document",
+      "type": "n8n-nodes-qonto-api.qonto",
+      "typeVersion": 2,
+      "position": [
+        680,
+        4900
+      ],
+      "credentials": {
+        "qontoApi": {
+          "id": "1",
+          "name": "Qonto API"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When clicking 'Test workflow'": {
+      "main": [
+        [
+          {
+            "node": "Organization - Get Organization",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Beneficiary - Add SEPA Beneficiary": {
+      "main": [
+        [
+          {
+            "node": "Beneficiary - Update SEPA Beneficiary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Card - Create a Card": {
+      "main": [
+        [
+          {
+            "node": "Card - Lock Card",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Card - Lock Card": {
+      "main": [
+        [
+          {
+            "node": "Card - Unlock Card",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Client - Create a Client": {
+      "main": [
+        [
+          {
+            "node": "Client - Update a Client",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Client Invoice - Create a Client Invoice": {
+      "main": [
+        [
+          {
+            "node": "Client Invoice - Update a Draft Client Invoice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insurance Contract - Create Insurance Contract": {
+      "main": [
+        [
+          {
+            "node": "Insurance Contract - Update Insurance Contract",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-02-01T18:35:00.000Z",
+  "versionId": "1"
+}
