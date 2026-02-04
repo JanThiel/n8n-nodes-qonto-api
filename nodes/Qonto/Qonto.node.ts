@@ -55,8 +55,12 @@ function uuid(): string {
 
 function parseJsonParameter(value: unknown): IDataObject {
 	if (typeof value === 'string') {
-		const parsed = JSON.parse(value) as IDataObject;
-		return parsed && typeof parsed === 'object' ? parsed : {};
+		try {
+			const parsed = JSON.parse(value) as IDataObject;
+			return parsed && typeof parsed === 'object' ? parsed : {};
+		} catch {
+			return {};
+		}
 	}
 	if (value && typeof value === 'object') {
 		return value as IDataObject;
