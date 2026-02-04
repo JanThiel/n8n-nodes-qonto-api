@@ -1,0 +1,449 @@
+{
+  "info": {
+    "_postman_id": "6cd699bb-5c88-43ea-953d-d5dad07615ca",
+    "name": "Business API :: Authentication",
+    "description": "## 🧰 [Getting started](https://docs.qonto.com/get-started/business-api/overview)\n\n## 🔐 [Authentication](https://docs.qonto.com/get-started/business-api/authentication/introduction)\n\n## 🙋 [Troubleshooting](https://docs.qonto.com/get-started/general/troubleshooting)\n\n## ❓ [FAQ](https://docs.qonto.com/faq-articles/faq-home)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17853903"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "OAuth 2.0",
+          "item": [
+            {
+              "name": "Initiate the login",
+              "protocolProfileBehavior": {
+                "disabledSystemHeaders": {}
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{oauthUrl}}/oauth2/auth?client_id={{client_id}}&redirect_uri={{redirect_url}}&scope={{scope}}&response_type=code&state={{state}}",
+                  "host": [
+                    "{{oauthUrl}}"
+                  ],
+                  "path": [
+                    "oauth2",
+                    "auth"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "{{client_id}}"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "{{redirect_url}}"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "{{scope}}"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "code"
+                    },
+                    {
+                      "key": "state",
+                      "value": "{{state}}"
+                    }
+                  ]
+                },
+                "description": "## 📚 [Documentation](https://docs.qonto.com/get-started/business-api/authentication/oauth/login-endpoint)\n\n## 💡 [Postman flow](https://www.postman.com/qontoteam/workspace/qonto-public-api/flow/666c37ad3a6c630032f5b496)"
+              },
+              "response": []
+            },
+            {
+              "name": "Generate first token",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "{{X-Qonto-Staging-Token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "client_id",
+                      "value": "{{client_id}}",
+                      "type": "text"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "{{client_secret}}",
+                      "type": "text"
+                    },
+                    {
+                      "key": "code",
+                      "value": "{{code}}",
+                      "type": "text"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "{{redirect_url}}",
+                      "type": "text"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{oauthUrl}}/oauth2/token",
+                  "host": [
+                    "{{oauthUrl}}"
+                  ],
+                  "path": [
+                    "oauth2",
+                    "token"
+                  ]
+                },
+                "description": "## 📚 [Documentation](https://docs.qonto.com/get-started/business-api/authentication/oauth/token-endpoint)\n\n## 💡 [Postman flow](https://www.postman.com/qontoteam/workspace/qonto-public-api/flow/666c37ad3a6c630032f5b496)"
+              },
+              "response": []
+            },
+            {
+              "name": "Refresh token",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "client_id",
+                      "value": "{{client_id}}",
+                      "type": "text"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "{{client_secret}}",
+                      "type": "text"
+                    },
+                    {
+                      "key": "refresh_token",
+                      "value": "{{refresh_token}}",
+                      "type": "text"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "{{redirect_url}}",
+                      "type": "text"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "refresh_token",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{oauthUrl}}/oauth2/token",
+                  "host": [
+                    "{{oauthUrl}}"
+                  ],
+                  "path": [
+                    "oauth2",
+                    "token"
+                  ]
+                },
+                "description": "## 📚 [Documentation](https://docs.qonto.com/get-started/business-api/authentication/oauth/refresh-token-endpoint)"
+              },
+              "response": []
+            },
+            {
+              "name": "Revoke OAuth 2 consents",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "{{X-Qonto-Staging-Token}}",
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/oauth2/consents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "oauth2",
+                    "consents"
+                  ]
+                },
+                "description": "OAuth scope: `organization.read`\n\nRevokes the OAuth 2 consents for the authenticated user. Use this endpoint to allow your user to disconnect your app from Qonto."
+              },
+              "response": [
+                {
+                  "name": "The OAuth Consents have been revoked.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                        "key": "X-Qonto-Staging-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/oauth2/consents",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "oauth2",
+                        "consents"
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": null
+                },
+                {
+                  "name": "Returns an unauthorized error.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                        "key": "X-Qonto-Staging-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/oauth2/consents",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "oauth2",
+                        "consents"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+                },
+                {
+                  "name": "Returns a forbidden error.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                        "key": "X-Qonto-Staging-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/oauth2/consents",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "oauth2",
+                        "consents"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+                },
+                {
+                  "name": "Returns an internal server error.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                        "key": "X-Qonto-Staging-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/oauth2/consents",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "oauth2",
+                        "consents"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": null
+                }
+              ]
+            }
+          ],
+          "description": "## 👁️ [OAuth flow](https://docs.qonto.com/get-started/business-api/authentication/oauth/oauth-flow)\n\n## 🔓 [Available scopes](https://docs.qonto.com/get-started/business-api/authentication/oauth/available-scopes)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "packages": {},
+                "exec": [
+                  ""
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "packages": {},
+                "exec": [
+                  ""
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Poll SCA session",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "type": "default"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v2/sca_sessions/{{sca_session_token}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "sca_sessions",
+                "{{sca_session_token}}"
+              ]
+            },
+            "description": "## 📚 [Documentation](https://docs.qonto.com/get-started/business-api/authentication/sca)\n\n## 💡 [Postman flow](https://www.postman.com/qontoteam/workspace/qonto-public-api/flow/6670429eb7bd63003156bd57)"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "value",
+        "value": "{{login}}:{{secret}}",
+        "type": "string"
+      },
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

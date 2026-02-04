@@ -3,60 +3,53 @@
 import { INodeProperties } from 'n8n-workflow';
 
 export const statementsOperations: INodeProperties[] = [
-
 	// ------------------------
 	//      statements
 	// ------------------------
 
-		{
-			displayName: 'Operation',
-			name: 'operation',
-			type: 'options',
-			noDataExpression: true,
-			displayOptions: {
-				show: {
-					resource: [
-						'statements',
-					],
-				},
+	{
+		displayName: 'Operation',
+		name: 'operation',
+		type: 'options',
+		noDataExpression: true,
+		displayOptions: {
+			show: {
+				resource: ['statements'],
 			},
-			options: [
-				{
-					name: 'Show Statement',
-					value: 'showStatement',
-					action: 'Show statement',
-				},
-				{
-					name: 'List Statements',
-					value: 'listStatement',
-					action: 'List statements',
-				},
-			],
-			default: 'showStatement',
 		},
+		options: [
+			{
+				name: 'Show Statement',
+				value: 'showStatement',
+				action: 'Show statement',
+			},
+			{
+				name: 'List Statements',
+				value: 'listStatement',
+				action: 'List statements',
+			},
+		],
+		default: 'showStatement',
+	},
 
 	// ------------------------
 	//      statements - Show statement
 	// ------------------------
 
-    {
-        displayName: 'Statement ID',
-        name: 'statementId',
-        type: 'string',
-				displayOptions: {
-					show: {
-						resource: [
-							'statements',
-						],
-						operation: [
-							'showStatement',
-						],
-					},
-				},
-        default: '',
-        required: true,
-        description: 'The unique identifier of the statement to be fetched',
-    },
+	{
+		displayName: 'Statement ID',
+		name: 'statementId',
+		type: 'string',
+		displayOptions: {
+			show: {
+				resource: ['statements'],
+				operation: ['showStatement'],
+			},
+		},
+		default: '',
+		required: true,
+		description: 'The unique identifier of the statement to be fetched',
+	},
 
 	// ------------------------
 	//      statements - List statements
@@ -70,12 +63,8 @@ export const statementsOperations: INodeProperties[] = [
 		description: 'Whether to return all results or only up to a given limit',
 		displayOptions: {
 			show: {
-				resource: [
-					'statements',
-				],
-				operation: [
-					'listStatement',
-				],
+				resource: ['statements'],
+				operation: ['listStatement'],
 			},
 		},
 	},
@@ -85,15 +74,9 @@ export const statementsOperations: INodeProperties[] = [
 		type: 'number',
 		displayOptions: {
 			show: {
-				resource: [
-					'statements',
-				],
-				operation: [
-					'listStatement',
-				],
-				returnAll: [
-					false,
-				],
+				resource: ['statements'],
+				operation: ['listStatement'],
+				returnAll: [false],
 			},
 		},
 		typeOptions: {
@@ -111,12 +94,8 @@ export const statementsOperations: INodeProperties[] = [
 		default: {},
 		displayOptions: {
 			show: {
-				resource: [
-					'statements',
-				],
-				operation: [
-					'listStatement',
-				],
+				resource: ['statements'],
+				operation: ['listStatement'],
 			},
 		},
 		options: [
@@ -125,14 +104,16 @@ export const statementsOperations: INodeProperties[] = [
 				name: 'bank_account_ids',
 				type: 'string',
 				default: '',
-				description: 'Filter by bank_account_id. Comma-separated list of IDs. Mutually exclusive with IBANs.',
+				description:
+					'Filter by bank_account_id. Comma-separated list of IDs. Mutually exclusive with IBANs.',
 			},
 			{
 				displayName: 'IBANs',
 				name: 'ibans',
 				type: 'string',
 				default: '',
-				description: 'Filter by IBAN. Comma-separated list of IBANs. Mutually exclusive with Bank Account IDs.',
+				description:
+					'Filter by IBAN. Comma-separated list of IBANs. Mutually exclusive with Bank Account IDs.',
 			},
 			{
 				displayName: 'Period From',

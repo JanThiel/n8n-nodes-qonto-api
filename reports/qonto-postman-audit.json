@@ -1,0 +1,4638 @@
+{
+  "generatedAt": "2026-02-04T13:59:07.114Z",
+  "stats": {
+    "postmanRequests": 127,
+    "nodeOperations": 123,
+    "matchedOperations": 119,
+    "missingInNode": 8,
+    "notInPostman": 4
+  },
+  "collectionsSummary": {
+    "Authentication": 5,
+    "E-invoicing": 1,
+    "SEPA Transfers": 21,
+    "Business Accounts": 5,
+    "Attachments": 6,
+    "Labels": 2,
+    "Memberships": 3,
+    "Organizations": 1,
+    "Transactions": 2,
+    "Internal Transfers": 1,
+    "Requests": 6,
+    "Supplier Invoices": 3,
+    "Client Invoices": 10,
+    "Credit Notes": 2,
+    "Quotes": 6,
+    "Teams": 2,
+    "Clients": 5,
+    "Statements": 2,
+    "Insurance Contracts": 5,
+    "Cards": 13,
+    "Webhooks": 5,
+    "International Transfers": 10,
+    "Payment Links": 8,
+    "Encoded Requests": 1,
+    "Embed Auth Links": 1,
+    "TEST": 1
+  },
+  "missingInNode": [
+    {
+      "method": "GET",
+      "pathTemplate": "oauth2/auth",
+      "postmanCollection": "Authentication",
+      "postmanRequest": "Initiate the login"
+    },
+    {
+      "method": "POST",
+      "pathTemplate": "oauth2/token",
+      "postmanCollection": "Authentication",
+      "postmanRequest": "Generate first token"
+    },
+    {
+      "method": "POST",
+      "pathTemplate": "oauth2/token",
+      "postmanCollection": "Authentication",
+      "postmanRequest": "Refresh token"
+    },
+    {
+      "method": "DELETE",
+      "pathTemplate": "oauth2/consents",
+      "postmanCollection": "Authentication",
+      "postmanRequest": "Revoke OAuth 2 consents"
+    },
+    {
+      "method": "GET",
+      "pathTemplate": "sca_sessions/:sca_session_token",
+      "postmanCollection": "Authentication",
+      "postmanRequest": "Poll SCA session"
+    },
+    {
+      "method": "POST",
+      "pathTemplate": "v1/encoded_requests/dispatch",
+      "postmanCollection": "Encoded Requests",
+      "postmanRequest": "Dispatch an encoded request"
+    },
+    {
+      "method": "POST",
+      "pathTemplate": "v1/embed_auth_links",
+      "postmanCollection": "Embed Auth Links",
+      "postmanRequest": "Create an Embed Auth Link"
+    },
+    {
+      "method": "GET",
+      "pathTemplate": "",
+      "postmanCollection": "TEST",
+      "postmanRequest": "TEST"
+    }
+  ],
+  "notInPostman": [
+    {
+      "resource": "externalTransfers",
+      "operation": "showAnExternalTransfer",
+      "method": "GET",
+      "pathTemplate": "external_transfers/:id"
+    },
+    {
+      "resource": "externalTransfers",
+      "operation": "createAnExternalTransfer",
+      "method": "POST",
+      "pathTemplate": "external_transfers"
+    },
+    {
+      "resource": "externalTransfers",
+      "operation": "createExternalTransfersWithCreditorData",
+      "method": "POST",
+      "pathTemplate": "external_transfers/checkout"
+    },
+    {
+      "resource": "externalTransfers",
+      "operation": "listExternalTransfers",
+      "method": "GET",
+      "pathTemplate": "external_transfers"
+    }
+  ],
+  "matched": [
+    {
+      "resource": "sepaTransfers",
+      "operation": "listSepaTransfers",
+      "key": "GET sepa/transfers",
+      "displayKey": "GET sepa/transfers",
+      "postmanCollection": "SEPA Transfers",
+      "postmanRequest": "List SEPA transfers",
+      "missingQueryParamsInCode": [
+        "beneficiary_ids[]",
+        "ids",
+        "page",
+        "per_page",
+        "recurring_transfer_ids",
+        "scheduled_date_from",
+        "scheduled_date_to",
+        "sort_by",
+        "status",
+        "updated_at_from",
+        "updated_at_to"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "beneficiary_ids[]",
+        "ids",
+        "page",
+        "per_page",
+        "recurring_transfer_ids",
+        "scheduled_date_from",
+        "scheduled_date_to",
+        "sort_by",
+        "status",
+        "updated_at_from",
+        "updated_at_to"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "beneficiary_ids[]",
+        "ids",
+        "page",
+        "per_page",
+        "recurring_transfer_ids",
+        "scheduled_date_from",
+        "scheduled_date_to",
+        "sort_by",
+        "status",
+        "updated_at_from",
+        "updated_at_to"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "query"
+      ]
+    },
+    {
+      "resource": "sepaTransfers",
+      "operation": "showSepaTransfer",
+      "key": "GET sepa/transfers/:*",
+      "displayKey": "GET sepa/transfers/:transferId",
+      "postmanCollection": "SEPA Transfers",
+      "postmanRequest": "Get SEPA transfer",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "transferId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "transferId"
+      ],
+      "codeNodeParams": [
+        "transferId"
+      ]
+    },
+    {
+      "resource": "sepaTransfers",
+      "operation": "createSepaTransfer",
+      "key": "POST sepa/transfers",
+      "displayKey": "POST sepa/transfers",
+      "postmanCollection": "SEPA Transfers",
+      "postmanRequest": "Create a SEPA transfer",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "activity_tag",
+        "amount",
+        "attachment_ids",
+        "bank_account_id",
+        "beneficiary",
+        "beneficiary_id",
+        "bic",
+        "email",
+        "iban",
+        "name",
+        "note",
+        "reference",
+        "scheduled_date",
+        "transfer",
+        "vop_proof_token"
+      ],
+      "missingApiParamsInCode": [
+        "transfer",
+        "transfer.amount",
+        "transfer.attachment_ids",
+        "transfer.bank_account_id",
+        "transfer.beneficiary",
+        "transfer.beneficiary.activity_tag",
+        "transfer.beneficiary.bic",
+        "transfer.beneficiary.email",
+        "transfer.beneficiary.iban",
+        "transfer.beneficiary.name",
+        "transfer.beneficiary_id",
+        "transfer.note",
+        "transfer.reference",
+        "transfer.scheduled_date",
+        "vop_proof_token"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "transfer",
+        "transfer.amount",
+        "transfer.attachment_ids",
+        "transfer.bank_account_id",
+        "transfer.beneficiary",
+        "transfer.beneficiary.activity_tag",
+        "transfer.beneficiary.bic",
+        "transfer.beneficiary.email",
+        "transfer.beneficiary.iban",
+        "transfer.beneficiary.name",
+        "transfer.beneficiary_id",
+        "transfer.note",
+        "transfer.reference",
+        "transfer.scheduled_date",
+        "vop_proof_token"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "transferPayload"
+      ]
+    },
+    {
+      "resource": "sepaTransfers",
+      "operation": "cancelSepaTransfer",
+      "key": "POST sepa/transfers/:*/cancel",
+      "displayKey": "POST sepa/transfers/:transferId/cancel",
+      "postmanCollection": "SEPA Transfers",
+      "postmanRequest": "Cancel SEPA transfer",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "transferId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "transferId"
+      ],
+      "codeNodeParams": [
+        "transferId"
+      ]
+    },
+    {
+      "resource": "sepaTransfers",
+      "operation": "downloadSepaTransferProof",
+      "key": "POST sepa/transfers/:*/download_proof",
+      "displayKey": "POST sepa/transfers/:transferId/download_proof",
+      "postmanCollection": "SEPA Transfers",
+      "postmanRequest": "Download proof of a SEPA transfer",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "transferId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "transferId"
+      ],
+      "codeNodeParams": [
+        "transferId"
+      ]
+    },
+    {
+      "resource": "sepaTransfers",
+      "operation": "listSepaBulkTransfers",
+      "key": "GET sepa/bulk_transfers",
+      "displayKey": "GET sepa/bulk_transfers",
+      "postmanCollection": "SEPA Transfers",
+      "postmanRequest": "List Bulk Transfers",
+      "missingQueryParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "page",
+        "per_page"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "query"
+      ]
+    },
+    {
+      "resource": "sepaTransfers",
+      "operation": "showSepaBulkTransfer",
+      "key": "GET sepa/bulk_transfers/:*",
+      "displayKey": "GET sepa/bulk_transfers/:bulkTransferId",
+      "postmanCollection": "SEPA Transfers",
+      "postmanRequest": "Get Bulk Transfer",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "bulkTransferId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "bulkTransferId"
+      ],
+      "codeNodeParams": [
+        "bulkTransferId"
+      ]
+    },
+    {
+      "resource": "sepaTransfers",
+      "operation": "createSepaBulkTransfer",
+      "key": "POST sepa/bulk_transfers",
+      "displayKey": "POST sepa/bulk_transfers",
+      "postmanCollection": "SEPA Transfers",
+      "postmanRequest": "Create a Bulk Transfer",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "bank_account_id",
+        "bulk_transfers",
+        "vop_proof_token"
+      ],
+      "missingApiParamsInCode": [
+        "bank_account_id",
+        "bulk_transfers",
+        "vop_proof_token"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "bank_account_id",
+        "bulk_transfers",
+        "vop_proof_token"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "bulkTransferPayload"
+      ]
+    },
+    {
+      "resource": "sepaTransfers",
+      "operation": "listSepaRecurringTransfers",
+      "key": "GET sepa/recurring_transfers",
+      "displayKey": "GET sepa/recurring_transfers",
+      "postmanCollection": "SEPA Transfers",
+      "postmanRequest": "List SEPA recurring transfers",
+      "missingQueryParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "page",
+        "per_page"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "query"
+      ]
+    },
+    {
+      "resource": "sepaTransfers",
+      "operation": "showSepaRecurringTransfer",
+      "key": "GET sepa/recurring_transfers/:*",
+      "displayKey": "GET sepa/recurring_transfers/:recurringTransferId",
+      "postmanCollection": "SEPA Transfers",
+      "postmanRequest": "Get SEPA recurring transfer",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "recurringTransferId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "recurringTransferId"
+      ],
+      "codeNodeParams": [
+        "recurringTransferId"
+      ]
+    },
+    {
+      "resource": "sepaTransfers",
+      "operation": "createSepaRecurringTransfer",
+      "key": "POST sepa/recurring_transfers",
+      "displayKey": "POST sepa/recurring_transfers",
+      "postmanCollection": "SEPA Transfers",
+      "postmanRequest": "Create a SEPA recurring transfer",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "activity_tag",
+        "amount",
+        "attachment_ids",
+        "bank_account_id",
+        "beneficiary",
+        "beneficiary_id",
+        "bic",
+        "email",
+        "first_execution_date",
+        "frequency",
+        "iban",
+        "last_execution_date",
+        "name",
+        "note",
+        "recurring_transfer",
+        "reference",
+        "vop_proof_token"
+      ],
+      "missingApiParamsInCode": [
+        "recurring_transfer",
+        "recurring_transfer.amount",
+        "recurring_transfer.attachment_ids",
+        "recurring_transfer.bank_account_id",
+        "recurring_transfer.beneficiary",
+        "recurring_transfer.beneficiary.activity_tag",
+        "recurring_transfer.beneficiary.bic",
+        "recurring_transfer.beneficiary.email",
+        "recurring_transfer.beneficiary.iban",
+        "recurring_transfer.beneficiary.name",
+        "recurring_transfer.beneficiary_id",
+        "recurring_transfer.first_execution_date",
+        "recurring_transfer.frequency",
+        "recurring_transfer.last_execution_date",
+        "recurring_transfer.note",
+        "recurring_transfer.reference",
+        "vop_proof_token"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "recurring_transfer",
+        "recurring_transfer.amount",
+        "recurring_transfer.attachment_ids",
+        "recurring_transfer.bank_account_id",
+        "recurring_transfer.beneficiary",
+        "recurring_transfer.beneficiary.activity_tag",
+        "recurring_transfer.beneficiary.bic",
+        "recurring_transfer.beneficiary.email",
+        "recurring_transfer.beneficiary.iban",
+        "recurring_transfer.beneficiary.name",
+        "recurring_transfer.beneficiary_id",
+        "recurring_transfer.first_execution_date",
+        "recurring_transfer.frequency",
+        "recurring_transfer.last_execution_date",
+        "recurring_transfer.note",
+        "recurring_transfer.reference",
+        "vop_proof_token"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "recurringTransferPayload"
+      ]
+    },
+    {
+      "resource": "sepaTransfers",
+      "operation": "cancelSepaRecurringTransfer",
+      "key": "POST sepa/recurring_transfers/:*/cancel",
+      "displayKey": "POST sepa/recurring_transfers/:recurringTransferId/cancel",
+      "postmanCollection": "SEPA Transfers",
+      "postmanRequest": "Cancel SEPA recurring transfer",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "recurringTransferId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "recurringTransferId"
+      ],
+      "codeNodeParams": [
+        "recurringTransferId"
+      ]
+    },
+    {
+      "resource": "sepaTransfers",
+      "operation": "verifySepaPayee",
+      "key": "POST sepa/verify_payee",
+      "displayKey": "POST sepa/verify_payee",
+      "postmanCollection": "SEPA Transfers",
+      "postmanRequest": "Verify a SEPA payee",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "beneficiary_name",
+        "iban"
+      ],
+      "missingApiParamsInCode": [
+        "beneficiary_name",
+        "iban"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "beneficiary_name",
+        "iban"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "verifyPayeePayload"
+      ]
+    },
+    {
+      "resource": "sepaTransfers",
+      "operation": "bulkVerifySepaPayee",
+      "key": "POST sepa/bulk_verify_payee",
+      "displayKey": "POST sepa/bulk_verify_payee",
+      "postmanCollection": "SEPA Transfers",
+      "postmanRequest": "Bulk verify SEPA payee",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "requests"
+      ],
+      "missingApiParamsInCode": [
+        "requests"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "requests"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "bulkVerifyPayeePayload"
+      ]
+    },
+    {
+      "resource": "sepaTransfers",
+      "operation": "skipVerifySepaPayee",
+      "key": "POST sepa/skip_verify_payee",
+      "displayKey": "POST sepa/skip_verify_payee",
+      "postmanCollection": "SEPA Transfers",
+      "postmanRequest": "Skip SEPA payee verification",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "requests"
+      ],
+      "missingApiParamsInCode": [
+        "requests"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "requests"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "skipVerifyPayeePayload"
+      ]
+    },
+    {
+      "resource": "internationalTransfers",
+      "operation": "checkInternationalEligibility",
+      "key": "GET international/eligibility",
+      "displayKey": "GET international/eligibility",
+      "postmanCollection": "International Transfers",
+      "postmanRequest": "Check if the organization is eligible for international transfers",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [],
+      "extraApiParamsInCode": [],
+      "postmanParams": [],
+      "codeApiParams": [],
+      "codeNodeParams": []
+    },
+    {
+      "resource": "internationalTransfers",
+      "operation": "getInternationalCurrencies",
+      "key": "GET international/currencies",
+      "displayKey": "GET international/currencies",
+      "postmanCollection": "International Transfers",
+      "postmanRequest": "Get available currencies for international transfers",
+      "missingQueryParamsInCode": [
+        "source"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "source"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "source"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "source"
+      ]
+    },
+    {
+      "resource": "internationalTransfers",
+      "operation": "createInternationalQuote",
+      "key": "POST international/quotes",
+      "displayKey": "POST international/quotes",
+      "postmanCollection": "International Transfers",
+      "postmanRequest": "Create a new international transfer quote",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "source_amount",
+        "source_currency",
+        "target_amount",
+        "target_currency"
+      ],
+      "missingApiParamsInCode": [
+        "source_amount",
+        "source_currency",
+        "target_amount",
+        "target_currency"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "source_amount",
+        "source_currency",
+        "target_amount",
+        "target_currency"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "payload"
+      ]
+    },
+    {
+      "resource": "internationalTransfers",
+      "operation": "listInternationalBeneficiaryRequirements",
+      "key": "POST international/beneficiaries/requirements",
+      "displayKey": "POST international/beneficiaries/requirements",
+      "postmanCollection": "International Transfers",
+      "postmanRequest": "List requirements for an international beneficiary",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "beneficiary_id",
+        "currency",
+        "details",
+        "quote_id",
+        "type"
+      ],
+      "missingApiParamsInCode": [
+        "beneficiary_id",
+        "payload",
+        "payload.currency",
+        "payload.details",
+        "payload.type",
+        "quote_id"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "beneficiary_id",
+        "payload",
+        "payload.currency",
+        "payload.details",
+        "payload.type",
+        "quote_id"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "payload"
+      ]
+    },
+    {
+      "resource": "internationalTransfers",
+      "operation": "listInternationalBeneficiaries",
+      "key": "GET international/beneficiaries",
+      "displayKey": "GET international/beneficiaries",
+      "postmanCollection": "International Transfers",
+      "postmanRequest": "List international beneficiaries",
+      "missingQueryParamsInCode": [
+        "currency",
+        "page",
+        "per_page"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "currency",
+        "page",
+        "per_page"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "currency",
+        "page",
+        "per_page"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "query"
+      ]
+    },
+    {
+      "resource": "internationalTransfers",
+      "operation": "createInternationalBeneficiary",
+      "key": "POST international/beneficiaries",
+      "displayKey": "POST international/beneficiaries",
+      "postmanCollection": "International Transfers",
+      "postmanRequest": "Create an international beneficiary",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "currency",
+        "details",
+        "quote_id",
+        "type"
+      ],
+      "missingApiParamsInCode": [
+        "payload",
+        "payload.currency",
+        "payload.details",
+        "payload.type",
+        "quote_id"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "payload",
+        "payload.currency",
+        "payload.details",
+        "payload.type",
+        "quote_id"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "payload"
+      ]
+    },
+    {
+      "resource": "internationalTransfers",
+      "operation": "updateInternationalBeneficiary",
+      "key": "PUT international/beneficiaries/:*",
+      "displayKey": "PUT international/beneficiaries/:beneficiaryId",
+      "postmanCollection": "International Transfers",
+      "postmanRequest": "Update an international beneficiary",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "currency",
+        "details",
+        "quote_id",
+        "type"
+      ],
+      "missingApiParamsInCode": [
+        "id",
+        "payload",
+        "payload.currency",
+        "payload.details",
+        "payload.type",
+        "quote_id"
+      ],
+      "extraApiParamsInCode": [
+        "beneficiaryId"
+      ],
+      "postmanParams": [
+        "id",
+        "payload",
+        "payload.currency",
+        "payload.details",
+        "payload.type",
+        "quote_id"
+      ],
+      "codeApiParams": [
+        "beneficiaryId"
+      ],
+      "codeNodeParams": [
+        "beneficiaryId",
+        "payload"
+      ]
+    },
+    {
+      "resource": "internationalTransfers",
+      "operation": "deleteInternationalBeneficiary",
+      "key": "DELETE international/beneficiaries/:*",
+      "displayKey": "DELETE international/beneficiaries/:beneficiaryId",
+      "postmanCollection": "International Transfers",
+      "postmanRequest": "Delete an international beneficiary",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "beneficiaryId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "beneficiaryId"
+      ],
+      "codeNodeParams": [
+        "beneficiaryId"
+      ]
+    },
+    {
+      "resource": "internationalTransfers",
+      "operation": "createInternationalTransfer",
+      "key": "POST international/transfers",
+      "displayKey": "POST international/transfers",
+      "postmanCollection": "International Transfers",
+      "postmanRequest": "Create an international transfer",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "attachment_ids",
+        "bank_account_id",
+        "beneficiary_id",
+        "currency",
+        "details",
+        "quote_id",
+        "source_amount",
+        "target_account_id",
+        "target_amount",
+        "value"
+      ],
+      "missingApiParamsInCode": [
+        "attachment_ids",
+        "bank_account_id",
+        "beneficiary_id",
+        "details",
+        "quote_id",
+        "source_amount",
+        "source_amount.currency",
+        "source_amount.value",
+        "target_account_id",
+        "target_amount",
+        "target_amount.currency",
+        "target_amount.value"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "attachment_ids",
+        "bank_account_id",
+        "beneficiary_id",
+        "details",
+        "quote_id",
+        "source_amount",
+        "source_amount.currency",
+        "source_amount.value",
+        "target_account_id",
+        "target_amount",
+        "target_amount.currency",
+        "target_amount.value"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "payload"
+      ]
+    },
+    {
+      "resource": "internationalTransfers",
+      "operation": "listInternationalTransferRequirements",
+      "key": "POST international/transfers/requirements",
+      "displayKey": "POST international/transfers/requirements",
+      "postmanCollection": "International Transfers",
+      "postmanRequest": "List international transfer requirements",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "details",
+        "quote_id",
+        "target_account_id"
+      ],
+      "missingApiParamsInCode": [
+        "details",
+        "quote_id",
+        "target_account_id"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "details",
+        "quote_id",
+        "target_account_id"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "payload"
+      ]
+    },
+    {
+      "resource": "einvoicing",
+      "operation": "getEinvoicingSettings",
+      "key": "GET einvoicing/settings",
+      "displayKey": "GET einvoicing/settings",
+      "postmanCollection": "E-invoicing",
+      "postmanRequest": "Get e-invoicing settings",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [],
+      "extraApiParamsInCode": [],
+      "postmanParams": [],
+      "codeApiParams": [],
+      "codeNodeParams": []
+    },
+    {
+      "resource": "beneficiaries",
+      "operation": "listBeneficiaries",
+      "key": "GET sepa/beneficiaries",
+      "displayKey": "GET sepa/beneficiaries",
+      "postmanCollection": "SEPA Transfers",
+      "postmanRequest": "List SEPA beneficiaries",
+      "missingQueryParamsInCode": [
+        "iban",
+        "page",
+        "per_page",
+        "status"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "iban",
+        "page",
+        "per_page",
+        "status"
+      ],
+      "extraApiParamsInCode": [
+        "iban[]",
+        "status[]",
+        "updated_at_from",
+        "updated_at_to"
+      ],
+      "postmanParams": [
+        "iban",
+        "page",
+        "per_page",
+        "sort_by",
+        "status",
+        "trusted"
+      ],
+      "codeApiParams": [
+        "iban[]",
+        "sort_by",
+        "status[]",
+        "trusted",
+        "updated_at_from",
+        "updated_at_to"
+      ],
+      "codeNodeParams": []
+    },
+    {
+      "resource": "beneficiaries",
+      "operation": "showBeneficiary",
+      "key": "GET sepa/beneficiaries/:*",
+      "displayKey": "GET sepa/beneficiaries/:id",
+      "postmanCollection": "SEPA Transfers",
+      "postmanRequest": "Retrieve a SEPA beneficiary",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "id"
+      ],
+      "codeNodeParams": [
+        "id"
+      ]
+    },
+    {
+      "resource": "beneficiaries",
+      "operation": "untrustBeneficiaries",
+      "key": "PATCH sepa/beneficiaries/untrust",
+      "displayKey": "PATCH sepa/beneficiaries/untrust",
+      "postmanCollection": "SEPA Transfers",
+      "postmanRequest": "Untrust SEPA beneficiaries",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "ids"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "ids"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "ids"
+      ]
+    },
+    {
+      "resource": "beneficiaries",
+      "operation": "trustBeneficiaries",
+      "key": "PATCH sepa/beneficiaries/trust",
+      "displayKey": "PATCH sepa/beneficiaries/trust",
+      "postmanCollection": "SEPA Transfers",
+      "postmanRequest": "Trust SEPA beneficiaries",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "ids"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "ids"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "ids"
+      ]
+    },
+    {
+      "resource": "beneficiaries",
+      "operation": "createBeneficiary",
+      "key": "POST sepa/beneficiaries",
+      "displayKey": "POST sepa/beneficiaries",
+      "postmanCollection": "SEPA Transfers",
+      "postmanRequest": "Add a SEPA beneficiary",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "activity_tag",
+        "beneficiary",
+        "bic",
+        "email"
+      ],
+      "missingApiParamsInCode": [
+        "beneficiary",
+        "beneficiary.activity_tag",
+        "beneficiary.bic",
+        "beneficiary.email",
+        "beneficiary.iban",
+        "beneficiary.name"
+      ],
+      "extraApiParamsInCode": [
+        "iban",
+        "name"
+      ],
+      "postmanParams": [
+        "beneficiary",
+        "beneficiary.activity_tag",
+        "beneficiary.bic",
+        "beneficiary.email",
+        "beneficiary.iban",
+        "beneficiary.name"
+      ],
+      "codeApiParams": [
+        "iban",
+        "name"
+      ],
+      "codeNodeParams": [
+        "additionalOptions",
+        "beneficiaryName",
+        "iban"
+      ]
+    },
+    {
+      "resource": "beneficiaries",
+      "operation": "updateBeneficiary",
+      "key": "PATCH sepa/beneficiaries/:*",
+      "displayKey": "PATCH sepa/beneficiaries/:id",
+      "postmanCollection": "SEPA Transfers",
+      "postmanRequest": "Update a SEPA beneficiary",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "activity_tag",
+        "beneficiary",
+        "email",
+        "name"
+      ],
+      "missingApiParamsInCode": [
+        "beneficiary",
+        "beneficiary.activity_tag",
+        "beneficiary.email",
+        "beneficiary.name"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "beneficiary",
+        "beneficiary.activity_tag",
+        "beneficiary.email",
+        "beneficiary.name",
+        "id"
+      ],
+      "codeApiParams": [
+        "id"
+      ],
+      "codeNodeParams": [
+        "id",
+        "updateFields"
+      ]
+    },
+    {
+      "resource": "attachment",
+      "operation": "uploadAttachment",
+      "key": "POST attachments",
+      "displayKey": "POST attachments",
+      "postmanCollection": "Attachments",
+      "postmanRequest": "Upload an attachment",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "file"
+      ],
+      "missingApiParamsInCode": [
+        "file"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "file"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "binaryPropertyName",
+        "fileName"
+      ]
+    },
+    {
+      "resource": "attachment",
+      "operation": "showAttachment",
+      "key": "GET attachments/:*",
+      "displayKey": "GET attachments/:attachmentId",
+      "postmanCollection": "Attachments",
+      "postmanRequest": "Retrieve an attachment",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "attachmentId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "attachmentId"
+      ],
+      "codeNodeParams": [
+        "id"
+      ]
+    },
+    {
+      "resource": "labels",
+      "operation": "listLabels",
+      "key": "GET labels",
+      "displayKey": "GET labels",
+      "postmanCollection": "Labels",
+      "postmanRequest": "List labels",
+      "missingQueryParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "extraApiParamsInCode": [
+        "organization_id"
+      ],
+      "postmanParams": [
+        "page",
+        "per_page"
+      ],
+      "codeApiParams": [
+        "organization_id"
+      ],
+      "codeNodeParams": [
+        "organizationId"
+      ]
+    },
+    {
+      "resource": "labels",
+      "operation": "showLabel",
+      "key": "GET labels/:*",
+      "displayKey": "GET labels/:labelId",
+      "postmanCollection": "Labels",
+      "postmanRequest": "Retrieve a label",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "labelId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "labelId"
+      ],
+      "codeNodeParams": [
+        "id"
+      ]
+    },
+    {
+      "resource": "memberships",
+      "operation": "listMemberships",
+      "key": "GET memberships",
+      "displayKey": "GET memberships",
+      "postmanCollection": "Memberships",
+      "postmanRequest": "List memberships",
+      "missingQueryParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "page",
+        "per_page"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": []
+    },
+    {
+      "resource": "memberships",
+      "operation": "getMembership",
+      "key": "GET membership",
+      "displayKey": "GET membership",
+      "postmanCollection": "Memberships",
+      "postmanRequest": "Retrieve the authenticated membership",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [],
+      "extraApiParamsInCode": [],
+      "postmanParams": [],
+      "codeApiParams": [],
+      "codeNodeParams": []
+    },
+    {
+      "resource": "memberships",
+      "operation": "createMembership",
+      "key": "POST memberships/invite_employee_or_accountant",
+      "displayKey": "POST memberships/invite_employee_or_accountant",
+      "postmanCollection": "Memberships",
+      "postmanRequest": "Create a membership",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "membership"
+      ],
+      "missingApiParamsInCode": [
+        "membership",
+        "membership.email",
+        "membership.first_name",
+        "membership.last_name",
+        "membership.role",
+        "membership.team_id"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "membership",
+        "membership.email",
+        "membership.first_name",
+        "membership.last_name",
+        "membership.role",
+        "membership.team_id"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "email",
+        "first_name",
+        "last_name",
+        "role",
+        "team_id"
+      ]
+    },
+    {
+      "resource": "organizations",
+      "operation": "getOrganizationAndItsBank_accounts",
+      "key": "GET organization",
+      "displayKey": "GET organization",
+      "postmanCollection": "Organizations",
+      "postmanRequest": "Retrieve the authenticated organization and list bank accounts",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "include_external_accounts"
+      ],
+      "codeApiParams": [
+        "include_external_accounts"
+      ],
+      "codeNodeParams": [
+        "include_external_accounts"
+      ]
+    },
+    {
+      "resource": "bankAccounts",
+      "operation": "listBankAccounts",
+      "key": "GET bank_accounts",
+      "displayKey": "GET bank_accounts",
+      "postmanCollection": "Business Accounts",
+      "postmanRequest": "List business accounts",
+      "missingQueryParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "page",
+        "per_page"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": []
+    },
+    {
+      "resource": "bankAccounts",
+      "operation": "createBankAccount",
+      "key": "POST bank_accounts",
+      "displayKey": "POST bank_accounts",
+      "postmanCollection": "Business Accounts",
+      "postmanRequest": "Create a business account",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "bank_account",
+        "name"
+      ],
+      "missingApiParamsInCode": [
+        "bank_account",
+        "bank_account.name"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "bank_account",
+        "bank_account.name"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "accountName"
+      ]
+    },
+    {
+      "resource": "bankAccounts",
+      "operation": "showBankAccount",
+      "key": "GET bank_accounts/:*",
+      "displayKey": "GET bank_accounts/:accountId",
+      "postmanCollection": "Business Accounts",
+      "postmanRequest": "Get a business account",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "accountId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "accountId"
+      ],
+      "codeNodeParams": [
+        "accountId"
+      ]
+    },
+    {
+      "resource": "bankAccounts",
+      "operation": "updateBankAccount",
+      "key": "PATCH bank_accounts/:*",
+      "displayKey": "PATCH bank_accounts/:accountId",
+      "postmanCollection": "Business Accounts",
+      "postmanRequest": "Update a business account",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "bank_account",
+        "name"
+      ],
+      "missingApiParamsInCode": [
+        "bank_account",
+        "bank_account.name",
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "accountId"
+      ],
+      "postmanParams": [
+        "bank_account",
+        "bank_account.name",
+        "id"
+      ],
+      "codeApiParams": [
+        "accountId"
+      ],
+      "codeNodeParams": [
+        "accountId",
+        "accountName"
+      ]
+    },
+    {
+      "resource": "bankAccounts",
+      "operation": "closeBankAccount",
+      "key": "POST bank_accounts/:*/close",
+      "displayKey": "POST bank_accounts/:accountId/close",
+      "postmanCollection": "Business Accounts",
+      "postmanRequest": "Close a business account",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "accountId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "accountId"
+      ],
+      "codeNodeParams": [
+        "accountId"
+      ]
+    },
+    {
+      "resource": "attachmentsInATransaction",
+      "operation": "uploadAttachmentToATransaction",
+      "key": "POST transactions/:*/attachments",
+      "displayKey": "POST transactions/:transactionId/attachments",
+      "postmanCollection": "Attachments",
+      "postmanRequest": "Upload an attachment to a transaction",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "file"
+      ],
+      "missingApiParamsInCode": [
+        "file",
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "transactionId"
+      ],
+      "postmanParams": [
+        "file",
+        "id"
+      ],
+      "codeApiParams": [
+        "transactionId"
+      ],
+      "codeNodeParams": [
+        "binaryPropertyName",
+        "transaction_id"
+      ]
+    },
+    {
+      "resource": "attachmentsInATransaction",
+      "operation": "listAttachmentsInATransaction",
+      "key": "GET transactions/:*/attachments",
+      "displayKey": "GET transactions/:transactionId/attachments",
+      "postmanCollection": "Attachments",
+      "postmanRequest": "List attachments for a transaction",
+      "missingQueryParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id",
+        "page",
+        "per_page"
+      ],
+      "extraApiParamsInCode": [
+        "transactionId"
+      ],
+      "postmanParams": [
+        "id",
+        "page",
+        "per_page"
+      ],
+      "codeApiParams": [
+        "transactionId"
+      ],
+      "codeNodeParams": [
+        "id"
+      ]
+    },
+    {
+      "resource": "attachmentsInATransaction",
+      "operation": "removeAllAttachmentsFromATransaction",
+      "key": "DELETE transactions/:*/attachments",
+      "displayKey": "DELETE transactions/:transactionId/attachments",
+      "postmanCollection": "Attachments",
+      "postmanRequest": "Remove all attachments from a transaction",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "transactionId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "transactionId"
+      ],
+      "codeNodeParams": [
+        "id"
+      ]
+    },
+    {
+      "resource": "attachmentsInATransaction",
+      "operation": "removeAnAttachmentFromATransaction",
+      "key": "DELETE transactions/:*/attachments/:*",
+      "displayKey": "DELETE transactions/:transactionId/attachments/:attachmentId",
+      "postmanCollection": "Attachments",
+      "postmanRequest": "Remove an attachment from a transaction",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "attachment_id",
+        "transaction_id"
+      ],
+      "extraApiParamsInCode": [
+        "attachmentId",
+        "transactionId"
+      ],
+      "postmanParams": [
+        "attachment_id",
+        "transaction_id"
+      ],
+      "codeApiParams": [
+        "attachmentId",
+        "transactionId"
+      ],
+      "codeNodeParams": [
+        "attachment_id",
+        "transaction_id"
+      ]
+    },
+    {
+      "resource": "transactions",
+      "operation": "listTransactions",
+      "key": "GET transactions",
+      "displayKey": "GET transactions",
+      "postmanCollection": "Transactions",
+      "postmanRequest": "List transactions",
+      "missingQueryParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "extraApiParamsInCode": [
+        "created_at_from",
+        "created_at_to"
+      ],
+      "postmanParams": [
+        "bank_account_id",
+        "emitted_at_from",
+        "emitted_at_to",
+        "iban",
+        "includes[]",
+        "operation_type[]",
+        "page",
+        "per_page",
+        "settled_at_from",
+        "settled_at_to",
+        "side",
+        "sort_by",
+        "status[]",
+        "updated_at_from",
+        "updated_at_to",
+        "with_attachments"
+      ],
+      "codeApiParams": [
+        "bank_account_id",
+        "created_at_from",
+        "created_at_to",
+        "emitted_at_from",
+        "emitted_at_to",
+        "iban",
+        "includes[]",
+        "operation_type[]",
+        "settled_at_from",
+        "settled_at_to",
+        "side",
+        "sort_by",
+        "status[]",
+        "updated_at_from",
+        "updated_at_to",
+        "with_attachments"
+      ],
+      "codeNodeParams": [
+        "bankAccountId",
+        "iban",
+        "identifierType"
+      ]
+    },
+    {
+      "resource": "transactions",
+      "operation": "showTransaction",
+      "key": "GET transactions/:*",
+      "displayKey": "GET transactions/:id",
+      "postmanCollection": "Transactions",
+      "postmanRequest": "Retrieve a transaction",
+      "missingQueryParamsInCode": [
+        "includes[]"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "includes[]"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "id",
+        "includes[]"
+      ],
+      "codeApiParams": [
+        "id"
+      ],
+      "codeNodeParams": [
+        "id",
+        "includes"
+      ]
+    },
+    {
+      "resource": "internalTransactions",
+      "operation": "createInternalTransfer",
+      "key": "POST internal_transfers",
+      "displayKey": "POST internal_transfers",
+      "postmanCollection": "Internal Transfers",
+      "postmanRequest": "Create an internal transfer",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "internal_transfer"
+      ],
+      "missingApiParamsInCode": [
+        "internal_transfer",
+        "internal_transfer.amount",
+        "internal_transfer.credit_iban",
+        "internal_transfer.currency",
+        "internal_transfer.debit_iban",
+        "internal_transfer.reference"
+      ],
+      "extraApiParamsInCode": [
+        "amount",
+        "credit_iban",
+        "currency",
+        "debit_iban",
+        "reference"
+      ],
+      "postmanParams": [
+        "internal_transfer",
+        "internal_transfer.amount",
+        "internal_transfer.credit_iban",
+        "internal_transfer.currency",
+        "internal_transfer.debit_iban",
+        "internal_transfer.reference"
+      ],
+      "codeApiParams": [
+        "amount",
+        "credit_iban",
+        "currency",
+        "debit_iban",
+        "reference"
+      ],
+      "codeNodeParams": [
+        "amount",
+        "credit_iban",
+        "currency",
+        "debit_iban",
+        "reference"
+      ]
+    },
+    {
+      "resource": "paymentLinks",
+      "operation": "connectPaymentLinksProvider",
+      "key": "POST payment_links/connections",
+      "displayKey": "POST payment_links/connections",
+      "postmanCollection": "Payment Links",
+      "postmanRequest": "Connect to the payment links provider",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "business_description",
+        "partner_callback_url",
+        "user_bank_account_id",
+        "user_phone_number",
+        "user_website_url"
+      ],
+      "missingApiParamsInCode": [
+        "business_description",
+        "partner_callback_url",
+        "user_bank_account_id",
+        "user_phone_number",
+        "user_website_url"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "business_description",
+        "partner_callback_url",
+        "user_bank_account_id",
+        "user_phone_number",
+        "user_website_url"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "payload"
+      ]
+    },
+    {
+      "resource": "paymentLinks",
+      "operation": "getPaymentLinksConnectionStatus",
+      "key": "GET payment_links/connections",
+      "displayKey": "GET payment_links/connections",
+      "postmanCollection": "Payment Links",
+      "postmanRequest": "Get the connection status",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [],
+      "extraApiParamsInCode": [],
+      "postmanParams": [],
+      "codeApiParams": [],
+      "codeNodeParams": []
+    },
+    {
+      "resource": "paymentLinks",
+      "operation": "createPaymentLink",
+      "key": "POST payment_links",
+      "displayKey": "POST payment_links",
+      "postmanCollection": "Payment Links",
+      "postmanRequest": "Create a payment link",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "items",
+        "payment_link",
+        "potential_payment_methods",
+        "reusable"
+      ],
+      "missingApiParamsInCode": [
+        "payment_link",
+        "payment_link.items",
+        "payment_link.potential_payment_methods",
+        "payment_link.reusable"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "payment_link",
+        "payment_link.items",
+        "payment_link.potential_payment_methods",
+        "payment_link.reusable"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "payload"
+      ]
+    },
+    {
+      "resource": "paymentLinks",
+      "operation": "listPaymentLinks",
+      "key": "GET payment_links",
+      "displayKey": "GET payment_links",
+      "postmanCollection": "Payment Links",
+      "postmanRequest": "List payment links",
+      "missingQueryParamsInCode": [
+        "page",
+        "per_page",
+        "sort_by",
+        "status"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "page",
+        "per_page",
+        "sort_by",
+        "status"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "page",
+        "per_page",
+        "sort_by",
+        "status"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "query"
+      ]
+    },
+    {
+      "resource": "paymentLinks",
+      "operation": "showPaymentLink",
+      "key": "GET payment_links/:*",
+      "displayKey": "GET payment_links/:paymentLinkId",
+      "postmanCollection": "Payment Links",
+      "postmanRequest": "Get a payment link",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "paymentLinkId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "paymentLinkId"
+      ],
+      "codeNodeParams": [
+        "paymentLinkId"
+      ]
+    },
+    {
+      "resource": "paymentLinks",
+      "operation": "deactivatePaymentLink",
+      "key": "PATCH payment_links/:*/deactivate",
+      "displayKey": "PATCH payment_links/:paymentLinkId/deactivate",
+      "postmanCollection": "Payment Links",
+      "postmanRequest": "Deactivate a payment link",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "paymentLinkId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "paymentLinkId"
+      ],
+      "codeNodeParams": [
+        "paymentLinkId"
+      ]
+    },
+    {
+      "resource": "paymentLinks",
+      "operation": "listPaymentLinkPayments",
+      "key": "GET payment_links/:*/payments",
+      "displayKey": "GET payment_links/:paymentLinkId/payments",
+      "postmanCollection": "Payment Links",
+      "postmanRequest": "List payments for a payment link",
+      "missingQueryParamsInCode": [
+        "page",
+        "per_page",
+        "sort_by",
+        "status"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id",
+        "page",
+        "per_page",
+        "sort_by",
+        "status"
+      ],
+      "extraApiParamsInCode": [
+        "paymentLinkId"
+      ],
+      "postmanParams": [
+        "id",
+        "page",
+        "per_page",
+        "sort_by",
+        "status"
+      ],
+      "codeApiParams": [
+        "paymentLinkId"
+      ],
+      "codeNodeParams": [
+        "paymentLinkId",
+        "query"
+      ]
+    },
+    {
+      "resource": "paymentLinks",
+      "operation": "listPaymentLinkMethods",
+      "key": "GET payment_links/payment_methods",
+      "displayKey": "GET payment_links/payment_methods",
+      "postmanCollection": "Payment Links",
+      "postmanRequest": "List available payment methods",
+      "missingQueryParamsInCode": [
+        "amount",
+        "currency",
+        "locale"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "amount",
+        "currency",
+        "locale"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "amount",
+        "currency",
+        "locale"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "query"
+      ]
+    },
+    {
+      "resource": "quotes",
+      "operation": "listQuotes",
+      "key": "GET quotes",
+      "displayKey": "GET quotes",
+      "postmanCollection": "Quotes",
+      "postmanRequest": "List quotes",
+      "missingQueryParamsInCode": [
+        "filter[created_at_from]",
+        "filter[created_at_to]",
+        "filter[status]",
+        "page",
+        "per_page",
+        "sort_by"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "filter[created_at_from]",
+        "filter[created_at_to]",
+        "filter[status]",
+        "page",
+        "per_page",
+        "sort_by"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "filter[created_at_from]",
+        "filter[created_at_to]",
+        "filter[status]",
+        "page",
+        "per_page",
+        "sort_by"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "query"
+      ]
+    },
+    {
+      "resource": "quotes",
+      "operation": "createQuote",
+      "key": "POST quotes",
+      "displayKey": "POST quotes",
+      "postmanCollection": "Quotes",
+      "postmanRequest": "Create a quote",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "client_id",
+        "commercial_register_number",
+        "company_leadership",
+        "currency",
+        "discount",
+        "district_court",
+        "expiry_date",
+        "footer",
+        "header",
+        "issue_date",
+        "items",
+        "number",
+        "payment_reason",
+        "rate",
+        "reason",
+        "settings",
+        "stamp_duty_amount",
+        "tax_number",
+        "terms_and_conditions",
+        "type",
+        "value",
+        "vat_number",
+        "welfare_fund",
+        "withholding_tax"
+      ],
+      "missingApiParamsInCode": [
+        "client_id",
+        "currency",
+        "discount",
+        "discount.type",
+        "discount.value",
+        "expiry_date",
+        "footer",
+        "header",
+        "issue_date",
+        "items",
+        "number",
+        "settings",
+        "settings.commercial_register_number",
+        "settings.company_leadership",
+        "settings.district_court",
+        "settings.tax_number",
+        "settings.vat_number",
+        "stamp_duty_amount",
+        "terms_and_conditions",
+        "welfare_fund",
+        "welfare_fund.rate",
+        "welfare_fund.type",
+        "withholding_tax",
+        "withholding_tax.payment_reason",
+        "withholding_tax.rate",
+        "withholding_tax.reason"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "client_id",
+        "currency",
+        "discount",
+        "discount.type",
+        "discount.value",
+        "expiry_date",
+        "footer",
+        "header",
+        "issue_date",
+        "items",
+        "number",
+        "settings",
+        "settings.commercial_register_number",
+        "settings.company_leadership",
+        "settings.district_court",
+        "settings.tax_number",
+        "settings.vat_number",
+        "stamp_duty_amount",
+        "terms_and_conditions",
+        "welfare_fund",
+        "welfare_fund.rate",
+        "welfare_fund.type",
+        "withholding_tax",
+        "withholding_tax.payment_reason",
+        "withholding_tax.rate",
+        "withholding_tax.reason"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "payload"
+      ]
+    },
+    {
+      "resource": "quotes",
+      "operation": "sendQuote",
+      "key": "POST quotes/:*/send",
+      "displayKey": "POST quotes/:quoteId/send",
+      "postmanCollection": "Quotes",
+      "postmanRequest": "Send a quote via email",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "copy_to_self",
+        "email_body",
+        "email_title",
+        "send_to"
+      ],
+      "missingApiParamsInCode": [
+        "copy_to_self",
+        "email_body",
+        "email_title",
+        "id",
+        "send_to"
+      ],
+      "extraApiParamsInCode": [
+        "quoteId"
+      ],
+      "postmanParams": [
+        "copy_to_self",
+        "email_body",
+        "email_title",
+        "id",
+        "send_to"
+      ],
+      "codeApiParams": [
+        "quoteId"
+      ],
+      "codeNodeParams": [
+        "payload",
+        "quoteId"
+      ]
+    },
+    {
+      "resource": "quotes",
+      "operation": "showQuote",
+      "key": "GET quotes/:*",
+      "displayKey": "GET quotes/:quoteId",
+      "postmanCollection": "Quotes",
+      "postmanRequest": "Retrieve a quote",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "quoteId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "quoteId"
+      ],
+      "codeNodeParams": [
+        "quoteId"
+      ]
+    },
+    {
+      "resource": "quotes",
+      "operation": "updateQuote",
+      "key": "PATCH quotes/:*",
+      "displayKey": "PATCH quotes/:quoteId",
+      "postmanCollection": "Quotes",
+      "postmanRequest": "Update a quote",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "commercial_register_number",
+        "company_leadership",
+        "currency",
+        "discount",
+        "district_court",
+        "expiry_date",
+        "footer",
+        "header",
+        "issue_date",
+        "items",
+        "number",
+        "payment_reason",
+        "rate",
+        "reason",
+        "settings",
+        "stamp_duty_amount",
+        "tax_number",
+        "terms_and_conditions",
+        "type",
+        "value",
+        "vat_number",
+        "welfare_fund",
+        "withholding_tax"
+      ],
+      "missingApiParamsInCode": [
+        "currency",
+        "discount",
+        "discount.type",
+        "discount.value",
+        "expiry_date",
+        "footer",
+        "header",
+        "id",
+        "issue_date",
+        "items",
+        "number",
+        "settings",
+        "settings.commercial_register_number",
+        "settings.company_leadership",
+        "settings.district_court",
+        "settings.tax_number",
+        "settings.vat_number",
+        "stamp_duty_amount",
+        "terms_and_conditions",
+        "welfare_fund",
+        "welfare_fund.rate",
+        "welfare_fund.type",
+        "withholding_tax",
+        "withholding_tax.payment_reason",
+        "withholding_tax.rate",
+        "withholding_tax.reason"
+      ],
+      "extraApiParamsInCode": [
+        "quoteId"
+      ],
+      "postmanParams": [
+        "currency",
+        "discount",
+        "discount.type",
+        "discount.value",
+        "expiry_date",
+        "footer",
+        "header",
+        "id",
+        "issue_date",
+        "items",
+        "number",
+        "settings",
+        "settings.commercial_register_number",
+        "settings.company_leadership",
+        "settings.district_court",
+        "settings.tax_number",
+        "settings.vat_number",
+        "stamp_duty_amount",
+        "terms_and_conditions",
+        "welfare_fund",
+        "welfare_fund.rate",
+        "welfare_fund.type",
+        "withholding_tax",
+        "withholding_tax.payment_reason",
+        "withholding_tax.rate",
+        "withholding_tax.reason"
+      ],
+      "codeApiParams": [
+        "quoteId"
+      ],
+      "codeNodeParams": [
+        "payload",
+        "quoteId"
+      ]
+    },
+    {
+      "resource": "quotes",
+      "operation": "deleteQuote",
+      "key": "DELETE quotes/:*",
+      "displayKey": "DELETE quotes/:quoteId",
+      "postmanCollection": "Quotes",
+      "postmanRequest": "Delete a quote",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "quoteId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "quoteId"
+      ],
+      "codeNodeParams": [
+        "quoteId"
+      ]
+    },
+    {
+      "resource": "requests",
+      "operation": "listRequests",
+      "key": "GET requests",
+      "displayKey": "GET requests",
+      "postmanCollection": "Requests",
+      "postmanRequest": "List requests",
+      "missingQueryParamsInCode": [
+        "page",
+        "per_page",
+        "request_type[]",
+        "sort_by",
+        "status[]"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "page",
+        "per_page",
+        "request_type[]",
+        "sort_by",
+        "status[]"
+      ],
+      "extraApiParamsInCode": [
+        "request_type",
+        "status"
+      ],
+      "postmanParams": [
+        "created_at_from",
+        "page",
+        "per_page",
+        "processed_at_from",
+        "request_type[]",
+        "sort_by",
+        "status[]"
+      ],
+      "codeApiParams": [
+        "created_at_from",
+        "processed_at_from",
+        "request_type",
+        "status"
+      ],
+      "codeNodeParams": []
+    },
+    {
+      "resource": "requests",
+      "operation": "createFlashCardRequest",
+      "key": "POST requests/flash_cards",
+      "displayKey": "POST requests/flash_cards",
+      "postmanCollection": "Requests",
+      "postmanRequest": "Create a flash card request",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "request_flash_card"
+      ],
+      "missingApiParamsInCode": [
+        "request_flash_card",
+        "request_flash_card.note",
+        "request_flash_card.payment_lifespan_limit",
+        "request_flash_card.pre_expires_at"
+      ],
+      "extraApiParamsInCode": [
+        "note",
+        "payment_lifespan_limit"
+      ],
+      "postmanParams": [
+        "request_flash_card",
+        "request_flash_card.note",
+        "request_flash_card.payment_lifespan_limit",
+        "request_flash_card.pre_expires_at"
+      ],
+      "codeApiParams": [
+        "note",
+        "payment_lifespan_limit"
+      ],
+      "codeNodeParams": [
+        "note",
+        "payment_lifespan_limit",
+        "pre_expires_at"
+      ]
+    },
+    {
+      "resource": "requests",
+      "operation": "createVirtualCardRequest",
+      "key": "POST requests/virtual_cards",
+      "displayKey": "POST requests/virtual_cards",
+      "postmanCollection": "Requests",
+      "postmanRequest": "Create a virtual card request",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "request_virtual_card"
+      ],
+      "missingApiParamsInCode": [
+        "request_virtual_card",
+        "request_virtual_card.note",
+        "request_virtual_card.payment_monthly_limit"
+      ],
+      "extraApiParamsInCode": [
+        "note",
+        "payment_monthly_limit"
+      ],
+      "postmanParams": [
+        "request_virtual_card",
+        "request_virtual_card.note",
+        "request_virtual_card.payment_monthly_limit"
+      ],
+      "codeApiParams": [
+        "note",
+        "payment_monthly_limit"
+      ],
+      "codeNodeParams": [
+        "note",
+        "payment_monthly_limit"
+      ]
+    },
+    {
+      "resource": "requests",
+      "operation": "createMultiTransferRequest",
+      "key": "POST requests/multi_transfers",
+      "displayKey": "POST requests/multi_transfers",
+      "postmanCollection": "Requests",
+      "postmanRequest": "Create multi transfer request",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "request_multi_transfer"
+      ],
+      "missingApiParamsInCode": [
+        "request_multi_transfer",
+        "request_multi_transfer.debit_iban",
+        "request_multi_transfer.note",
+        "request_multi_transfer.scheduled_date",
+        "request_multi_transfer.transfers"
+      ],
+      "extraApiParamsInCode": [
+        "debit_iban",
+        "note"
+      ],
+      "postmanParams": [
+        "request_multi_transfer",
+        "request_multi_transfer.debit_iban",
+        "request_multi_transfer.note",
+        "request_multi_transfer.scheduled_date",
+        "request_multi_transfer.transfers"
+      ],
+      "codeApiParams": [
+        "debit_iban",
+        "note"
+      ],
+      "codeNodeParams": [
+        "debit_iban",
+        "note",
+        "scheduled_date",
+        "transfers"
+      ]
+    },
+    {
+      "resource": "requests",
+      "operation": "approveARequest",
+      "key": "POST requests/:*/:*/approve",
+      "displayKey": "POST requests/:requestType/:requestId/approve",
+      "postmanCollection": "Requests",
+      "postmanRequest": "Approve a request",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "debit_iban",
+        "id",
+        "request_type"
+      ],
+      "extraApiParamsInCode": [
+        "requestId",
+        "requestType"
+      ],
+      "postmanParams": [
+        "debit_iban",
+        "id",
+        "request_type"
+      ],
+      "codeApiParams": [
+        "requestId",
+        "requestType"
+      ],
+      "codeNodeParams": [
+        "debit_iban",
+        "id",
+        "request_type"
+      ]
+    },
+    {
+      "resource": "requests",
+      "operation": "declineARequest",
+      "key": "POST requests/:*/:*/decline",
+      "displayKey": "POST requests/:requestType/:requestId/decline",
+      "postmanCollection": "Requests",
+      "postmanRequest": "Decline a request",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "declined_note",
+        "id",
+        "request_type"
+      ],
+      "extraApiParamsInCode": [
+        "requestId",
+        "requestType"
+      ],
+      "postmanParams": [
+        "declined_note",
+        "id",
+        "request_type"
+      ],
+      "codeApiParams": [
+        "requestId",
+        "requestType"
+      ],
+      "codeNodeParams": [
+        "declined_note",
+        "id",
+        "request_type"
+      ]
+    },
+    {
+      "resource": "supplierInvoices",
+      "operation": "getSupplierInvoices",
+      "key": "GET supplier_invoices",
+      "displayKey": "GET supplier_invoices",
+      "postmanCollection": "Supplier Invoices",
+      "postmanRequest": "List supplier invoices",
+      "missingQueryParamsInCode": [
+        "filter[approver_id][]",
+        "filter[attachment_id]",
+        "filter[attachment_id][]",
+        "filter[created_at_from]",
+        "filter[created_at_to]",
+        "filter[document_type]",
+        "filter[document_type][]",
+        "filter[due_date]",
+        "filter[exclude_credit_notes]",
+        "filter[issue_date]",
+        "filter[issue_date_from]",
+        "filter[matched_transactions]",
+        "filter[missing_data]",
+        "filter[payable_amount]",
+        "filter[payment_date]",
+        "filter[status]",
+        "filter[updated_at_from]",
+        "filter[updated_at_to]",
+        "page",
+        "per_page",
+        "query",
+        "query_fields",
+        "sort_by"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "filter[approver_id][]",
+        "filter[attachment_id]",
+        "filter[attachment_id][]",
+        "filter[created_at_from]",
+        "filter[created_at_to]",
+        "filter[document_type]",
+        "filter[document_type][]",
+        "filter[due_date]",
+        "filter[exclude_credit_notes]",
+        "filter[issue_date]",
+        "filter[issue_date_from]",
+        "filter[matched_transactions]",
+        "filter[missing_data]",
+        "filter[payable_amount]",
+        "filter[payment_date]",
+        "filter[status]",
+        "filter[updated_at_from]",
+        "filter[updated_at_to]",
+        "page",
+        "per_page",
+        "query",
+        "query_fields",
+        "sort_by"
+      ],
+      "extraApiParamsInCode": [
+        "end_date",
+        "start_date",
+        "status"
+      ],
+      "postmanParams": [
+        "filter[approver_id][]",
+        "filter[attachment_id]",
+        "filter[attachment_id][]",
+        "filter[created_at_from]",
+        "filter[created_at_to]",
+        "filter[document_type]",
+        "filter[document_type][]",
+        "filter[due_date]",
+        "filter[exclude_credit_notes]",
+        "filter[issue_date]",
+        "filter[issue_date_from]",
+        "filter[matched_transactions]",
+        "filter[missing_data]",
+        "filter[payable_amount]",
+        "filter[payment_date]",
+        "filter[status]",
+        "filter[updated_at_from]",
+        "filter[updated_at_to]",
+        "page",
+        "per_page",
+        "query",
+        "query_fields",
+        "sort_by"
+      ],
+      "codeApiParams": [
+        "end_date",
+        "start_date",
+        "status"
+      ],
+      "codeNodeParams": []
+    },
+    {
+      "resource": "supplierInvoices",
+      "operation": "showSupplierInvoice",
+      "key": "GET supplier_invoices/:*",
+      "displayKey": "GET supplier_invoices/:supplierInvoiceId",
+      "postmanCollection": "Supplier Invoices",
+      "postmanRequest": "Retrieve a supplier invoice",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "supplierInvoiceId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "supplierInvoiceId"
+      ],
+      "codeNodeParams": [
+        "supplierInvoiceId"
+      ]
+    },
+    {
+      "resource": "supplierInvoices",
+      "operation": "createSupplierInvoices",
+      "key": "POST supplier_invoices/bulk",
+      "displayKey": "POST supplier_invoices/bulk",
+      "postmanCollection": "Supplier Invoices",
+      "postmanRequest": "Create supplier invoices",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "meta",
+        "skip_attachment_matcher",
+        "source",
+        "supplier_invoices"
+      ],
+      "missingApiParamsInCode": [
+        "meta",
+        "skip_attachment_matcher",
+        "source",
+        "supplier_invoices"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "meta",
+        "skip_attachment_matcher",
+        "source",
+        "supplier_invoices"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "organizationId",
+        "supplierInvoices"
+      ]
+    },
+    {
+      "resource": "clientsInvoices",
+      "operation": "listInvoices",
+      "key": "GET client_invoices",
+      "displayKey": "GET client_invoices",
+      "postmanCollection": "Client Invoices",
+      "postmanRequest": "List client invoices",
+      "missingQueryParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "exclude_imported",
+        "filter[created_at_from]",
+        "filter[created_at_to]",
+        "filter[status]",
+        "filter[updated_at_from]",
+        "filter[updated_at_to]",
+        "page",
+        "per_page",
+        "sort_by"
+      ],
+      "codeApiParams": [
+        "exclude_imported",
+        "filter[created_at_from]",
+        "filter[created_at_to]",
+        "filter[status]",
+        "filter[updated_at_from]",
+        "filter[updated_at_to]",
+        "sort_by"
+      ],
+      "codeNodeParams": []
+    },
+    {
+      "resource": "clientsInvoices",
+      "operation": "createClientInvoice",
+      "key": "POST client_invoices",
+      "displayKey": "POST client_invoices",
+      "postmanCollection": "Client Invoices",
+      "postmanRequest": "Create a client invoice",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "client_id",
+        "commercial_register_number",
+        "company_leadership",
+        "conditions",
+        "discount_conditions",
+        "district_court",
+        "due_date",
+        "footer",
+        "header",
+        "iban",
+        "issue_date",
+        "late_payment_penalties",
+        "legal_capital_share",
+        "legal_fixed_compensation",
+        "method",
+        "number",
+        "payment_methods",
+        "payment_reason",
+        "payment_reporting",
+        "performance_end_date",
+        "performance_start_date",
+        "purchase_order",
+        "rate",
+        "reason",
+        "report_einvoicing",
+        "settings",
+        "stamp_duty_amount",
+        "status",
+        "tax_number",
+        "terms_and_conditions",
+        "transaction_type",
+        "type",
+        "value",
+        "vat_number",
+        "vat_payment_condition",
+        "welfare_fund",
+        "withholding_tax"
+      ],
+      "missingApiParamsInCode": [
+        "client_id",
+        "currency",
+        "due_date",
+        "footer",
+        "header",
+        "issue_date",
+        "items",
+        "number",
+        "payment_methods",
+        "payment_methods.iban",
+        "payment_reporting",
+        "payment_reporting.conditions",
+        "payment_reporting.method",
+        "performance_end_date",
+        "performance_start_date",
+        "purchase_order",
+        "report_einvoicing",
+        "settings",
+        "settings.commercial_register_number",
+        "settings.company_leadership",
+        "settings.discount_conditions",
+        "settings.district_court",
+        "settings.late_payment_penalties",
+        "settings.legal_capital_share",
+        "settings.legal_capital_share.currency",
+        "settings.legal_capital_share.value",
+        "settings.legal_fixed_compensation",
+        "settings.tax_number",
+        "settings.transaction_type",
+        "settings.vat_number",
+        "settings.vat_payment_condition",
+        "stamp_duty_amount",
+        "status",
+        "terms_and_conditions",
+        "welfare_fund",
+        "welfare_fund.rate",
+        "welfare_fund.type",
+        "withholding_tax",
+        "withholding_tax.payment_reason",
+        "withholding_tax.rate",
+        "withholding_tax.reason"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "client_id",
+        "currency",
+        "due_date",
+        "footer",
+        "header",
+        "issue_date",
+        "items",
+        "number",
+        "payment_methods",
+        "payment_methods.iban",
+        "payment_reporting",
+        "payment_reporting.conditions",
+        "payment_reporting.method",
+        "performance_end_date",
+        "performance_start_date",
+        "purchase_order",
+        "report_einvoicing",
+        "settings",
+        "settings.commercial_register_number",
+        "settings.company_leadership",
+        "settings.discount_conditions",
+        "settings.district_court",
+        "settings.late_payment_penalties",
+        "settings.legal_capital_share",
+        "settings.legal_capital_share.currency",
+        "settings.legal_capital_share.value",
+        "settings.legal_fixed_compensation",
+        "settings.tax_number",
+        "settings.transaction_type",
+        "settings.vat_number",
+        "settings.vat_payment_condition",
+        "stamp_duty_amount",
+        "status",
+        "terms_and_conditions",
+        "welfare_fund",
+        "welfare_fund.rate",
+        "welfare_fund.type",
+        "withholding_tax",
+        "withholding_tax.payment_reason",
+        "withholding_tax.rate",
+        "withholding_tax.reason"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "additionalOptions",
+        "clientId",
+        "currency",
+        "dueDate",
+        "issueDate",
+        "items",
+        "paymentIban"
+      ]
+    },
+    {
+      "resource": "clientsInvoices",
+      "operation": "updateClientInvoice",
+      "key": "PATCH client_invoices/:*",
+      "displayKey": "PATCH client_invoices/:invoiceId",
+      "postmanCollection": "Client Invoices",
+      "postmanRequest": "Update a draft client invoice",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "client_id",
+        "commercial_register_number",
+        "company_leadership",
+        "conditions",
+        "currency",
+        "discount_conditions",
+        "district_court",
+        "due_date",
+        "footer",
+        "header",
+        "iban",
+        "issue_date",
+        "items",
+        "late_payment_penalties",
+        "legal_capital_share",
+        "legal_fixed_compensation",
+        "method",
+        "number",
+        "payment_methods",
+        "payment_reason",
+        "payment_reporting",
+        "performance_date",
+        "purchase_order",
+        "rate",
+        "reason",
+        "report_einvoicing",
+        "settings",
+        "stamp_duty_amount",
+        "tax_number",
+        "terms_and_conditions",
+        "transaction_type",
+        "type",
+        "value",
+        "vat_number",
+        "vat_payment_condition",
+        "welfare_fund",
+        "withholding_tax"
+      ],
+      "missingApiParamsInCode": [
+        "client_id",
+        "due_date",
+        "footer",
+        "header",
+        "id",
+        "issue_date",
+        "items",
+        "number",
+        "payment_methods",
+        "payment_methods.iban",
+        "payment_reporting",
+        "payment_reporting.conditions",
+        "payment_reporting.method",
+        "performance_date",
+        "purchase_order",
+        "report_einvoicing",
+        "settings",
+        "settings.commercial_register_number",
+        "settings.company_leadership",
+        "settings.discount_conditions",
+        "settings.district_court",
+        "settings.late_payment_penalties",
+        "settings.legal_capital_share",
+        "settings.legal_capital_share.currency",
+        "settings.legal_capital_share.value",
+        "settings.legal_fixed_compensation",
+        "settings.tax_number",
+        "settings.transaction_type",
+        "settings.vat_number",
+        "settings.vat_payment_condition",
+        "stamp_duty_amount",
+        "terms_and_conditions",
+        "welfare_fund",
+        "welfare_fund.rate",
+        "welfare_fund.type",
+        "withholding_tax",
+        "withholding_tax.payment_reason",
+        "withholding_tax.rate",
+        "withholding_tax.reason"
+      ],
+      "extraApiParamsInCode": [
+        "invoiceId"
+      ],
+      "postmanParams": [
+        "client_id",
+        "due_date",
+        "footer",
+        "header",
+        "id",
+        "issue_date",
+        "items",
+        "number",
+        "payment_methods",
+        "payment_methods.iban",
+        "payment_reporting",
+        "payment_reporting.conditions",
+        "payment_reporting.method",
+        "performance_date",
+        "purchase_order",
+        "report_einvoicing",
+        "settings",
+        "settings.commercial_register_number",
+        "settings.company_leadership",
+        "settings.discount_conditions",
+        "settings.district_court",
+        "settings.late_payment_penalties",
+        "settings.legal_capital_share",
+        "settings.legal_capital_share.currency",
+        "settings.legal_capital_share.value",
+        "settings.legal_fixed_compensation",
+        "settings.tax_number",
+        "settings.transaction_type",
+        "settings.vat_number",
+        "settings.vat_payment_condition",
+        "stamp_duty_amount",
+        "terms_and_conditions",
+        "welfare_fund",
+        "welfare_fund.rate",
+        "welfare_fund.type",
+        "withholding_tax",
+        "withholding_tax.payment_reason",
+        "withholding_tax.rate",
+        "withholding_tax.reason"
+      ],
+      "codeApiParams": [
+        "invoiceId"
+      ],
+      "codeNodeParams": [
+        "invoiceId",
+        "updateFields"
+      ]
+    },
+    {
+      "resource": "clientsInvoices",
+      "operation": "showClientInvoice",
+      "key": "GET client_invoices/:*",
+      "displayKey": "GET client_invoices/:invoiceId",
+      "postmanCollection": "Client Invoices",
+      "postmanRequest": "Retrieve a client invoice",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "invoiceId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "invoiceId"
+      ],
+      "codeNodeParams": [
+        "invoiceId"
+      ]
+    },
+    {
+      "resource": "clientsInvoices",
+      "operation": "deleteClientInvoice",
+      "key": "DELETE client_invoices/:*",
+      "displayKey": "DELETE client_invoices/:invoiceId",
+      "postmanCollection": "Client Invoices",
+      "postmanRequest": "Delete a client invoice",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "invoiceId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "invoiceId"
+      ],
+      "codeNodeParams": [
+        "invoiceId"
+      ]
+    },
+    {
+      "resource": "clientsInvoices",
+      "operation": "finalizeClientInvoice",
+      "key": "POST client_invoices/:*/finalize",
+      "displayKey": "POST client_invoices/:invoiceId/finalize",
+      "postmanCollection": "Client Invoices",
+      "postmanRequest": "Finalize a client invoice",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "invoiceId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "invoiceId"
+      ],
+      "codeNodeParams": [
+        "invoiceId"
+      ]
+    },
+    {
+      "resource": "clientsInvoices",
+      "operation": "cancelClientInvoice",
+      "key": "POST client_invoices/:*/mark_as_canceled",
+      "displayKey": "POST client_invoices/:invoiceId/mark_as_canceled",
+      "postmanCollection": "Client Invoices",
+      "postmanRequest": "Cancel a client invoice",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "invoiceId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "invoiceId"
+      ],
+      "codeNodeParams": [
+        "invoiceId"
+      ]
+    },
+    {
+      "resource": "clientsInvoices",
+      "operation": "unmarkClientInvoiceAsPaid",
+      "key": "POST client_invoices/:*/unmark_as_paid",
+      "displayKey": "POST client_invoices/:invoiceId/unmark_as_paid",
+      "postmanCollection": "Client Invoices",
+      "postmanRequest": "Unmark a client invoice as paid",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "invoiceId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "invoiceId"
+      ],
+      "codeNodeParams": [
+        "invoiceId"
+      ]
+    },
+    {
+      "resource": "clientsInvoices",
+      "operation": "markClientInvoiceAsPaid",
+      "key": "POST client_invoices/:*/mark_as_paid",
+      "displayKey": "POST client_invoices/:invoiceId/mark_as_paid",
+      "postmanCollection": "Client Invoices",
+      "postmanRequest": "Mark a client invoice as paid",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "paid_at"
+      ],
+      "missingApiParamsInCode": [
+        "id",
+        "paid_at"
+      ],
+      "extraApiParamsInCode": [
+        "invoiceId"
+      ],
+      "postmanParams": [
+        "id",
+        "paid_at"
+      ],
+      "codeApiParams": [
+        "invoiceId"
+      ],
+      "codeNodeParams": [
+        "invoiceId",
+        "paidAt"
+      ]
+    },
+    {
+      "resource": "clientsInvoices",
+      "operation": "sendClientInvoice",
+      "key": "POST client_invoices/:*/send",
+      "displayKey": "POST client_invoices/:invoiceId/send",
+      "postmanCollection": "Client Invoices",
+      "postmanRequest": "Send a client invoice via email",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "email_body",
+        "email_title",
+        "send_to"
+      ],
+      "missingApiParamsInCode": [
+        "email_body",
+        "email_title",
+        "id",
+        "send_to"
+      ],
+      "extraApiParamsInCode": [
+        "invoiceId"
+      ],
+      "postmanParams": [
+        "copy_to_self",
+        "email_body",
+        "email_title",
+        "id",
+        "send_to"
+      ],
+      "codeApiParams": [
+        "copy_to_self",
+        "invoiceId"
+      ],
+      "codeNodeParams": [
+        "copyToSelf",
+        "emailBody",
+        "emailTitle",
+        "invoiceId",
+        "sendTo"
+      ]
+    },
+    {
+      "resource": "creditNotes",
+      "operation": "getListCreditNotes",
+      "key": "GET credit_notes",
+      "displayKey": "GET credit_notes",
+      "postmanCollection": "Credit Notes",
+      "postmanRequest": "List credit notes",
+      "missingQueryParamsInCode": [
+        "filter[created_at_from]",
+        "filter[created_at_to]",
+        "page",
+        "per_page",
+        "sort_by"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "filter[created_at_from]",
+        "filter[created_at_to]",
+        "page",
+        "per_page",
+        "sort_by"
+      ],
+      "extraApiParamsInCode": [
+        "created_at_from",
+        "created_at_to"
+      ],
+      "postmanParams": [
+        "filter[created_at_from]",
+        "filter[created_at_to]",
+        "page",
+        "per_page",
+        "sort_by"
+      ],
+      "codeApiParams": [
+        "created_at_from",
+        "created_at_to"
+      ],
+      "codeNodeParams": []
+    },
+    {
+      "resource": "creditNotes",
+      "operation": "getDetailsCreditNotes",
+      "key": "GET credit_notes/:*",
+      "displayKey": "GET credit_notes/:creditNoteId",
+      "postmanCollection": "Credit Notes",
+      "postmanRequest": "Retrieve a credit note",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "creditNoteId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "creditNoteId"
+      ],
+      "codeNodeParams": [
+        "creditNoteId"
+      ]
+    },
+    {
+      "resource": "clients",
+      "operation": "getListClients",
+      "key": "GET clients",
+      "displayKey": "GET clients",
+      "postmanCollection": "Clients",
+      "postmanRequest": "List clients",
+      "missingQueryParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "extraApiParamsInCode": [
+        "filter[email]",
+        "filter[name]",
+        "filter[tax_identification_number]",
+        "filter[vat_number]"
+      ],
+      "postmanParams": [
+        "page",
+        "per_page",
+        "sort_by"
+      ],
+      "codeApiParams": [
+        "filter[email]",
+        "filter[name]",
+        "filter[tax_identification_number]",
+        "filter[vat_number]",
+        "sort_by"
+      ],
+      "codeNodeParams": []
+    },
+    {
+      "resource": "clients",
+      "operation": "getClientDetails",
+      "key": "GET clients/:*",
+      "displayKey": "GET clients/:clientId",
+      "postmanCollection": "Clients",
+      "postmanRequest": "Retrieve a client",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "clientId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "clientId"
+      ],
+      "codeNodeParams": [
+        "clientId"
+      ]
+    },
+    {
+      "resource": "clients",
+      "operation": "createClient",
+      "key": "POST clients",
+      "displayKey": "POST clients",
+      "postmanCollection": "Clients",
+      "postmanRequest": "Create a client",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "billing_address",
+        "city",
+        "country_code",
+        "currency",
+        "delivery_address",
+        "e_invoicing_address",
+        "extra_emails",
+        "first_name",
+        "last_name",
+        "locale",
+        "name",
+        "number",
+        "phone",
+        "province_code",
+        "recipient_code",
+        "street_address",
+        "tax_identification_number",
+        "vat_number",
+        "zip_code"
+      ],
+      "missingApiParamsInCode": [
+        "billing_address",
+        "billing_address.city",
+        "billing_address.country_code",
+        "billing_address.province_code",
+        "billing_address.street_address",
+        "billing_address.zip_code",
+        "currency",
+        "delivery_address",
+        "delivery_address.city",
+        "delivery_address.country_code",
+        "delivery_address.province_code",
+        "delivery_address.street_address",
+        "delivery_address.zip_code",
+        "e_invoicing_address",
+        "email",
+        "extra_emails",
+        "first_name",
+        "kind",
+        "last_name",
+        "locale",
+        "name",
+        "phone",
+        "phone.country_code",
+        "phone.number",
+        "recipient_code",
+        "tax_identification_number",
+        "vat_number"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "billing_address",
+        "billing_address.city",
+        "billing_address.country_code",
+        "billing_address.province_code",
+        "billing_address.street_address",
+        "billing_address.zip_code",
+        "currency",
+        "delivery_address",
+        "delivery_address.city",
+        "delivery_address.country_code",
+        "delivery_address.province_code",
+        "delivery_address.street_address",
+        "delivery_address.zip_code",
+        "e_invoicing_address",
+        "email",
+        "extra_emails",
+        "first_name",
+        "kind",
+        "last_name",
+        "locale",
+        "name",
+        "phone",
+        "phone.country_code",
+        "phone.number",
+        "recipient_code",
+        "tax_identification_number",
+        "vat_number"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "additionalOptions",
+        "clientName",
+        "email",
+        "firstName",
+        "kind",
+        "lastName"
+      ]
+    },
+    {
+      "resource": "clients",
+      "operation": "updateClient",
+      "key": "PATCH clients/:*",
+      "displayKey": "PATCH clients/:clientId",
+      "postmanCollection": "Clients",
+      "postmanRequest": "Update a client",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "billing_address",
+        "city",
+        "country_code",
+        "currency",
+        "delivery_address",
+        "e_invoicing_address",
+        "email",
+        "extra_emails",
+        "first_name",
+        "last_name",
+        "locale",
+        "name",
+        "number",
+        "phone",
+        "province_code",
+        "recipient_code",
+        "street_address",
+        "tax_identification_number",
+        "vat_number",
+        "zip_code"
+      ],
+      "missingApiParamsInCode": [
+        "billing_address",
+        "billing_address.city",
+        "billing_address.country_code",
+        "billing_address.province_code",
+        "billing_address.street_address",
+        "billing_address.zip_code",
+        "currency",
+        "delivery_address",
+        "delivery_address.city",
+        "delivery_address.country_code",
+        "delivery_address.province_code",
+        "delivery_address.street_address",
+        "delivery_address.zip_code",
+        "e_invoicing_address",
+        "email",
+        "extra_emails",
+        "first_name",
+        "id",
+        "last_name",
+        "locale",
+        "name",
+        "phone",
+        "phone.country_code",
+        "phone.number",
+        "recipient_code",
+        "tax_identification_number",
+        "vat_number"
+      ],
+      "extraApiParamsInCode": [
+        "clientId"
+      ],
+      "postmanParams": [
+        "billing_address",
+        "billing_address.city",
+        "billing_address.country_code",
+        "billing_address.province_code",
+        "billing_address.street_address",
+        "billing_address.zip_code",
+        "currency",
+        "delivery_address",
+        "delivery_address.city",
+        "delivery_address.country_code",
+        "delivery_address.province_code",
+        "delivery_address.street_address",
+        "delivery_address.zip_code",
+        "e_invoicing_address",
+        "email",
+        "extra_emails",
+        "first_name",
+        "id",
+        "last_name",
+        "locale",
+        "name",
+        "phone",
+        "phone.country_code",
+        "phone.number",
+        "recipient_code",
+        "tax_identification_number",
+        "vat_number"
+      ],
+      "codeApiParams": [
+        "clientId"
+      ],
+      "codeNodeParams": [
+        "clientId",
+        "updateFields"
+      ]
+    },
+    {
+      "resource": "clients",
+      "operation": "deleteClient",
+      "key": "DELETE clients/:*",
+      "displayKey": "DELETE clients/:clientId",
+      "postmanCollection": "Clients",
+      "postmanRequest": "Delete a client",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "clientId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "clientId"
+      ],
+      "codeNodeParams": [
+        "clientId"
+      ]
+    },
+    {
+      "resource": "teams",
+      "operation": "listTeams",
+      "key": "GET teams",
+      "displayKey": "GET teams",
+      "postmanCollection": "Teams",
+      "postmanRequest": "List teams",
+      "missingQueryParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "page",
+        "per_page"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": []
+    },
+    {
+      "resource": "teams",
+      "operation": "createTeam",
+      "key": "POST teams",
+      "displayKey": "POST teams",
+      "postmanCollection": "Teams",
+      "postmanRequest": "Create a team",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "name"
+      ],
+      "codeApiParams": [
+        "name"
+      ],
+      "codeNodeParams": [
+        "teamName"
+      ]
+    },
+    {
+      "resource": "statements",
+      "operation": "listStatement",
+      "key": "GET statements",
+      "displayKey": "GET statements",
+      "postmanCollection": "Statements",
+      "postmanRequest": "List statements",
+      "missingQueryParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "bank_account_ids[]",
+        "ibans[]",
+        "page",
+        "per_page",
+        "period_from",
+        "period_to",
+        "sort_by"
+      ],
+      "codeApiParams": [
+        "bank_account_ids[]",
+        "ibans[]",
+        "period_from",
+        "period_to",
+        "sort_by"
+      ],
+      "codeNodeParams": []
+    },
+    {
+      "resource": "statements",
+      "operation": "showStatement",
+      "key": "GET statements/:*",
+      "displayKey": "GET statements/:statementId",
+      "postmanCollection": "Statements",
+      "postmanRequest": "Retrieve a statement",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "statementId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "statementId"
+      ],
+      "codeNodeParams": [
+        "statementId"
+      ]
+    },
+    {
+      "resource": "insuranceContracts",
+      "operation": "createInsuranceContract",
+      "key": "POST insurance_contracts",
+      "displayKey": "POST insurance_contracts",
+      "postmanCollection": "Insurance Contracts",
+      "postmanRequest": "Create an insurance contract",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "currency",
+        "expiration_date",
+        "insurance_contract",
+        "payment_frequency",
+        "price",
+        "renewal_date",
+        "service_url",
+        "start_date",
+        "troubleshooting_url",
+        "value"
+      ],
+      "missingApiParamsInCode": [
+        "insurance_contract",
+        "insurance_contract.contract_id",
+        "insurance_contract.expiration_date",
+        "insurance_contract.name",
+        "insurance_contract.origin",
+        "insurance_contract.payment_frequency",
+        "insurance_contract.price",
+        "insurance_contract.price.currency",
+        "insurance_contract.price.value",
+        "insurance_contract.provider_slug",
+        "insurance_contract.renewal_date",
+        "insurance_contract.service_url",
+        "insurance_contract.start_date",
+        "insurance_contract.status",
+        "insurance_contract.troubleshooting_url",
+        "insurance_contract.type"
+      ],
+      "extraApiParamsInCode": [
+        "contract_id",
+        "name",
+        "origin",
+        "provider_slug",
+        "status",
+        "type"
+      ],
+      "postmanParams": [
+        "insurance_contract",
+        "insurance_contract.contract_id",
+        "insurance_contract.expiration_date",
+        "insurance_contract.name",
+        "insurance_contract.origin",
+        "insurance_contract.payment_frequency",
+        "insurance_contract.price",
+        "insurance_contract.price.currency",
+        "insurance_contract.price.value",
+        "insurance_contract.provider_slug",
+        "insurance_contract.renewal_date",
+        "insurance_contract.service_url",
+        "insurance_contract.start_date",
+        "insurance_contract.status",
+        "insurance_contract.troubleshooting_url",
+        "insurance_contract.type"
+      ],
+      "codeApiParams": [
+        "contract_id",
+        "name",
+        "origin",
+        "provider_slug",
+        "status",
+        "type"
+      ],
+      "codeNodeParams": [
+        "additionalOptions",
+        "contractId",
+        "contractName",
+        "contractType",
+        "origin",
+        "providerSlug",
+        "status"
+      ]
+    },
+    {
+      "resource": "insuranceContracts",
+      "operation": "getInsuranceContract",
+      "key": "GET insurance_contracts/:*",
+      "displayKey": "GET insurance_contracts/:contractId",
+      "postmanCollection": "Insurance Contracts",
+      "postmanRequest": "Retrieve an insurance contract",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "contractId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "contractId"
+      ],
+      "codeNodeParams": [
+        "contractId"
+      ]
+    },
+    {
+      "resource": "insuranceContracts",
+      "operation": "updateInsuranceContract",
+      "key": "PATCH insurance_contracts/:*",
+      "displayKey": "PATCH insurance_contracts/:contractIdToUpdate",
+      "postmanCollection": "Insurance Contracts",
+      "postmanRequest": "Update an insurance contract",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "contract_id",
+        "currency",
+        "expiration_date",
+        "insurance_contract",
+        "name",
+        "origin",
+        "payment_frequency",
+        "price",
+        "provider_slug",
+        "renewal_date",
+        "service_url",
+        "start_date",
+        "status",
+        "troubleshooting_url",
+        "type",
+        "value"
+      ],
+      "missingApiParamsInCode": [
+        "id",
+        "insurance_contract",
+        "insurance_contract.contract_id",
+        "insurance_contract.expiration_date",
+        "insurance_contract.name",
+        "insurance_contract.origin",
+        "insurance_contract.payment_frequency",
+        "insurance_contract.price",
+        "insurance_contract.price.currency",
+        "insurance_contract.price.value",
+        "insurance_contract.provider_slug",
+        "insurance_contract.renewal_date",
+        "insurance_contract.service_url",
+        "insurance_contract.start_date",
+        "insurance_contract.status",
+        "insurance_contract.troubleshooting_url",
+        "insurance_contract.type"
+      ],
+      "extraApiParamsInCode": [
+        "contractIdToUpdate"
+      ],
+      "postmanParams": [
+        "id",
+        "insurance_contract",
+        "insurance_contract.contract_id",
+        "insurance_contract.expiration_date",
+        "insurance_contract.name",
+        "insurance_contract.origin",
+        "insurance_contract.payment_frequency",
+        "insurance_contract.price",
+        "insurance_contract.price.currency",
+        "insurance_contract.price.value",
+        "insurance_contract.provider_slug",
+        "insurance_contract.renewal_date",
+        "insurance_contract.service_url",
+        "insurance_contract.start_date",
+        "insurance_contract.status",
+        "insurance_contract.troubleshooting_url",
+        "insurance_contract.type"
+      ],
+      "codeApiParams": [
+        "contractIdToUpdate"
+      ],
+      "codeNodeParams": [
+        "contractIdToUpdate",
+        "updateFields"
+      ]
+    },
+    {
+      "resource": "insuranceContracts",
+      "operation": "uploadInsuranceDocument",
+      "key": "POST insurance_contracts/:*/attachments",
+      "displayKey": "POST insurance_contracts/:contractId/attachments",
+      "postmanCollection": "Insurance Contracts",
+      "postmanRequest": "Upload a document to an insurance contract",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "file",
+        "name",
+        "type"
+      ],
+      "missingApiParamsInCode": [
+        "file",
+        "id",
+        "name",
+        "type"
+      ],
+      "extraApiParamsInCode": [
+        "contractId"
+      ],
+      "postmanParams": [
+        "file",
+        "id",
+        "name",
+        "type"
+      ],
+      "codeApiParams": [
+        "contractId"
+      ],
+      "codeNodeParams": [
+        "binaryProperty",
+        "contractId"
+      ]
+    },
+    {
+      "resource": "insuranceContracts",
+      "operation": "deleteInsuranceDocument",
+      "key": "DELETE insurance_contracts/:*/attachments/:*",
+      "displayKey": "DELETE insurance_contracts/:contractId/attachments/:attachmentId",
+      "postmanCollection": "Insurance Contracts",
+      "postmanRequest": "Remove a document from an insurance contract",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "attachment_id",
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "attachmentId",
+        "contractId"
+      ],
+      "postmanParams": [
+        "attachment_id",
+        "id"
+      ],
+      "codeApiParams": [
+        "attachmentId",
+        "contractId"
+      ],
+      "codeNodeParams": [
+        "attachmentId",
+        "contractId"
+      ]
+    },
+    {
+      "resource": "webhookSubscriptions",
+      "operation": "listWebhookSubscriptions",
+      "key": "GET webhook_subscriptions",
+      "displayKey": "GET webhook_subscriptions",
+      "postmanCollection": "Webhooks",
+      "postmanRequest": "List webhook subscriptions",
+      "missingQueryParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "page",
+        "per_page"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "page",
+        "per_page"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": []
+    },
+    {
+      "resource": "webhookSubscriptions",
+      "operation": "createWebhookSubscription",
+      "key": "POST webhook_subscriptions",
+      "displayKey": "POST webhook_subscriptions",
+      "postmanCollection": "Webhooks",
+      "postmanRequest": "Create a new webhook subscription",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "callback_url",
+        "description",
+        "secret",
+        "types"
+      ],
+      "missingApiParamsInCode": [
+        "callback_url",
+        "description",
+        "secret",
+        "types"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "callback_url",
+        "description",
+        "secret",
+        "types"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "payload"
+      ]
+    },
+    {
+      "resource": "webhookSubscriptions",
+      "operation": "showWebhookSubscription",
+      "key": "GET webhook_subscriptions/:*",
+      "displayKey": "GET webhook_subscriptions/:subscriptionId",
+      "postmanCollection": "Webhooks",
+      "postmanRequest": "Get a webhook subscription",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "subscriptionId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "subscriptionId"
+      ],
+      "codeNodeParams": [
+        "subscriptionId"
+      ]
+    },
+    {
+      "resource": "webhookSubscriptions",
+      "operation": "updateWebhookSubscription",
+      "key": "PUT webhook_subscriptions/:*",
+      "displayKey": "PUT webhook_subscriptions/:subscriptionId",
+      "postmanCollection": "Webhooks",
+      "postmanRequest": "Update a webhook subscription",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "callback_url",
+        "description",
+        "types"
+      ],
+      "missingApiParamsInCode": [
+        "callback_url",
+        "description",
+        "id",
+        "types"
+      ],
+      "extraApiParamsInCode": [
+        "subscriptionId"
+      ],
+      "postmanParams": [
+        "callback_url",
+        "description",
+        "id",
+        "types"
+      ],
+      "codeApiParams": [
+        "subscriptionId"
+      ],
+      "codeNodeParams": [
+        "payload",
+        "subscriptionId"
+      ]
+    },
+    {
+      "resource": "webhookSubscriptions",
+      "operation": "deleteWebhookSubscription",
+      "key": "DELETE webhook_subscriptions/:*",
+      "displayKey": "DELETE webhook_subscriptions/:subscriptionId",
+      "postmanCollection": "Webhooks",
+      "postmanRequest": "Delete a webhook subscription",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "subscriptionId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "subscriptionId"
+      ],
+      "codeNodeParams": [
+        "subscriptionId"
+      ]
+    },
+    {
+      "resource": "cards",
+      "operation": "listCards",
+      "key": "GET cards",
+      "displayKey": "GET cards",
+      "postmanCollection": "Cards",
+      "postmanRequest": "List cards",
+      "missingQueryParamsInCode": [
+        "bank_account_ids[]",
+        "card_levels[]",
+        "holder_ids[]",
+        "ids[]",
+        "page",
+        "per_page",
+        "query",
+        "sort_by",
+        "statuses[]"
+      ],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "bank_account_ids[]",
+        "card_levels[]",
+        "holder_ids[]",
+        "ids[]",
+        "page",
+        "per_page",
+        "query",
+        "sort_by",
+        "statuses[]"
+      ],
+      "extraApiParamsInCode": [
+        "holder_id",
+        "status[]"
+      ],
+      "postmanParams": [
+        "bank_account_ids[]",
+        "card_levels[]",
+        "holder_ids[]",
+        "ids[]",
+        "page",
+        "per_page",
+        "query",
+        "sort_by",
+        "statuses[]"
+      ],
+      "codeApiParams": [
+        "holder_id",
+        "status[]"
+      ],
+      "codeNodeParams": []
+    },
+    {
+      "resource": "cards",
+      "operation": "createCard",
+      "key": "POST cards",
+      "displayKey": "POST cards",
+      "postmanCollection": "Cards",
+      "postmanRequest": "Create a card",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "active_days",
+        "address",
+        "atm_daily_limit",
+        "atm_daily_limit_option",
+        "atm_monthly_limit",
+        "atm_option",
+        "card",
+        "card_design",
+        "categories",
+        "city",
+        "contact_name",
+        "country",
+        "first_line",
+        "foreign_option",
+        "initiator_id",
+        "nfc_option",
+        "online_option",
+        "organization_id",
+        "payment_daily_limit",
+        "payment_daily_limit_option",
+        "payment_transaction_limit",
+        "payment_transaction_limit_option",
+        "second_line",
+        "ship_to_business",
+        "third_line",
+        "type_of_print",
+        "zipcode"
+      ],
+      "missingApiParamsInCode": [
+        "card",
+        "card.active_days",
+        "card.address",
+        "card.address.city",
+        "card.address.contact_name",
+        "card.address.country",
+        "card.address.first_line",
+        "card.address.second_line",
+        "card.address.third_line",
+        "card.address.zipcode",
+        "card.atm_daily_limit",
+        "card.atm_daily_limit_option",
+        "card.atm_monthly_limit",
+        "card.atm_option",
+        "card.bank_account_id",
+        "card.card_design",
+        "card.card_level",
+        "card.categories",
+        "card.foreign_option",
+        "card.holder_id",
+        "card.initiator_id",
+        "card.nfc_option",
+        "card.online_option",
+        "card.organization_id",
+        "card.payment_daily_limit",
+        "card.payment_daily_limit_option",
+        "card.payment_monthly_limit",
+        "card.payment_transaction_limit",
+        "card.payment_transaction_limit_option",
+        "card.ship_to_business",
+        "card.type_of_print"
+      ],
+      "extraApiParamsInCode": [
+        "bank_account_id",
+        "card_level",
+        "holder_id",
+        "payment_monthly_limit"
+      ],
+      "postmanParams": [
+        "card",
+        "card.active_days",
+        "card.address",
+        "card.address.city",
+        "card.address.contact_name",
+        "card.address.country",
+        "card.address.first_line",
+        "card.address.second_line",
+        "card.address.third_line",
+        "card.address.zipcode",
+        "card.atm_daily_limit",
+        "card.atm_daily_limit_option",
+        "card.atm_monthly_limit",
+        "card.atm_option",
+        "card.bank_account_id",
+        "card.card_design",
+        "card.card_level",
+        "card.categories",
+        "card.foreign_option",
+        "card.holder_id",
+        "card.initiator_id",
+        "card.nfc_option",
+        "card.online_option",
+        "card.organization_id",
+        "card.payment_daily_limit",
+        "card.payment_daily_limit_option",
+        "card.payment_monthly_limit",
+        "card.payment_transaction_limit",
+        "card.payment_transaction_limit_option",
+        "card.ship_to_business",
+        "card.type_of_print"
+      ],
+      "codeApiParams": [
+        "bank_account_id",
+        "card_level",
+        "holder_id",
+        "payment_monthly_limit"
+      ],
+      "codeNodeParams": [
+        "additionalOptions",
+        "bankAccountId",
+        "cardLevel",
+        "holderId",
+        "paymentMonthlyLimit"
+      ]
+    },
+    {
+      "resource": "cards",
+      "operation": "createCardsBulk",
+      "key": "POST cards/bulk",
+      "displayKey": "POST cards/bulk",
+      "postmanCollection": "Cards",
+      "postmanRequest": "Bulk create cards",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "cards"
+      ],
+      "missingApiParamsInCode": [
+        "cards"
+      ],
+      "extraApiParamsInCode": [],
+      "postmanParams": [
+        "cards"
+      ],
+      "codeApiParams": [],
+      "codeNodeParams": [
+        "cardsPayload"
+      ]
+    },
+    {
+      "resource": "cards",
+      "operation": "retrieveCard",
+      "key": "GET cards/:*/data_view",
+      "displayKey": "GET cards/:cardId/data_view",
+      "postmanCollection": "Cards",
+      "postmanRequest": "Retrieve a card iframe url",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "cardId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "cardId"
+      ],
+      "codeNodeParams": [
+        "cardId"
+      ]
+    },
+    {
+      "resource": "cards",
+      "operation": "updateCardLimits",
+      "key": "PATCH cards/:*/limits",
+      "displayKey": "PATCH cards/:cardId/limits",
+      "postmanCollection": "Cards",
+      "postmanRequest": "Update a card's limits",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "atm_daily_limit",
+        "atm_daily_limit_option",
+        "atm_monthly_limit",
+        "card",
+        "payment_daily_limit",
+        "payment_daily_limit_option",
+        "payment_monthly_limit",
+        "payment_transaction_limit",
+        "payment_transaction_limit_option"
+      ],
+      "missingApiParamsInCode": [
+        "card",
+        "card.atm_daily_limit",
+        "card.atm_daily_limit_option",
+        "card.atm_monthly_limit",
+        "card.payment_daily_limit",
+        "card.payment_daily_limit_option",
+        "card.payment_monthly_limit",
+        "card.payment_transaction_limit",
+        "card.payment_transaction_limit_option",
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "cardId"
+      ],
+      "postmanParams": [
+        "card",
+        "card.atm_daily_limit",
+        "card.atm_daily_limit_option",
+        "card.atm_monthly_limit",
+        "card.payment_daily_limit",
+        "card.payment_daily_limit_option",
+        "card.payment_monthly_limit",
+        "card.payment_transaction_limit",
+        "card.payment_transaction_limit_option",
+        "id"
+      ],
+      "codeApiParams": [
+        "cardId"
+      ],
+      "codeNodeParams": [
+        "cardId",
+        "updateLimits"
+      ]
+    },
+    {
+      "resource": "cards",
+      "operation": "updateCardOptions",
+      "key": "PATCH cards/:*/options",
+      "displayKey": "PATCH cards/:cardId/options",
+      "postmanCollection": "Cards",
+      "postmanRequest": "Update a card's options",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "atm_option",
+        "card",
+        "foreign_option",
+        "nfc_option",
+        "online_option"
+      ],
+      "missingApiParamsInCode": [
+        "card",
+        "card.atm_option",
+        "card.foreign_option",
+        "card.nfc_option",
+        "card.online_option",
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "cardId"
+      ],
+      "postmanParams": [
+        "card",
+        "card.atm_option",
+        "card.foreign_option",
+        "card.nfc_option",
+        "card.online_option",
+        "id"
+      ],
+      "codeApiParams": [
+        "cardId"
+      ],
+      "codeNodeParams": [
+        "cardId",
+        "updateOptions"
+      ]
+    },
+    {
+      "resource": "cards",
+      "operation": "lockCard",
+      "key": "PUT cards/:*/lock",
+      "displayKey": "PUT cards/:cardId/lock",
+      "postmanCollection": "Cards",
+      "postmanRequest": "Lock a card",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "cardId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "cardId"
+      ],
+      "codeNodeParams": [
+        "cardId"
+      ]
+    },
+    {
+      "resource": "cards",
+      "operation": "unlockCard",
+      "key": "PUT cards/:*/unlock",
+      "displayKey": "PUT cards/:cardId/unlock",
+      "postmanCollection": "Cards",
+      "postmanRequest": "Unlock a card",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "cardId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "cardId"
+      ],
+      "codeNodeParams": [
+        "cardId"
+      ]
+    },
+    {
+      "resource": "cards",
+      "operation": "reportCardLost",
+      "key": "PUT cards/:*/lost",
+      "displayKey": "PUT cards/:cardId/lost",
+      "postmanCollection": "Cards",
+      "postmanRequest": "Report a physical card as lost",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "cardId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "cardId"
+      ],
+      "codeNodeParams": [
+        "cardId"
+      ]
+    },
+    {
+      "resource": "cards",
+      "operation": "reportCardStolen",
+      "key": "PUT cards/:*/stolen",
+      "displayKey": "PUT cards/:cardId/stolen",
+      "postmanCollection": "Cards",
+      "postmanRequest": "Report a physical card as stolen",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "cardId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "cardId"
+      ],
+      "codeNodeParams": [
+        "cardId"
+      ]
+    },
+    {
+      "resource": "cards",
+      "operation": "discardVirtualCard",
+      "key": "PUT cards/:*/discard",
+      "displayKey": "PUT cards/:cardId/discard",
+      "postmanCollection": "Cards",
+      "postmanRequest": "Discard a virtual card",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [],
+      "missingApiParamsInCode": [
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "cardId"
+      ],
+      "postmanParams": [
+        "id"
+      ],
+      "codeApiParams": [
+        "cardId"
+      ],
+      "codeNodeParams": [
+        "cardId"
+      ]
+    },
+    {
+      "resource": "cards",
+      "operation": "updateCardRestrictions",
+      "key": "PATCH cards/:*/restrictions",
+      "displayKey": "PATCH cards/:cardId/restrictions",
+      "postmanCollection": "Cards",
+      "postmanRequest": "Update a card's restrictions",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "active_days",
+        "card",
+        "categories"
+      ],
+      "missingApiParamsInCode": [
+        "card",
+        "card.active_days",
+        "card.categories",
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "cardId"
+      ],
+      "postmanParams": [
+        "card",
+        "card.active_days",
+        "card.categories",
+        "id"
+      ],
+      "codeApiParams": [
+        "cardId"
+      ],
+      "codeNodeParams": [
+        "cardId",
+        "restrictionsPayload"
+      ]
+    },
+    {
+      "resource": "cards",
+      "operation": "updateCardNickname",
+      "key": "PATCH cards/:*/nickname",
+      "displayKey": "PATCH cards/:cardId/nickname",
+      "postmanCollection": "Cards",
+      "postmanRequest": "Update a card's nickname",
+      "missingQueryParamsInCode": [],
+      "pathParamCountMismatch": null,
+      "likelyMissingBodyInputs": [
+        "card"
+      ],
+      "missingApiParamsInCode": [
+        "card",
+        "card.nickname",
+        "id"
+      ],
+      "extraApiParamsInCode": [
+        "cardId"
+      ],
+      "postmanParams": [
+        "card",
+        "card.nickname",
+        "id"
+      ],
+      "codeApiParams": [
+        "cardId"
+      ],
+      "codeNodeParams": [
+        "cardId",
+        "nickname"
+      ]
+    }
+  ]
+}

@@ -1,12 +1,9 @@
-import {
-	INodeProperties,
-} from 'n8n-workflow';
+import { INodeProperties } from 'n8n-workflow';
 
 export const labelsOperations: INodeProperties[] = [
-
-// ------------------------
-//      LABELS
-// ------------------------
+	// ------------------------
+	//      LABELS
+	// ------------------------
 	{
 		displayName: 'Operation',
 		name: 'operation',
@@ -14,9 +11,7 @@ export const labelsOperations: INodeProperties[] = [
 		noDataExpression: true,
 		displayOptions: {
 			show: {
-				resource: [
-					'labels',
-				],
+				resource: ['labels'],
 			},
 		},
 		options: [
@@ -34,9 +29,9 @@ export const labelsOperations: INodeProperties[] = [
 		default: 'listLabels',
 	},
 
-// ------------------------
-//      LABELS - List labels
-// ------------------------
+	// ------------------------
+	//      LABELS - List labels
+	// ------------------------
 	{
 		displayName: 'Return All',
 		name: 'returnAll',
@@ -45,12 +40,8 @@ export const labelsOperations: INodeProperties[] = [
 		description: 'Whether to return all results or only up to a given limit',
 		displayOptions: {
 			show: {
-				resource: [
-					'labels',
-				],
-				operation: [
-					'listLabels',
-				],
+				resource: ['labels'],
+				operation: ['listLabels'],
 			},
 		},
 	},
@@ -60,15 +51,9 @@ export const labelsOperations: INodeProperties[] = [
 		type: 'number',
 		displayOptions: {
 			show: {
-				resource: [
-					'labels',
-				],
-				operation: [
-					'listLabels',
-				],
-				returnAll: [
-					false,
-				],
+				resource: ['labels'],
+				operation: ['listLabels'],
+				returnAll: [false],
 			},
 		},
 		typeOptions: {
@@ -78,9 +63,9 @@ export const labelsOperations: INodeProperties[] = [
 		description: 'Max number of results to return',
 	},
 
-// ------------------------
-//      LABELS - Show label
-// ------------------------
+	// ------------------------
+	//      LABELS - Show label
+	// ------------------------
 	{
 		displayName: 'ID',
 		name: 'id',
@@ -88,12 +73,8 @@ export const labelsOperations: INodeProperties[] = [
 		required: true,
 		displayOptions: {
 			show: {
-				resource: [
-					'labels',
-				],
-				operation: [
-					'showLabel',
-				],
+				resource: ['labels'],
+				operation: ['showLabel'],
 			},
 		},
 		placeholder: '2d9663fd-1748-4ed4-a590-48066ae9e1cb',

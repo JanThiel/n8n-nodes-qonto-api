@@ -1,0 +1,2992 @@
+{
+  "info": {
+    "_postman_id": "6cd699bb-5c88-43ea-953d-d5dad07615ca",
+    "name": "Business API :: Requests",
+    "description": "## 🧰 [Getting started](https://docs.qonto.com/get-started/business-api/overview)\n\n## 🔐 [Authentication](https://docs.qonto.com/get-started/business-api/authentication/introduction)\n\n## 🙋 [Troubleshooting](https://docs.qonto.com/get-started/general/troubleshooting)\n\n## ❓ [FAQ](https://docs.qonto.com/faq-articles/faq-home)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17853903"
+  },
+  "item": [
+    {
+      "name": "Requests",
+      "item": [
+        {
+          "name": "List requests",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{login}}:{{secret}}",
+                "description": "(Optional) Use only if you authenticate yourself with your API key",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v2/requests?status[]=all statuses&request_type[]=all request types&created_at_from=<dateTime>&processed_at_from=<dateTime>&sort_by=created_at:desc&page=<string>&per_page=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "requests"
+              ],
+              "query": [
+                {
+                  "key": "status[]",
+                  "value": "all statuses",
+                  "description": "Requests can be filtered by their `status`.<br>This filter accepts an array of the following statuses:<br>- `pending`: a request still waiting for final status.<br>- `approved`: a request that has been approved by approver. Final status.<br>- `declined`: a request that has been declined by approver. Final status.<br>- `canceled`: a request that has been canceled by requester. Final status."
+                },
+                {
+                  "key": "request_type[]",
+                  "value": "all request types",
+                  "description": "Requests can be filtered by their `request_type`.<br>This filter accepts an array of the following  statuses: <br>- `flash_card`: a flash card is a non-physical card with a budget and a last day of validity.   The card becomes inactive after the budget is totally spent or the last date of validity is past. <br>- `virtual_card`: a virtual card is a non-physical card with a monthly budget.   Card holder can spend that amount every calendar month. Above that, transactions will be refused. <br>- `transfer`: a transfer of money from one Qonto account to another account. <br>- `multi_transfer`: several transfers executed at the same time.   A document can be provided to create a multi-transfer which is composed of many different transfers."
+                },
+                {
+                  "key": "created_at_from",
+                  "value": "<dateTime>",
+                  "description": "Requests can be filtered by their `created_at` property. Please use a valid date time format (ISO 8601 for instance)."
+                },
+                {
+                  "key": "processed_at_from",
+                  "value": "<dateTime>",
+                  "description": "Requests can be filtered by their `processed_at` property. Please use a valid date time format (ISO 8601 for instance)."
+                },
+                {
+                  "key": "sort_by",
+                  "value": "created_at:desc",
+                  "description": "Requests can be sorted by a specific property and order. <br>👉 Property: `processed_at`, `created_at` or `status`<br>👉 Order: `asc` (Ascending) / `desc` (Descending) <br>**Do note**: Sorting by `status:asc` returns a list of requests with statuses in the following order: `pending`, `approved`, `declined`, `canceled`."
+                },
+                {
+                  "key": "page",
+                  "value": "<string>",
+                  "description": "Returned page (cf. [Pagination](/get-started/general/pagination))."
+                },
+                {
+                  "key": "per_page",
+                  "value": "<string>",
+                  "description": "Number of requests per page (cf. [Pagination](/get-started/general/pagination))."
+                }
+              ]
+            },
+            "description": "OAuth scope: `organization.read`\n\nRetrieves the list of requests for the authenticated organizations.\n\nYou can filter (ex: only retrieve a specific request type) and sort this list by using [query parameters](#Query-Parameters) 👇\n\n<Info>\n  **Price plans**: this endpoint is only accessible by organizations in a Business or Enterprise plan.\n</Info>\n"
+          },
+          "response": [
+            {
+              "name": "Returns the list of requests.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests?status[]=all statuses&request_type[]=all request types&created_at_from=<dateTime>&processed_at_from=<dateTime>&sort_by=created_at:desc&page=<string>&per_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests"
+                  ],
+                  "query": [
+                    {
+                      "description": "Requests can be filtered by their `status`.<br>This filter accepts an array of the following statuses:<br>- `pending`: a request still waiting for final status.<br>- `approved`: a request that has been approved by approver. Final status.<br>- `declined`: a request that has been declined by approver. Final status.<br>- `canceled`: a request that has been canceled by requester. Final status.",
+                      "key": "status[]",
+                      "value": "all statuses"
+                    },
+                    {
+                      "description": "Requests can be filtered by their `request_type`.<br>This filter accepts an array of the following  statuses: <br>- `flash_card`: a flash card is a non-physical card with a budget and a last day of validity.   The card becomes inactive after the budget is totally spent or the last date of validity is past. <br>- `virtual_card`: a virtual card is a non-physical card with a monthly budget.   Card holder can spend that amount every calendar month. Above that, transactions will be refused. <br>- `transfer`: a transfer of money from one Qonto account to another account. <br>- `multi_transfer`: several transfers executed at the same time.   A document can be provided to create a multi-transfer which is composed of many different transfers.",
+                      "key": "request_type[]",
+                      "value": "all request types"
+                    },
+                    {
+                      "description": "Requests can be filtered by their `created_at` property. Please use a valid date time format (ISO 8601 for instance).",
+                      "key": "created_at_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Requests can be filtered by their `processed_at` property. Please use a valid date time format (ISO 8601 for instance).",
+                      "key": "processed_at_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Requests can be sorted by a specific property and order. <br>👉 Property: `processed_at`, `created_at` or `status`<br>👉 Order: `asc` (Ascending) / `desc` (Descending) <br>**Do note**: Sorting by `status:asc` returns a list of requests with statuses in the following order: `pending`, `approved`, `declined`, `canceled`.",
+                      "key": "sort_by",
+                      "value": "created_at:desc"
+                    },
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of requests per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"requests\": [\n    {\n      \"id\": \"<string>\",\n      \"request_type\": \"<string>\",\n      \"status\": \"declined\",\n      \"initiator_id\": \"<string>\",\n      \"approver_id\": \"<string>\",\n      \"note\": \"<string>\",\n      \"declined_note\": \"<string>\",\n      \"payment_lifespan_limit\": \"<string>\",\n      \"pre_expires_at\": \"<dateTime>\",\n      \"currency\": \"<string>\",\n      \"processed_at\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"request_type\": \"<string>\",\n      \"status\": \"approved\",\n      \"initiator_id\": \"<string>\",\n      \"approver_id\": \"<string>\",\n      \"note\": \"<string>\",\n      \"declined_note\": \"<string>\",\n      \"payment_lifespan_limit\": \"<string>\",\n      \"pre_expires_at\": \"<dateTime>\",\n      \"currency\": \"<string>\",\n      \"processed_at\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ],\n  \"meta\": {\n    \"current_page\": \"<integer>\",\n    \"next_page\": \"<integer>\",\n    \"prev_page\": \"<integer>\",\n    \"total_pages\": \"<integer>\",\n    \"total_count\": \"<integer>\",\n    \"per_page\": \"<integer>\"\n  }\n}"
+            },
+            {
+              "name": "Returns a bad request error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests?status[]=all statuses&request_type[]=all request types&created_at_from=<dateTime>&processed_at_from=<dateTime>&sort_by=created_at:desc&page=<string>&per_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests"
+                  ],
+                  "query": [
+                    {
+                      "description": "Requests can be filtered by their `status`.<br>This filter accepts an array of the following statuses:<br>- `pending`: a request still waiting for final status.<br>- `approved`: a request that has been approved by approver. Final status.<br>- `declined`: a request that has been declined by approver. Final status.<br>- `canceled`: a request that has been canceled by requester. Final status.",
+                      "key": "status[]",
+                      "value": "all statuses"
+                    },
+                    {
+                      "description": "Requests can be filtered by their `request_type`.<br>This filter accepts an array of the following  statuses: <br>- `flash_card`: a flash card is a non-physical card with a budget and a last day of validity.   The card becomes inactive after the budget is totally spent or the last date of validity is past. <br>- `virtual_card`: a virtual card is a non-physical card with a monthly budget.   Card holder can spend that amount every calendar month. Above that, transactions will be refused. <br>- `transfer`: a transfer of money from one Qonto account to another account. <br>- `multi_transfer`: several transfers executed at the same time.   A document can be provided to create a multi-transfer which is composed of many different transfers.",
+                      "key": "request_type[]",
+                      "value": "all request types"
+                    },
+                    {
+                      "description": "Requests can be filtered by their `created_at` property. Please use a valid date time format (ISO 8601 for instance).",
+                      "key": "created_at_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Requests can be filtered by their `processed_at` property. Please use a valid date time format (ISO 8601 for instance).",
+                      "key": "processed_at_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Requests can be sorted by a specific property and order. <br>👉 Property: `processed_at`, `created_at` or `status`<br>👉 Order: `asc` (Ascending) / `desc` (Descending) <br>**Do note**: Sorting by `status:asc` returns a list of requests with statuses in the following order: `pending`, `approved`, `declined`, `canceled`.",
+                      "key": "sort_by",
+                      "value": "created_at:desc"
+                    },
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of requests per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests?status[]=all statuses&request_type[]=all request types&created_at_from=<dateTime>&processed_at_from=<dateTime>&sort_by=created_at:desc&page=<string>&per_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests"
+                  ],
+                  "query": [
+                    {
+                      "description": "Requests can be filtered by their `status`.<br>This filter accepts an array of the following statuses:<br>- `pending`: a request still waiting for final status.<br>- `approved`: a request that has been approved by approver. Final status.<br>- `declined`: a request that has been declined by approver. Final status.<br>- `canceled`: a request that has been canceled by requester. Final status.",
+                      "key": "status[]",
+                      "value": "all statuses"
+                    },
+                    {
+                      "description": "Requests can be filtered by their `request_type`.<br>This filter accepts an array of the following  statuses: <br>- `flash_card`: a flash card is a non-physical card with a budget and a last day of validity.   The card becomes inactive after the budget is totally spent or the last date of validity is past. <br>- `virtual_card`: a virtual card is a non-physical card with a monthly budget.   Card holder can spend that amount every calendar month. Above that, transactions will be refused. <br>- `transfer`: a transfer of money from one Qonto account to another account. <br>- `multi_transfer`: several transfers executed at the same time.   A document can be provided to create a multi-transfer which is composed of many different transfers.",
+                      "key": "request_type[]",
+                      "value": "all request types"
+                    },
+                    {
+                      "description": "Requests can be filtered by their `created_at` property. Please use a valid date time format (ISO 8601 for instance).",
+                      "key": "created_at_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Requests can be filtered by their `processed_at` property. Please use a valid date time format (ISO 8601 for instance).",
+                      "key": "processed_at_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Requests can be sorted by a specific property and order. <br>👉 Property: `processed_at`, `created_at` or `status`<br>👉 Order: `asc` (Ascending) / `desc` (Descending) <br>**Do note**: Sorting by `status:asc` returns a list of requests with statuses in the following order: `pending`, `approved`, `declined`, `canceled`.",
+                      "key": "sort_by",
+                      "value": "created_at:desc"
+                    },
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of requests per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests?status[]=all statuses&request_type[]=all request types&created_at_from=<dateTime>&processed_at_from=<dateTime>&sort_by=created_at:desc&page=<string>&per_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests"
+                  ],
+                  "query": [
+                    {
+                      "description": "Requests can be filtered by their `status`.<br>This filter accepts an array of the following statuses:<br>- `pending`: a request still waiting for final status.<br>- `approved`: a request that has been approved by approver. Final status.<br>- `declined`: a request that has been declined by approver. Final status.<br>- `canceled`: a request that has been canceled by requester. Final status.",
+                      "key": "status[]",
+                      "value": "all statuses"
+                    },
+                    {
+                      "description": "Requests can be filtered by their `request_type`.<br>This filter accepts an array of the following  statuses: <br>- `flash_card`: a flash card is a non-physical card with a budget and a last day of validity.   The card becomes inactive after the budget is totally spent or the last date of validity is past. <br>- `virtual_card`: a virtual card is a non-physical card with a monthly budget.   Card holder can spend that amount every calendar month. Above that, transactions will be refused. <br>- `transfer`: a transfer of money from one Qonto account to another account. <br>- `multi_transfer`: several transfers executed at the same time.   A document can be provided to create a multi-transfer which is composed of many different transfers.",
+                      "key": "request_type[]",
+                      "value": "all request types"
+                    },
+                    {
+                      "description": "Requests can be filtered by their `created_at` property. Please use a valid date time format (ISO 8601 for instance).",
+                      "key": "created_at_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Requests can be filtered by their `processed_at` property. Please use a valid date time format (ISO 8601 for instance).",
+                      "key": "processed_at_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Requests can be sorted by a specific property and order. <br>👉 Property: `processed_at`, `created_at` or `status`<br>👉 Order: `asc` (Ascending) / `desc` (Descending) <br>**Do note**: Sorting by `status:asc` returns a list of requests with statuses in the following order: `pending`, `approved`, `declined`, `canceled`.",
+                      "key": "sort_by",
+                      "value": "created_at:desc"
+                    },
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of requests per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unprocessable entity error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests?status[]=all statuses&request_type[]=all request types&created_at_from=<dateTime>&processed_at_from=<dateTime>&sort_by=created_at:desc&page=<string>&per_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests"
+                  ],
+                  "query": [
+                    {
+                      "description": "Requests can be filtered by their `status`.<br>This filter accepts an array of the following statuses:<br>- `pending`: a request still waiting for final status.<br>- `approved`: a request that has been approved by approver. Final status.<br>- `declined`: a request that has been declined by approver. Final status.<br>- `canceled`: a request that has been canceled by requester. Final status.",
+                      "key": "status[]",
+                      "value": "all statuses"
+                    },
+                    {
+                      "description": "Requests can be filtered by their `request_type`.<br>This filter accepts an array of the following  statuses: <br>- `flash_card`: a flash card is a non-physical card with a budget and a last day of validity.   The card becomes inactive after the budget is totally spent or the last date of validity is past. <br>- `virtual_card`: a virtual card is a non-physical card with a monthly budget.   Card holder can spend that amount every calendar month. Above that, transactions will be refused. <br>- `transfer`: a transfer of money from one Qonto account to another account. <br>- `multi_transfer`: several transfers executed at the same time.   A document can be provided to create a multi-transfer which is composed of many different transfers.",
+                      "key": "request_type[]",
+                      "value": "all request types"
+                    },
+                    {
+                      "description": "Requests can be filtered by their `created_at` property. Please use a valid date time format (ISO 8601 for instance).",
+                      "key": "created_at_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Requests can be filtered by their `processed_at` property. Please use a valid date time format (ISO 8601 for instance).",
+                      "key": "processed_at_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Requests can be sorted by a specific property and order. <br>👉 Property: `processed_at`, `created_at` or `status`<br>👉 Order: `asc` (Ascending) / `desc` (Descending) <br>**Do note**: Sorting by `status:asc` returns a list of requests with statuses in the following order: `pending`, `approved`, `declined`, `canceled`.",
+                      "key": "sort_by",
+                      "value": "created_at:desc"
+                    },
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of requests per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": {\n    \"code\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"status\": \"<string>\",\n    \"message\": \"<string>\",\n    \"source\": {\n      \"pointer\": \"<string>\"\n    }\n  }\n}"
+            },
+            {
+              "name": "Returns an internal server error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests?status[]=all statuses&request_type[]=all request types&created_at_from=<dateTime>&processed_at_from=<dateTime>&sort_by=created_at:desc&page=<string>&per_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests"
+                  ],
+                  "query": [
+                    {
+                      "description": "Requests can be filtered by their `status`.<br>This filter accepts an array of the following statuses:<br>- `pending`: a request still waiting for final status.<br>- `approved`: a request that has been approved by approver. Final status.<br>- `declined`: a request that has been declined by approver. Final status.<br>- `canceled`: a request that has been canceled by requester. Final status.",
+                      "key": "status[]",
+                      "value": "all statuses"
+                    },
+                    {
+                      "description": "Requests can be filtered by their `request_type`.<br>This filter accepts an array of the following  statuses: <br>- `flash_card`: a flash card is a non-physical card with a budget and a last day of validity.   The card becomes inactive after the budget is totally spent or the last date of validity is past. <br>- `virtual_card`: a virtual card is a non-physical card with a monthly budget.   Card holder can spend that amount every calendar month. Above that, transactions will be refused. <br>- `transfer`: a transfer of money from one Qonto account to another account. <br>- `multi_transfer`: several transfers executed at the same time.   A document can be provided to create a multi-transfer which is composed of many different transfers.",
+                      "key": "request_type[]",
+                      "value": "all request types"
+                    },
+                    {
+                      "description": "Requests can be filtered by their `created_at` property. Please use a valid date time format (ISO 8601 for instance).",
+                      "key": "created_at_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Requests can be filtered by their `processed_at` property. Please use a valid date time format (ISO 8601 for instance).",
+                      "key": "processed_at_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Requests can be sorted by a specific property and order. <br>👉 Property: `processed_at`, `created_at` or `status`<br>👉 Order: `asc` (Ascending) / `desc` (Descending) <br>**Do note**: Sorting by `status:asc` returns a list of requests with statuses in the following order: `pending`, `approved`, `declined`, `canceled`.",
+                      "key": "sort_by",
+                      "value": "created_at:desc"
+                    },
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of requests per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Create a flash card request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_flash_card\": {\n    \"note\": \"<string>\",\n    \"payment_lifespan_limit\": \"<string>\",\n    \"pre_expires_at\": \"<dateTime>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v2/requests/flash_cards",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "requests",
+                "flash_cards"
+              ]
+            },
+            "description": "OAuth scope: `request_cards.write`\n\nCreates a single flash card request that should be approved by a membership of the authenticated organization with permissions to review requests.\n\n<Info>\n  This endpoint is still in **beta**. Please get in touch with our team if you have any question or feedback: [here](https://getqonto.atlassian.net/servicedesk/customer/portals).\n</Info>"
+          },
+          "response": [
+            {
+              "name": "Returns the request created.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request_flash_card\": {\n    \"note\": \"<string>\",\n    \"payment_lifespan_limit\": \"<string>\",\n    \"pre_expires_at\": \"<dateTime>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/flash_cards",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    "flash_cards"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"request_flash_card\": {\n    \"id\": \"<string>\",\n    \"request_type\": \"<string>\",\n    \"status\": \"canceled\",\n    \"initiator_id\": \"<string>\",\n    \"approver_id\": \"<string>\",\n    \"note\": \"<string>\",\n    \"declined_note\": \"<string>\",\n    \"payment_lifespan_limit\": \"<string>\",\n    \"pre_expires_at\": \"<dateTime>\",\n    \"currency\": \"<string>\",\n    \"processed_at\": \"<string>\",\n    \"created_at\": \"<dateTime>\"\n  }\n}"
+            },
+            {
+              "name": "Returns a bad request error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request_flash_card\": {\n    \"note\": \"<string>\",\n    \"payment_lifespan_limit\": \"<string>\",\n    \"pre_expires_at\": \"<dateTime>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/flash_cards",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    "flash_cards"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request_flash_card\": {\n    \"note\": \"<string>\",\n    \"payment_lifespan_limit\": \"<string>\",\n    \"pre_expires_at\": \"<dateTime>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/flash_cards",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    "flash_cards"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request_flash_card\": {\n    \"note\": \"<string>\",\n    \"payment_lifespan_limit\": \"<string>\",\n    \"pre_expires_at\": \"<dateTime>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/flash_cards",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    "flash_cards"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unprocessable entity error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request_flash_card\": {\n    \"note\": \"<string>\",\n    \"payment_lifespan_limit\": \"<string>\",\n    \"pre_expires_at\": \"<dateTime>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/flash_cards",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    "flash_cards"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"message\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"message\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an internal server error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request_flash_card\": {\n    \"note\": \"<string>\",\n    \"payment_lifespan_limit\": \"<string>\",\n    \"pre_expires_at\": \"<dateTime>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/flash_cards",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    "flash_cards"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Create a virtual card request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_virtual_card\": {\n    \"note\": \"<string>\",\n    \"payment_monthly_limit\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v2/requests/virtual_cards",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "requests",
+                "virtual_cards"
+              ]
+            },
+            "description": "OAuth scope: `request_cards.write`\n\n\nCreates a single virtual card request that should be approved by a membership of the authenticated organization with permissions to review requests.\n\n<Info>\n  This endpoint is still in **beta**. Please get in touch with our team if you have any question or feedback: [here](https://getqonto.atlassian.net/servicedesk/customer/portals).\n</Info>\n"
+          },
+          "response": [
+            {
+              "name": "Returns the requested created.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request_virtual_card\": {\n    \"note\": \"<string>\",\n    \"payment_monthly_limit\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/virtual_cards",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    "virtual_cards"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"request_virtual_card\": {\n    \"id\": \"<string>\",\n    \"request_type\": \"<string>\",\n    \"status\": \"approved\",\n    \"initiator_id\": \"<string>\",\n    \"approver_id\": \"<string>\",\n    \"note\": \"<string>\",\n    \"declined_note\": \"<string>\",\n    \"payment_monthly_limit\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"processed_at\": \"<string>\",\n    \"created_at\": \"<dateTime>\"\n  }\n}"
+            },
+            {
+              "name": "Returns a bad request error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request_virtual_card\": {\n    \"note\": \"<string>\",\n    \"payment_monthly_limit\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/virtual_cards",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    "virtual_cards"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request_virtual_card\": {\n    \"note\": \"<string>\",\n    \"payment_monthly_limit\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/virtual_cards",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    "virtual_cards"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request_virtual_card\": {\n    \"note\": \"<string>\",\n    \"payment_monthly_limit\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/virtual_cards",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    "virtual_cards"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unprocessable entity error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request_virtual_card\": {\n    \"note\": \"<string>\",\n    \"payment_monthly_limit\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/virtual_cards",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    "virtual_cards"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"message\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"message\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an internal server error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request_virtual_card\": {\n    \"note\": \"<string>\",\n    \"payment_monthly_limit\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/virtual_cards",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    "virtual_cards"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Create multi transfer request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "X-Qonto-Idempotency-Key",
+                "value": "<string>",
+                "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests)."
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_multi_transfer\": {\n    \"note\": \"<string>\",\n    \"transfers\": [\n      {\n        \"amount\": \"<string>\",\n        \"currency\": \"<string>\",\n        \"credit_iban\": \"<string>\",\n        \"credit_account_name\": \"<string>\",\n        \"credit_account_currency\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"attachment_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"scheduled_date\": \"Current date or next banking day\",\n    \"debit_iban\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v2/requests/multi_transfers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "requests",
+                "multi_transfers"
+              ]
+            },
+            "description": "OAuth scope: `request_transfers.write`\n\nCreates a single request for multiple transfers that should be approved by a membership of the authenticated organization with permissions to review requests.\n\n<Info>\n  **Price plans**: this endpoint is accessible by organizations with all plans except Solo Basic.\n</Info>\n"
+          },
+          "response": [
+            {
+              "name": "Returns the request created.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request_multi_transfer\": {\n    \"note\": \"<string>\",\n    \"transfers\": [\n      {\n        \"amount\": \"<string>\",\n        \"currency\": \"<string>\",\n        \"credit_iban\": \"<string>\",\n        \"credit_account_name\": \"<string>\",\n        \"credit_account_currency\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"attachment_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"scheduled_date\": \"Current date or next banking day\",\n    \"debit_iban\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/multi_transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    "multi_transfers"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"request_multi_transfer\": {\n    \"id\": \"<string>\",\n    \"request_type\": \"<string>\",\n    \"status\": \"<string>\",\n    \"initiator_id\": \"<string>\",\n    \"note\": \"<string>\",\n    \"total_transfers_amount\": \"<string>\",\n    \"total_transfers_amount_currency\": \"<string>\",\n    \"total_transfers_count\": \"<integer>\",\n    \"created_at\": \"<string>\",\n    \"transfers\": [\n      {\n        \"id\": \"<string>\",\n        \"credit_account_name\": \"<string>\",\n        \"amount\": \"<string>\",\n        \"currency\": \"<string>\",\n        \"reference\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"credit_account_name\": \"<string>\",\n        \"amount\": \"<string>\",\n        \"currency\": \"<string>\",\n        \"reference\": \"<string>\"\n      }\n    ],\n    \"approver_id\": \"<string>\",\n    \"declined_note\": \"<string>\",\n    \"scheduled_date\": \"<date>\",\n    \"processed_at\": \"<string>\"\n  }\n}"
+            },
+            {
+              "name": "Returns a bad request error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request_multi_transfer\": {\n    \"note\": \"<string>\",\n    \"transfers\": [\n      {\n        \"amount\": \"<string>\",\n        \"currency\": \"<string>\",\n        \"credit_iban\": \"<string>\",\n        \"credit_account_name\": \"<string>\",\n        \"credit_account_currency\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"attachment_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"scheduled_date\": \"Current date or next banking day\",\n    \"debit_iban\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/multi_transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    "multi_transfers"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request_multi_transfer\": {\n    \"note\": \"<string>\",\n    \"transfers\": [\n      {\n        \"amount\": \"<string>\",\n        \"currency\": \"<string>\",\n        \"credit_iban\": \"<string>\",\n        \"credit_account_name\": \"<string>\",\n        \"credit_account_currency\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"attachment_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"scheduled_date\": \"Current date or next banking day\",\n    \"debit_iban\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/multi_transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    "multi_transfers"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request_multi_transfer\": {\n    \"note\": \"<string>\",\n    \"transfers\": [\n      {\n        \"amount\": \"<string>\",\n        \"currency\": \"<string>\",\n        \"credit_iban\": \"<string>\",\n        \"credit_account_name\": \"<string>\",\n        \"credit_account_currency\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"attachment_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"scheduled_date\": \"Current date or next banking day\",\n    \"debit_iban\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/multi_transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    "multi_transfers"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unprocessable entity error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request_multi_transfer\": {\n    \"note\": \"<string>\",\n    \"transfers\": [\n      {\n        \"amount\": \"<string>\",\n        \"currency\": \"<string>\",\n        \"credit_iban\": \"<string>\",\n        \"credit_account_name\": \"<string>\",\n        \"credit_account_currency\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"attachment_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"scheduled_date\": \"Current date or next banking day\",\n    \"debit_iban\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/multi_transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    "multi_transfers"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": {\n    \"code\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"status\": \"<string>\",\n    \"message\": \"<string>\",\n    \"source\": {\n      \"pointer\": \"<string>\"\n    }\n  }\n}"
+            },
+            {
+              "name": "Returns an internal server error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request_multi_transfer\": {\n    \"note\": \"<string>\",\n    \"transfers\": [\n      {\n        \"amount\": \"<string>\",\n        \"currency\": \"<string>\",\n        \"credit_iban\": \"<string>\",\n        \"credit_account_name\": \"<string>\",\n        \"credit_account_currency\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"attachment_ids\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"scheduled_date\": \"Current date or next banking day\",\n    \"debit_iban\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/multi_transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    "multi_transfers"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Approve a request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "X-Qonto-Idempotency-Key",
+                "value": "<string>",
+                "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests)."
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"debit_iban\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v2/requests/:request_type/:id/approve",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "requests",
+                ":request_type",
+                ":id",
+                "approve"
+              ],
+              "variable": [
+                {
+                  "key": "request_type",
+                  "value": "virtual_cards",
+                  "description": "(Required) Type of a request to be approved."
+                },
+                {
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) UUID of the request to be processed."
+                }
+              ]
+            },
+            "description": "OAuth scope: `request_review.write`\n\nAccessible only using [Strong Customer Authentication](/get-started/business-api/authentication/sca).\n\n<Info>\n  Example of SCA usage: [**Postman visual flow**](https://www.postman.com/qontoteam/workspace/qonto-public-api/flow/6670429eb7bd63003156bd57)\n</Info>\n\nApproves the pending request identified by the `id` path parameter. This request will change status from `status` = `pending` to `status` = `approved`.\n\nYou can ge the list of all the requests via the  [GET /v2/requests](/api-reference/business-api/endpoints/requests/list-requests) endpoint.\n\n<Tip>\n  In the [Qonto web-ap](https://app.qonto.com/), requests can be listed and approved in the \"Requests\" tab.\n</Tip>\n"
+          },
+          "response": [
+            {
+              "name": "Returns the approved request.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debit_iban\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/:request_type/:id/approve",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    ":request_type",
+                    ":id",
+                    "approve"
+                  ],
+                  "variable": [
+                    {
+                      "key": "request_type"
+                    },
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"request_transfer\": {\n    \"id\": \"<string>\",\n    \"request_type\": \"<string>\",\n    \"status\": \"declined\",\n    \"initiator_id\": \"<string>\",\n    \"attachment_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"approver_id\": \"<string>\",\n    \"note\": \"<string>\",\n    \"declined_note\": \"<string>\",\n    \"creditor_name\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"scheduled_date\": \"<date>\",\n    \"recurrence\": \"<string>\",\n    \"last_recurrence_date\": \"<string>\",\n    \"processed_at\": \"<dateTime>\",\n    \"created_at\": \"<dateTime>\"\n  }\n}"
+            },
+            {
+              "name": "Returns a bad request error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debit_iban\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/:request_type/:id/approve",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    ":request_type",
+                    ":id",
+                    "approve"
+                  ],
+                  "variable": [
+                    {
+                      "key": "request_type"
+                    },
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debit_iban\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/:request_type/:id/approve",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    ":request_type",
+                    ":id",
+                    "approve"
+                  ],
+                  "variable": [
+                    {
+                      "key": "request_type"
+                    },
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debit_iban\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/:request_type/:id/approve",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    ":request_type",
+                    ":id",
+                    "approve"
+                  ],
+                  "variable": [
+                    {
+                      "key": "request_type"
+                    },
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a not found error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debit_iban\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/:request_type/:id/approve",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    ":request_type",
+                    ":id",
+                    "approve"
+                  ],
+                  "variable": [
+                    {
+                      "key": "request_type"
+                    },
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unprocessable entity error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debit_iban\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/:request_type/:id/approve",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    ":request_type",
+                    ":id",
+                    "approve"
+                  ],
+                  "variable": [
+                    {
+                      "key": "request_type"
+                    },
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": {\n    \"code\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"status\": \"<string>\",\n    \"message\": \"<string>\",\n    \"source\": {\n      \"pointer\": \"<string>\"\n    }\n  }\n}"
+            },
+            {
+              "name": "Returns SCA precondition required error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debit_iban\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/:request_type/:id/approve",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    ":request_type",
+                    ":id",
+                    "approve"
+                  ],
+                  "variable": [
+                    {
+                      "key": "request_type"
+                    },
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Precondition Required",
+              "code": 428,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an internal server error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"debit_iban\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/:request_type/:id/approve",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    ":request_type",
+                    ":id",
+                    "approve"
+                  ],
+                  "variable": [
+                    {
+                      "key": "request_type"
+                    },
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Decline a request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "X-Qonto-Idempotency-Key",
+                "value": "<string>",
+                "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests)."
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"declined_note\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v2/requests/:request_type/:id/decline",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "requests",
+                ":request_type",
+                ":id",
+                "decline"
+              ],
+              "variable": [
+                {
+                  "key": "request_type",
+                  "value": "virtual_cards",
+                  "description": "(Required) Type of a request to be declined."
+                },
+                {
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) UUID of the request to be processed."
+                }
+              ]
+            },
+            "description": "OAuth scope: `request_review.write`\n\nDeclines the pending request identified by the `id` path parameter. This request will change status from `status` = `pending` to `status` = `declined`.\n\nYou can get the list of all the requests via the [GET /v2/requests](/api-reference/business-api/endpoints/requests/list-requests) endpoint.\n\n<Tip>\n  In the [Qonto web-ap](https://app.qonto.com/), requests can be listed and declined in the \\\"Requests\\\" tab.\n</Tip>\n"
+          },
+          "response": [
+            {
+              "name": "Returns the declined request.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"declined_note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/:request_type/:id/decline",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    ":request_type",
+                    ":id",
+                    "decline"
+                  ],
+                  "variable": [
+                    {
+                      "key": "request_type"
+                    },
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"request_virtual_card\": {\n    \"id\": \"<string>\",\n    \"request_type\": \"<string>\",\n    \"status\": \"canceled\",\n    \"initiator_id\": \"<string>\",\n    \"attachment_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"approver_id\": \"<string>\",\n    \"note\": \"<string>\",\n    \"declined_note\": \"<string>\",\n    \"creditor_name\": \"<string>\",\n    \"amount\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"scheduled_date\": \"<date>\",\n    \"recurrence\": \"<string>\",\n    \"last_recurrence_date\": \"<string>\",\n    \"processed_at\": \"<dateTime>\",\n    \"created_at\": \"<dateTime>\"\n  }\n}"
+            },
+            {
+              "name": "Returns a bad request error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"declined_note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/:request_type/:id/decline",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    ":request_type",
+                    ":id",
+                    "decline"
+                  ],
+                  "variable": [
+                    {
+                      "key": "request_type"
+                    },
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"declined_note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/:request_type/:id/decline",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    ":request_type",
+                    ":id",
+                    "decline"
+                  ],
+                  "variable": [
+                    {
+                      "key": "request_type"
+                    },
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"declined_note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/:request_type/:id/decline",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    ":request_type",
+                    ":id",
+                    "decline"
+                  ],
+                  "variable": [
+                    {
+                      "key": "request_type"
+                    },
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a not found error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"declined_note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/:request_type/:id/decline",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    ":request_type",
+                    ":id",
+                    "decline"
+                  ],
+                  "variable": [
+                    {
+                      "key": "request_type"
+                    },
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unprocessable entity error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"declined_note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/:request_type/:id/decline",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    ":request_type",
+                    ":id",
+                    "decline"
+                  ],
+                  "variable": [
+                    {
+                      "key": "request_type"
+                    },
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": {\n    \"code\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"status\": \"<string>\",\n    \"message\": \"<string>\",\n    \"source\": {\n      \"pointer\": \"<string>\"\n    }\n  }\n}"
+            },
+            {
+              "name": "Returns an internal server error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"declined_note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/requests/:request_type/:id/decline",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "requests",
+                    ":request_type",
+                    ":id",
+                    "decline"
+                  ],
+                  "variable": [
+                    {
+                      "key": "request_type"
+                    },
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "value",
+        "value": "{{login}}:{{secret}}",
+        "type": "string"
+      },
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

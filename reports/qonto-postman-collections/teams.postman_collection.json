@@ -1,0 +1,795 @@
+{
+  "info": {
+    "_postman_id": "6cd699bb-5c88-43ea-953d-d5dad07615ca",
+    "name": "Business API :: Teams",
+    "description": "## 🧰 [Getting started](https://docs.qonto.com/get-started/business-api/overview)\n\n## 🔐 [Authentication](https://docs.qonto.com/get-started/business-api/authentication/introduction)\n\n## 🙋 [Troubleshooting](https://docs.qonto.com/get-started/general/troubleshooting)\n\n## ❓ [FAQ](https://docs.qonto.com/faq-articles/faq-home)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17853903"
+  },
+  "item": [
+    {
+      "name": "Teams",
+      "item": [
+        {
+          "name": "List teams",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v2/teams?page=<integer>&per_page=1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "teams"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Returned page (cf. [Pagination](/get-started/general/pagination))."
+                },
+                {
+                  "key": "per_page",
+                  "value": "1",
+                  "description": "Number of teams per page (cf. [Pagination](/get-started/general/pagination))."
+                }
+              ]
+            },
+            "description": "OAuth scope: `team.read`\n\n\n\nRetrieves the list of teams for the authenticated organization."
+          },
+          "response": [
+            {
+              "name": "Returns the list of teams.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/teams?page=<integer>&per_page=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "teams"
+                  ],
+                  "query": [
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of teams per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"teams\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"meta\": {\n    \"current_page\": \"<integer>\",\n    \"next_page\": \"<integer>\",\n    \"prev_page\": \"<integer>\",\n    \"total_pages\": \"<integer>\",\n    \"total_count\": \"<integer>\",\n    \"per_page\": \"<integer>\"\n  }\n}"
+            },
+            {
+              "name": "Returns a bad request error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/teams?page=<integer>&per_page=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "teams"
+                  ],
+                  "query": [
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of teams per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/teams?page=<integer>&per_page=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "teams"
+                  ],
+                  "query": [
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of teams per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/teams?page=<integer>&per_page=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "teams"
+                  ],
+                  "query": [
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of teams per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unprocessable entity error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/teams?page=<integer>&per_page=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "teams"
+                  ],
+                  "query": [
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of teams per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"message\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"message\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an internal server error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/teams?page=<integer>&per_page=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "teams"
+                  ],
+                  "query": [
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of teams per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Create a team",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v2/teams",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "teams"
+              ]
+            },
+            "description": "OAuth scope: `team.write`\n\n\n\nCreates a single team for the authenticated organization."
+          },
+          "response": [
+            {
+              "name": "Returns the team created.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/teams",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "teams"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"team\": {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\"\n  }\n}"
+            },
+            {
+              "name": "Returns a bad request error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/teams",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "teams"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/teams",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "teams"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/teams",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "teams"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unprocessable entity error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/teams",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "teams"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": {\n    \"code\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"status\": \"<string>\",\n    \"message\": \"<string>\",\n    \"source\": {\n      \"pointer\": \"<string>\"\n    }\n  }\n}"
+            },
+            {
+              "name": "Returns an internal server error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/teams",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "teams"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "value",
+        "value": "{{login}}:{{secret}}",
+        "type": "string"
+      },
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

@@ -101,7 +101,9 @@ export async function qontoApiRequest(
 	isFileUpload: boolean = false,
 ): Promise<IDataObject> {
 	const authenticationMethod = this.getNodeParameter('authentication', 0) as string;
-	const credentials = await this.getCredentials(authenticationMethod === 'logKey' ? 'qontoApi' : 'qontoOAuth2Api');
+	const credentials = await this.getCredentials(
+		authenticationMethod === 'logKey' ? 'qontoApi' : 'qontoOAuth2Api',
+	);
 
 	const baseUrl =
 		credentials.environment === 'sandbox'
@@ -130,7 +132,7 @@ export async function qontoApiRequest(
 		options.headers!['X-Qonto-Staging-Token'] = credentials.stagingToken as string;
 	}
 
-	// Set content type based on upload type  
+	// Set content type based on upload type
 	if (isFileUpload) {
 		// For file uploads, don't set Content-Type, let the request library handle it
 		// and keep the body as formData structure
@@ -145,7 +147,11 @@ export async function qontoApiRequest(
 			options.headers!.Authorization = `${credentials.login}:${credentials.secretKey}`;
 			return await this.helpers.httpRequest!(options);
 		} else {
-			return await this.helpers.httpRequestWithAuthentication!.call(this, 'qontoOAuth2Api', options);
+			return await this.helpers.httpRequestWithAuthentication!.call(
+				this,
+				'qontoOAuth2Api',
+				options,
+			);
 		}
 	} catch (error: unknown) {
 		// Extract and surface API error message
@@ -204,10 +210,12 @@ export async function handleListing(
 			}
 
 			query.current_page++;
-			
+
 			const responseMetadata = responseData.meta as IDataObject | undefined;
-			if (!responseMetadata || 
-			    (responseMetadata.current_page as number) >= (responseMetadata.total_pages as number)) {
+			if (
+				!responseMetadata ||
+				(responseMetadata.current_page as number) >= (responseMetadata.total_pages as number)
+			) {
 				hasMorePages = false;
 			}
 		}

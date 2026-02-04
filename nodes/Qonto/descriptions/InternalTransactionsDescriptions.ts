@@ -1,12 +1,9 @@
-import {
-	INodeProperties,
-} from 'n8n-workflow';
+import { INodeProperties } from 'n8n-workflow';
 
 export const internalTransactionsOperations: INodeProperties[] = [
-
-// ------------------------
-//      INTERNAL TRANSFERS
-// ------------------------
+	// ------------------------
+	//      INTERNAL TRANSFERS
+	// ------------------------
 	{
 		displayName: 'Operation',
 		name: 'operation',
@@ -14,9 +11,7 @@ export const internalTransactionsOperations: INodeProperties[] = [
 		noDataExpression: true,
 		displayOptions: {
 			show: {
-				resource: [
-					'internalTransactions',
-				],
+				resource: ['internalTransactions'],
 			},
 		},
 		options: [
@@ -29,9 +24,9 @@ export const internalTransactionsOperations: INodeProperties[] = [
 		default: 'createInternalTransfer',
 	},
 
-// ------------------------
-//      INTERNAL TRANSFERS - Create internal transfer
-// ------------------------
+	// ------------------------
+	//      INTERNAL TRANSFERS - Create internal transfer
+	// ------------------------
 	{
 		displayName: 'Idempotency Key',
 		name: 'idempotency_key',
@@ -39,16 +34,13 @@ export const internalTransactionsOperations: INodeProperties[] = [
 		required: true,
 		displayOptions: {
 			show: {
-				resource: [
-					'internalTransactions',
-				],
-				operation: [
-					'createInternalTransfer',
-				],
+				resource: ['internalTransactions'],
+				operation: ['createInternalTransfer'],
 			},
 		},
 		default: '',
-		description: 'This is a unique string (we advise to use a uuid) that identifies a transfer. This is used by Qonto to prevent "double spending" by accidentaly replaying the same API call.',
+		description:
+			'This is a unique string (we advise to use a uuid) that identifies a transfer. This is used by Qonto to prevent "double spending" by accidentaly replaying the same API call.',
 	},
 	{
 		displayName: 'Debit_iban',
@@ -57,12 +49,8 @@ export const internalTransactionsOperations: INodeProperties[] = [
 		required: true,
 		displayOptions: {
 			show: {
-				resource: [
-					'internalTransactions',
-				],
-				operation: [
-					'createInternalTransfer',
-				],
+				resource: ['internalTransactions'],
+				operation: ['createInternalTransfer'],
 			},
 		},
 		default: '',
@@ -74,12 +62,8 @@ export const internalTransactionsOperations: INodeProperties[] = [
 		required: true,
 		displayOptions: {
 			show: {
-				resource: [
-					'internalTransactions',
-				],
-				operation: [
-					'createInternalTransfer',
-				],
+				resource: ['internalTransactions'],
+				operation: ['createInternalTransfer'],
 			},
 		},
 		default: '',
@@ -91,16 +75,13 @@ export const internalTransactionsOperations: INodeProperties[] = [
 		required: true,
 		displayOptions: {
 			show: {
-				resource: [
-					'internalTransactions',
-				],
-				operation: [
-					'createInternalTransfer',
-				],
+				resource: ['internalTransactions'],
+				operation: ['createInternalTransfer'],
 			},
 		},
 		default: '',
-		description: 'Transfer reference that can be used to enter transfer details to further describe the transfer - Maximum 140 characters',
+		description:
+			'Transfer reference that can be used to enter transfer details to further describe the transfer - Maximum 140 characters',
 	},
 	{
 		displayName: 'Amount',
@@ -109,16 +90,13 @@ export const internalTransactionsOperations: INodeProperties[] = [
 		required: true,
 		displayOptions: {
 			show: {
-				resource: [
-					'internalTransactions',
-				],
-				operation: [
-					'createInternalTransfer',
-				],
+				resource: ['internalTransactions'],
+				operation: ['createInternalTransfer'],
 			},
 		},
 		default: '',
-		description: 'The amount corresponds to the amount of the transaction in the currency of the bank account',
+		description:
+			'The amount corresponds to the amount of the transaction in the currency of the bank account',
 	},
 	{
 		displayName: 'Currency',
@@ -127,12 +105,8 @@ export const internalTransactionsOperations: INodeProperties[] = [
 		required: true,
 		displayOptions: {
 			show: {
-				resource: [
-					'internalTransactions',
-				],
-				operation: [
-					'createInternalTransfer',
-				],
+				resource: ['internalTransactions'],
+				operation: ['createInternalTransfer'],
 			},
 		},
 		default: 'EUR',

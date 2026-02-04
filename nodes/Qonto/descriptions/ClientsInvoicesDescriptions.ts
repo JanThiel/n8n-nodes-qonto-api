@@ -4,80 +4,53 @@ import { INodeProperties } from 'n8n-workflow';
 
 // Descriptions for the "List client invoices" operation
 export const clientsInvoicesOperations: INodeProperties[] = [
+	// ------------------------
+	//      Client Invoice
+	// ------------------------
 
-// ------------------------
-//      Client Invoice
-// ------------------------
-
-{
-	displayName: 'Operation',
-	name: 'operation',
-	type: 'options',
-	noDataExpression: true,
-	displayOptions: {
-		show: {
-			resource: [
-				'clientsInvoices',
-			],
+	{
+		displayName: 'Operation',
+		name: 'operation',
+		type: 'options',
+		noDataExpression: true,
+		displayOptions: {
+			show: {
+				resource: ['clientsInvoices'],
+			},
 		},
+		options: [
+			{ name: 'Cancel Client Invoice', value: 'cancelClientInvoice', action: 'Cancel a client invoice' },
+			{
+				name: 'Create a Client Invoice',
+				value: 'createClientInvoice',
+				action: 'Create a client invoice',
+			},
+			{ name: 'Delete Client Invoice', value: 'deleteClientInvoice', action: 'Delete a client invoice' },
+			{ name: 'Finalize Client Invoice', value: 'finalizeClientInvoice', action: 'Finalize a client invoice' },
+			{ name: 'List Client Invoices', value: 'listInvoices', action: 'List client invoices' },
+			{
+				name: 'Mark Client Invoice as Paid',
+				value: 'markClientInvoiceAsPaid',
+				action: 'Mark a client invoice as paid',
+			},
+			{ name: 'Send Client Invoice', value: 'sendClientInvoice', action: 'Send a client invoice by email' },
+			{ name: 'Show Client Invoice', value: 'showClientInvoice', action: 'Show client invoice' },
+			{
+				name: 'Unmark Client Invoice as Paid',
+				value: 'unmarkClientInvoiceAsPaid',
+				action: 'Unmark a client invoice as paid',
+			},
+			{
+				name: 'Update a Draft Client Invoice',
+				value: 'updateClientInvoice',
+				action: 'Update a draft client invoice',
+			},
+		],
+		default: 'listInvoices',
 	},
-	options: [
-		{
-			name: 'Cancel a Client Invoice',
-			value: 'cancelClientInvoice',
-			action: 'Cancel a client invoice',
-		},
-		{
-			name: 'Create a Client Invoice',
-			value: 'createClientInvoice',
-			action: 'Create a client invoice',
-		},
-		{
-			name: 'Delete a Client Invoice',
-			value: 'deleteClientInvoice',
-			action: 'Delete a client invoice',
-		},
-		{
-			name: 'Finalize a Client Invoice',
-			value: 'finalizeClientInvoice',
-			action: 'Finalize a client invoice',
-		},
-		{
-			name: 'List Client Invoices',
-			value: 'listInvoices',
-			action: 'List client invoices',
-		},
-		{
-			name: 'Mark a Client Invoice as Paid',
-			value: 'markAsPaidClientInvoice',
-			action: 'Mark a client invoice as paid',
-		},
-		{
-			name: 'Send a Client Invoice via Email',
-			value: 'sendClientInvoice',
-			action: 'Send a client invoice via email',
-		},
-		{
-			name: 'Show Client Invoice',
-			value: 'showClientInvoice',
-			action: 'Show client invoice',
-		},
-		{
-			name: 'Unmark a Client Invoice as Paid',
-			value: 'unmarkAsPaidClientInvoice',
-			action: 'Unmark a client invoice as paid',
-		},
-		{
-			name: 'Update a Draft Client Invoice',
-			value: 'updateClientInvoice',
-			action: 'Update a draft client invoice',
-		},
-	],
-	default: 'listInvoices',
-},
-// ------------------------
-//      Client Invoice - List client invoices
-// ------------------------
+	// ------------------------
+	//      Client Invoice - List client invoices
+	// ------------------------
 	{
 		displayName: 'Return All',
 		name: 'returnAll',
@@ -86,12 +59,8 @@ export const clientsInvoicesOperations: INodeProperties[] = [
 		description: 'Whether to return all results or only up to a given limit',
 		displayOptions: {
 			show: {
-				resource: [
-					'clientsInvoices',
-				],
-				operation: [
-					'listInvoices',
-				],
+				resource: ['clientsInvoices'],
+				operation: ['listInvoices'],
 			},
 		},
 	},
@@ -101,15 +70,9 @@ export const clientsInvoicesOperations: INodeProperties[] = [
 		type: 'number',
 		displayOptions: {
 			show: {
-				resource: [
-					'clientsInvoices',
-				],
-				operation: [
-					'listInvoices',
-				],
-				returnAll: [
-					false,
-				],
+				resource: ['clientsInvoices'],
+				operation: ['listInvoices'],
+				returnAll: [false],
 			},
 		},
 		typeOptions: {
@@ -118,94 +81,90 @@ export const clientsInvoicesOperations: INodeProperties[] = [
 		default: 50,
 		description: 'Max number of results to return',
 	},
-    {
-        displayName: 'Filters',
-        name: 'filters',
-        type: 'collection',
-        placeholder: 'Add Filter',
-        default: {},
-        displayOptions: {
-            show: {
-                resource: [
-                    'clientsInvoices',
-                ],
-                operation: [
-                    'listInvoices',
-                ],
-            },
-        },
-        options: [
-            {
-                displayName: 'Created At From',
-                name: 'created_at_from',
-                type: 'dateTime',
-                default: '',
-                description: 'Filter invoices created from this date (ISO 8601 format)',
-            },
-            {
-                displayName: 'Created At To',
-                name: 'created_at_to',
-                type: 'dateTime',
-                default: '',
-                description: 'Filter invoices created up to this date (ISO 8601 format)',
-            },
-            {
-                displayName: 'Exclude Imported',
-                name: 'exclude_imported',
-                type: 'boolean',
-                default: true,
-                description: 'Whether to exclude imported invoices. Default is true.',
-            },
-            {
-                displayName: 'Sort By',
-                name: 'sort_by',
-                type: 'options',
-                options: [
-                    {
-                        name: 'Created At (Ascending)',
-                        value: 'created_at:asc',
-                    },
-                    {
-                        name: 'Created At (Descending)',
-                        value: 'created_at:desc',
-                    },
-                ],
-                default: 'created_at:desc',
-                description: 'Sort invoices by created_at property',
-            },
-            {
-                displayName: 'Status',
-                name: 'status',
-                type: 'options',
-                options: [
-                    { name: 'Canceled', value: 'canceled' },
-                    { name: 'Draft', value: 'draft' },
-                    { name: 'Paid', value: 'paid' },
-                    { name: 'Unpaid', value: 'unpaid' },
-                ],
-                default: 'draft',
-                description: 'Filter client invoices by status',
-            },
-            {
-                displayName: 'Updated At From',
-                name: 'updated_at_from',
-                type: 'dateTime',
-                default: '',
-                description: 'Filter invoices updated from this date (ISO 8601 format)',
-            },
-            {
-                displayName: 'Updated At To',
-                name: 'updated_at_to',
-                type: 'dateTime',
-                default: '',
-                description: 'Filter invoices updated up to this date (ISO 8601 format)',
-            },
-        ],
-    },
+	{
+		displayName: 'Filters',
+		name: 'filters',
+		type: 'collection',
+		placeholder: 'Add Filter',
+		default: {},
+		displayOptions: {
+			show: {
+				resource: ['clientsInvoices'],
+				operation: ['listInvoices'],
+			},
+		},
+		options: [
+			{
+				displayName: 'Created At From',
+				name: 'created_at_from',
+				type: 'dateTime',
+				default: '',
+				description: 'Filter invoices created from this date (ISO 8601 format)',
+			},
+			{
+				displayName: 'Created At To',
+				name: 'created_at_to',
+				type: 'dateTime',
+				default: '',
+				description: 'Filter invoices created up to this date (ISO 8601 format)',
+			},
+			{
+				displayName: 'Exclude Imported',
+				name: 'exclude_imported',
+				type: 'boolean',
+				default: true,
+				description: 'Whether to exclude imported invoices. Default is true.',
+			},
+			{
+				displayName: 'Sort By',
+				name: 'sort_by',
+				type: 'options',
+				options: [
+					{
+						name: 'Created At (Ascending)',
+						value: 'created_at:asc',
+					},
+					{
+						name: 'Created At (Descending)',
+						value: 'created_at:desc',
+					},
+				],
+				default: 'created_at:desc',
+				description: 'Sort invoices by created_at property',
+			},
+			{
+				displayName: 'Status',
+				name: 'status',
+				type: 'options',
+				options: [
+					{ name: 'Canceled', value: 'canceled' },
+					{ name: 'Draft', value: 'draft' },
+					{ name: 'Paid', value: 'paid' },
+					{ name: 'Unpaid', value: 'unpaid' },
+				],
+				default: 'draft',
+				description: 'Filter client invoices by status',
+			},
+			{
+				displayName: 'Updated At From',
+				name: 'updated_at_from',
+				type: 'dateTime',
+				default: '',
+				description: 'Filter invoices updated from this date (ISO 8601 format)',
+			},
+			{
+				displayName: 'Updated At To',
+				name: 'updated_at_to',
+				type: 'dateTime',
+				default: '',
+				description: 'Filter invoices updated up to this date (ISO 8601 format)',
+			},
+		],
+	},
 
-// ------------------------
-//      Client Invoice - Create a client invoice
-// ------------------------
+	// ------------------------
+	//      Client Invoice - Create a client invoice
+	// ------------------------
 
 	{
 		displayName: 'Client ID',
@@ -213,12 +172,8 @@ export const clientsInvoicesOperations: INodeProperties[] = [
 		type: 'string',
 		displayOptions: {
 			show: {
-				resource: [
-					'clientsInvoices',
-				],
-				operation: [
-					'createClientInvoice',
-				],
+				resource: ['clientsInvoices'],
+				operation: ['createClientInvoice'],
 			},
 		},
 		default: '',
@@ -231,12 +186,8 @@ export const clientsInvoicesOperations: INodeProperties[] = [
 		type: 'dateTime',
 		displayOptions: {
 			show: {
-				resource: [
-					'clientsInvoices',
-				],
-				operation: [
-					'createClientInvoice',
-				],
+				resource: ['clientsInvoices'],
+				operation: ['createClientInvoice'],
 			},
 		},
 		default: '',
@@ -249,12 +200,8 @@ export const clientsInvoicesOperations: INodeProperties[] = [
 		type: 'dateTime',
 		displayOptions: {
 			show: {
-				resource: [
-					'clientsInvoices',
-				],
-				operation: [
-					'createClientInvoice',
-				],
+				resource: ['clientsInvoices'],
+				operation: ['createClientInvoice'],
 			},
 		},
 		default: '',
@@ -267,12 +214,8 @@ export const clientsInvoicesOperations: INodeProperties[] = [
 		type: 'string',
 		displayOptions: {
 			show: {
-				resource: [
-					'clientsInvoices',
-				],
-				operation: [
-					'createClientInvoice',
-				],
+				resource: ['clientsInvoices'],
+				operation: ['createClientInvoice'],
 			},
 		},
 		default: 'EUR',
@@ -285,12 +228,8 @@ export const clientsInvoicesOperations: INodeProperties[] = [
 		type: 'string',
 		displayOptions: {
 			show: {
-				resource: [
-					'clientsInvoices',
-				],
-				operation: [
-					'createClientInvoice',
-				],
+				resource: ['clientsInvoices'],
+				operation: ['createClientInvoice'],
 			},
 		},
 		default: '',
@@ -303,12 +242,8 @@ export const clientsInvoicesOperations: INodeProperties[] = [
 		type: 'fixedCollection',
 		displayOptions: {
 			show: {
-				resource: [
-					'clientsInvoices',
-				],
-				operation: [
-					'createClientInvoice',
-				],
+				resource: ['clientsInvoices'],
+				operation: ['createClientInvoice'],
 			},
 		},
 		typeOptions: {
@@ -334,7 +269,7 @@ export const clientsInvoicesOperations: INodeProperties[] = [
 						name: 'quantity',
 						type: 'string',
 						default: '1',
-							required:	true,
+						required: true,
 						description: 'Quantity of the item',
 					},
 					{
@@ -342,7 +277,7 @@ export const clientsInvoicesOperations: INodeProperties[] = [
 						name: 'title',
 						type: 'string',
 						default: '',
-							required:	true,
+						required: true,
 						description: 'Title of the invoice item',
 					},
 					{
@@ -350,14 +285,14 @@ export const clientsInvoicesOperations: INodeProperties[] = [
 						name: 'unit',
 						type: 'string',
 						default: '',
-						description: 'Unit of measurement (e.g., \'hour\', \'piece\')',
+						description: "Unit of measurement (e.g., 'hour', 'piece')",
 					},
 					{
 						displayName: 'Unit Price Currency',
 						name: 'unitPriceCurrency',
 						type: 'string',
 						default: 'EUR',
-							required:	true,
+						required: true,
 						description: 'Currency of the unit price',
 					},
 					{
@@ -365,16 +300,16 @@ export const clientsInvoicesOperations: INodeProperties[] = [
 						name: 'unitPriceValue',
 						type: 'string',
 						default: '',
-							required:	true,
-						description: 'Unit price value (as string, e.g., \'100.00\')',
+						required: true,
+						description: "Unit price value (as string, e.g., '100.00')",
 					},
 					{
 						displayName: 'VAT Rate',
 						name: 'vatRate',
 						type: 'string',
 						default: '0',
-							required:	true,
-						description: 'VAT rate (e.g., \'20\' for 20%)',
+						required: true,
+						description: "VAT rate (e.g., '20' for 20%)",
 					},
 				],
 			},
@@ -388,12 +323,8 @@ export const clientsInvoicesOperations: INodeProperties[] = [
 		default: {},
 		displayOptions: {
 			show: {
-				resource: [
-					'clientsInvoices',
-				],
-				operation: [
-					'createClientInvoice',
-				],
+				resource: ['clientsInvoices'],
+				operation: ['createClientInvoice'],
 			},
 		},
 		options: [
@@ -460,9 +391,9 @@ export const clientsInvoicesOperations: INodeProperties[] = [
 		],
 	},
 
-// ------------------------
-//      Client Invoice - Update a draft client invoice
-// ------------------------
+	// ------------------------
+	//      Client Invoice - Update a draft client invoice
+	// ------------------------
 
 	{
 		displayName: 'Invoice ID',
@@ -470,12 +401,8 @@ export const clientsInvoicesOperations: INodeProperties[] = [
 		type: 'string',
 		displayOptions: {
 			show: {
-				resource: [
-					'clientsInvoices',
-				],
-				operation: [
-					'updateClientInvoice',
-				],
+				resource: ['clientsInvoices'],
+				operation: ['updateClientInvoice'],
 			},
 		},
 		default: '',
@@ -490,12 +417,8 @@ export const clientsInvoicesOperations: INodeProperties[] = [
 		default: {},
 		displayOptions: {
 			show: {
-				resource: [
-					'clientsInvoices',
-				],
-				operation: [
-					'updateClientInvoice',
-				],
+				resource: ['clientsInvoices'],
+				operation: ['updateClientInvoice'],
 			},
 		},
 		options: [
@@ -955,9 +878,9 @@ export const clientsInvoicesOperations: INodeProperties[] = [
 		],
 	},
 
-// ------------------------
-//      Client Invoice - Show client invoice
-// ------------------------
+	// ------------------------
+	//      Client Invoice - Show client invoice
+	// ------------------------
 
 	{
 		displayName: 'Invoice ID',
@@ -965,11 +888,15 @@ export const clientsInvoicesOperations: INodeProperties[] = [
 		type: 'string',
 		displayOptions: {
 			show: {
-				resource: [
-					'clientsInvoices',
-				],
+				resource: ['clientsInvoices'],
 				operation: [
 					'showClientInvoice',
+					'deleteClientInvoice',
+					'finalizeClientInvoice',
+					'cancelClientInvoice',
+					'unmarkClientInvoiceAsPaid',
+					'markClientInvoiceAsPaid',
+					'sendClientInvoice',
 				],
 			},
 		},
@@ -977,161 +904,19 @@ export const clientsInvoicesOperations: INodeProperties[] = [
 		required: true,
 		description: 'The unique identifier of the invoice to show',
 	},
-
-// ------------------------
-//      Client Invoice - Delete a client invoice
-// ------------------------
-
-	{
-		displayName: 'Invoice ID',
-		name: 'invoiceId',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: [
-					'clientsInvoices',
-				],
-				operation: [
-					'deleteClientInvoice',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'The unique identifier of the invoice to delete',
-	},
-
-// ------------------------
-//      Client Invoice - Finalize a client invoice
-// ------------------------
-
-	{
-		displayName: 'Invoice ID',
-		name: 'invoiceId',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: [
-					'clientsInvoices',
-				],
-				operation: [
-					'finalizeClientInvoice',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'The unique identifier of the invoice to finalize',
-	},
-
-// ------------------------
-//      Client Invoice - Cancel a client invoice
-// ------------------------
-
-	{
-		displayName: 'Invoice ID',
-		name: 'invoiceId',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: [
-					'clientsInvoices',
-				],
-				operation: [
-					'cancelClientInvoice',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'The unique identifier of the invoice to cancel',
-	},
-
-// ------------------------
-//      Client Invoice - Mark a client invoice as paid
-// ------------------------
-
-	{
-		displayName: 'Invoice ID',
-		name: 'invoiceId',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: [
-					'clientsInvoices',
-				],
-				operation: [
-					'markAsPaidClientInvoice',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'The unique identifier of the invoice to mark as paid',
-	},
 	{
 		displayName: 'Paid At',
 		name: 'paidAt',
 		type: 'dateTime',
 		displayOptions: {
 			show: {
-				resource: [
-					'clientsInvoices',
-				],
-				operation: [
-					'markAsPaidClientInvoice',
-				],
+				resource: ['clientsInvoices'],
+				operation: ['markClientInvoiceAsPaid'],
 			},
 		},
 		default: '',
 		required: true,
-		description: 'The date the invoice was paid (YYYY-MM-DD)',
-	},
-
-// ------------------------
-//      Client Invoice - Unmark a client invoice as paid
-// ------------------------
-
-	{
-		displayName: 'Invoice ID',
-		name: 'invoiceId',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: [
-					'clientsInvoices',
-				],
-				operation: [
-					'unmarkAsPaidClientInvoice',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'The unique identifier of the invoice to unmark as paid',
-	},
-
-// ------------------------
-//      Client Invoice - Send a client invoice via email
-// ------------------------
-
-	{
-		displayName: 'Invoice ID',
-		name: 'invoiceId',
-		type: 'string',
-		displayOptions: {
-			show: {
-				resource: [
-					'clientsInvoices',
-				],
-				operation: [
-					'sendClientInvoice',
-				],
-			},
-		},
-		default: '',
-		required: true,
-		description: 'The unique identifier of the invoice to send',
+		description: 'Payment date',
 	},
 	{
 		displayName: 'Send To',
@@ -1139,57 +924,51 @@ export const clientsInvoicesOperations: INodeProperties[] = [
 		type: 'string',
 		displayOptions: {
 			show: {
-				resource: [
-					'clientsInvoices',
-				],
-				operation: [
-					'sendClientInvoice',
-				],
+				resource: ['clientsInvoices'],
+				operation: ['sendClientInvoice'],
 			},
 		},
 		default: '',
 		required: true,
-		description: 'Email addresses to send to (comma-separated)',
+		description: 'Comma-separated list of recipient emails',
 	},
 	{
-		displayName: 'Additional Options',
-		name: 'additionalOptions',
-		type: 'collection',
-		placeholder: 'Add Option',
-		default: {},
+		displayName: 'Email Title',
+		name: 'emailTitle',
+		type: 'string',
 		displayOptions: {
 			show: {
-				resource: [
-					'clientsInvoices',
-				],
-				operation: [
-					'sendClientInvoice',
-				],
+				resource: ['clientsInvoices'],
+				operation: ['sendClientInvoice'],
 			},
 		},
-		options: [
-			{
-				displayName: 'Email Title',
-				name: 'emailTitle',
-				type: 'string',
-				default: '',
-				description: 'Title of the email',
-			},
-			{
-				displayName: 'Email Body',
-				name: 'emailBody',
-				type: 'string',
-				default: '',
-				description: 'Body text of the email',
-			},
-			{
-				displayName: 'Copy to Self',
-				name: 'copyToSelf',
-				type: 'boolean',
-				default: true,
-				description: 'Whether to send a copy to yourself',
-			},
-		],
+		default: '',
+		description: 'Custom email title',
 	},
-
+	{
+		displayName: 'Email Body',
+		name: 'emailBody',
+		type: 'string',
+		displayOptions: {
+			show: {
+				resource: ['clientsInvoices'],
+				operation: ['sendClientInvoice'],
+			},
+		},
+		default: '',
+		description: 'Custom email body',
+	},
+	{
+		displayName: 'Copy to Self',
+		name: 'copyToSelf',
+		type: 'boolean',
+		displayOptions: {
+			show: {
+				resource: ['clientsInvoices'],
+				operation: ['sendClientInvoice'],
+			},
+		},
+		default: true,
+		description: 'Whether to copy the authenticated user',
+	},
 ];

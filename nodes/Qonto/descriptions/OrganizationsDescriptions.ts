@@ -1,12 +1,9 @@
-import {
-	INodeProperties,
-} from 'n8n-workflow';
+import { INodeProperties } from 'n8n-workflow';
 
 export const organizationsOperations: INodeProperties[] = [
-
-// ------------------------
-//      ORGANIZATIONS
-// ------------------------
+	// ------------------------
+	//      ORGANIZATIONS
+	// ------------------------
 	{
 		displayName: 'Operation',
 		name: 'operation',
@@ -14,9 +11,7 @@ export const organizationsOperations: INodeProperties[] = [
 		noDataExpression: true,
 		displayOptions: {
 			show: {
-				resource: [
-					'organizations',
-				],
+				resource: ['organizations'],
 			},
 		},
 		options: [
@@ -29,9 +24,9 @@ export const organizationsOperations: INodeProperties[] = [
 		default: 'getOrganizationAndItsBank_accounts',
 	},
 
-// ------------------------
-//      ORGANIZATIONS - Get organization and its bank_accounts
-// ------------------------
+	// ------------------------
+	//      ORGANIZATIONS - Get organization and its bank_accounts
+	// ------------------------
 	{
 		displayName: 'Include_external_accounts',
 		name: 'include_external_accounts',
@@ -39,12 +34,8 @@ export const organizationsOperations: INodeProperties[] = [
 		required: true,
 		displayOptions: {
 			show: {
-				resource: [
-					'organizations',
-				],
-				operation: [
-					'getOrganizationAndItsBank_accounts',
-				],
+				resource: ['organizations'],
+				operation: ['getOrganizationAndItsBank_accounts'],
 			},
 		},
 		default: false,

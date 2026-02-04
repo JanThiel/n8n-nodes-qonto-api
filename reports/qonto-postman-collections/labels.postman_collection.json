@@ -1,0 +1,755 @@
+{
+  "info": {
+    "_postman_id": "6cd699bb-5c88-43ea-953d-d5dad07615ca",
+    "name": "Business API :: Labels",
+    "description": "## 🧰 [Getting started](https://docs.qonto.com/get-started/business-api/overview)\n\n## 🔐 [Authentication](https://docs.qonto.com/get-started/business-api/authentication/introduction)\n\n## 🙋 [Troubleshooting](https://docs.qonto.com/get-started/general/troubleshooting)\n\n## ❓ [FAQ](https://docs.qonto.com/faq-articles/faq-home)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17853903"
+  },
+  "item": [
+    {
+      "name": "Labels",
+      "item": [
+        {
+          "name": "List labels",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{login}}:{{secret}}",
+                "description": "(Optional) Use only if you authenticate yourself with your API key",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v2/labels?page=<string>&per_page=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "labels"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "<string>",
+                  "description": "Returned page (cf. [Pagination](/get-started/general/pagination))."
+                },
+                {
+                  "key": "per_page",
+                  "value": "<string>",
+                  "description": "Number of labels per page (cf. [Pagination](/get-started/general/pagination))."
+                }
+              ]
+            },
+            "description": "OAuth scope: `organization.read`\n\n\n\nRetrieves all the labels for the authenticated organization.\n"
+          },
+          "response": [
+            {
+              "name": "Returns the list of labels for the authenticated organization.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/labels?page=<string>&per_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "labels"
+                  ],
+                  "query": [
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of labels per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"labels\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"parent_id\": {\n        \"nullable\": true,\n        \"description\": \"Identifies the parent label.\\nA label can be linked to another in order to create lists.\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"parent_id\": {\n        \"nullable\": true,\n        \"description\": \"Identifies the parent label.\\nA label can be linked to another in order to create lists.\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"current_page\": \"<integer>\",\n    \"next_page\": {\n      \"nullable\": true\n    },\n    \"prev_page\": {\n      \"nullable\": true\n    },\n    \"total_pages\": \"<integer>\",\n    \"total_count\": \"<integer>\",\n    \"per_page\": \"<integer>\"\n  }\n}"
+            },
+            {
+              "name": "Returns a bad request error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/labels?page=<string>&per_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "labels"
+                  ],
+                  "query": [
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of labels per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/labels?page=<string>&per_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "labels"
+                  ],
+                  "query": [
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of labels per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/labels?page=<string>&per_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "labels"
+                  ],
+                  "query": [
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of labels per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unprocessable entity error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/labels?page=<string>&per_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "labels"
+                  ],
+                  "query": [
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of labels per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"message\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"message\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an internal server error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/labels?page=<string>&per_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "labels"
+                  ],
+                  "query": [
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of labels per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Retrieve a label",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{login}}:{{secret}}",
+                "description": "(Optional) Use only if you authenticate yourself with your API key",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v2/labels/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "labels",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "description": "OAuth scope: `organization.read`\n\n\n\nRetrieves the label identified by the `id` path parameter."
+          },
+          "response": [
+            {
+              "name": "Returns the label identified by the `id` path parameter.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/labels/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "labels",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"label\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"parent_id\": {\n      \"nullable\": true,\n      \"description\": \"Identifies the parent label.\\nA label can be linked to another in order to create lists.\"\n    }\n  }\n}"
+            },
+            {
+              "name": "Returns a bad request error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/labels/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "labels",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/labels/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "labels",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/labels/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "labels",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a not found error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/labels/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "labels",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an internal server error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/labels/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "labels",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "value",
+        "value": "{{login}}:{{secret}}",
+        "type": "string"
+      },
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

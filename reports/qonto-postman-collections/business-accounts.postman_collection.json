@@ -1,0 +1,1498 @@
+{
+  "info": {
+    "_postman_id": "6cd699bb-5c88-43ea-953d-d5dad07615ca",
+    "name": "Business API :: Business Accounts",
+    "description": "## 🧰 [Getting started](https://docs.qonto.com/get-started/business-api/overview)\n\n## 🔐 [Authentication](https://docs.qonto.com/get-started/business-api/authentication/introduction)\n\n## 🙋 [Troubleshooting](https://docs.qonto.com/get-started/general/troubleshooting)\n\n## ❓ [FAQ](https://docs.qonto.com/faq-articles/faq-home)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17853903"
+  },
+  "item": [
+    {
+      "name": "Business Accounts",
+      "item": [
+        {
+          "name": "List business accounts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{login}}:{{secret}}",
+                "description": "(Optional) Use only if you authenticate yourself with your API key",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v2/bank_accounts?page=1&per_page=100",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "bank_accounts"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination. Must be greater than 0."
+                },
+                {
+                  "key": "per_page",
+                  "value": "100",
+                  "description": "Number of business accounts per page. Must be between 1 and 100."
+                }
+              ]
+            },
+            "description": "OAuth scope: `organization.read`\n\nRetrieves a list of all business accounts.\n\nYou can use this endpoint when you need to display account details of all business accounts.\n\n### Restricted Fields\n\nFull details of a business account are restricted to users with specific permissions ([more on permissions](https://support-fr.qonto.com/hc/en-us/articles/23947722927249-What-are-the-different-roles-available)). **Owners and admins can access all fields.** Other users, such as managers, will only see a limited set of fields unless granted the appropriate permissions.\n\n**Fields Available to All Users**:\n- `id`\n- `name`\n- `status`\n- `main`\n- `organization_id`\n\n**Fields Available to Users with Balance Authorization Read**:\n- `currency`\n- `balance`\n- `balance_cents`\n- `authorized_balance`\n- `authorized_balance_cents`\n\nDepending on the user's permissions, the corresponding fields will be included in the response."
+          },
+          "response": [
+            {
+              "name": "List of business accounts retrieved successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/bank_accounts?page=1&per_page=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "bank_accounts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination. Must be greater than 0.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of business accounts per page. Must be between 1 and 100.",
+                      "key": "per_page",
+                      "value": "100"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"bank_accounts\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"organization_id\": \"<uuid>\",\n      \"status\": \"closed\",\n      \"main\": \"<boolean>\",\n      \"iban\": \"<string>\",\n      \"bic\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"balance\": \"<float>\",\n      \"balance_cents\": \"<integer>\",\n      \"authorized_balance\": \"<float>\",\n      \"authorized_balance_cents\": \"<integer>\",\n      \"updated_at\": \"<dateTime>\",\n      \"is_external_account\": \"<boolean>\",\n      \"account_number\": \"<string>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"organization_id\": \"<uuid>\",\n      \"status\": \"active\",\n      \"main\": \"<boolean>\",\n      \"iban\": \"<string>\",\n      \"bic\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"balance\": \"<float>\",\n      \"balance_cents\": \"<integer>\",\n      \"authorized_balance\": \"<float>\",\n      \"authorized_balance_cents\": \"<integer>\",\n      \"updated_at\": \"<dateTime>\",\n      \"is_external_account\": \"<boolean>\",\n      \"account_number\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/bank_accounts?page=1&per_page=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "bank_accounts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number for pagination. Must be greater than 0.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of business accounts per page. Must be between 1 and 100.",
+                      "key": "per_page",
+                      "value": "100"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create a business account",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "X-Qonto-Idempotency-Key",
+                "value": "<string>",
+                "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests)."
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bank_account\": {\n    \"name\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v2/bank_accounts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "bank_accounts"
+              ]
+            },
+            "description": "OAuth scope: `bank_account.write`\n\nCreates a new business account.\n\nA business account allows you to receive funds, make payments, and manage your finances. Each business account has its own IBAN and balance, and can be used for a variety of banking operations.\n\nYou can create multiple business accounts and name them based on your business needs (e.g., Primary Account, Project ABC, Tax Pots). This flexibility helps you organize your finances and allocate funds for specific purposes."
+          },
+          "response": [
+            {
+              "name": "Business account created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bank_account\": {\n    \"name\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/bank_accounts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "bank_accounts"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"bank_account\": {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"organization_id\": \"<uuid>\",\n    \"status\": \"closed\",\n    \"main\": \"<boolean>\",\n    \"iban\": \"<string>\",\n    \"bic\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"balance\": \"<float>\",\n    \"balance_cents\": \"<integer>\",\n    \"authorized_balance\": \"<float>\",\n    \"authorized_balance_cents\": \"<integer>\",\n    \"updated_at\": \"<dateTime>\",\n    \"is_external_account\": \"<boolean>\",\n    \"account_number\": \"<string>\"\n  }\n}"
+            },
+            {
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bank_account\": {\n    \"name\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/bank_accounts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "bank_accounts"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"description\": \"Returns a bad request error.\",\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {},\n      \"examples\": {\n        \"Authorization field missing\": {\n          \"value\": {\n            \"errors\": [\n              {\n                \"code\": \"bad_request\",\n                \"detail\": \"Authorization field missing\"\n              }\n            ]\n          }\n        }\n      }\n    }\n  }\n}"
+            },
+            {
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bank_account\": {\n    \"name\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/bank_accounts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "bank_accounts"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"description\": \"Returns an unauthorized error.\",\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {},\n      \"examples\": {\n        \"authorization_header_missing\": {\n          \"value\": {\n            \"errors\": [\n              {\n                \"code\": \"authorization_header_missing\",\n                \"detail\": \"authorization header missing\"\n              }\n            ]\n          }\n        },\n        \"authorization_token_invalid\": {\n          \"value\": {\n            \"errors\": [\n              {\n                \"code\": \"authorization_token_invalid\",\n                \"detail\": \"authorization token invalid\"\n              }\n            ]\n          }\n        }\n      }\n    }\n  }\n}"
+            },
+            {
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bank_account\": {\n    \"name\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/bank_accounts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "bank_accounts"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"description\": \"Returns a forbidden error.\",\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {},\n      \"examples\": {\n        \"Insufficient permissions\": {\n          \"value\": {\n            \"errors\": [\n              {\n                \"code\": \"forbidden\",\n                \"detail\": \"User does not have sufficient permissions for this action.\"\n              }\n            ]\n          }\n        }\n      }\n    }\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get a business account",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{login}}:{{secret}}",
+                "description": "(Optional) Use only if you authenticate yourself with your API key",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v2/bank_accounts/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "bank_accounts",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) ID of the business account to retrieve"
+                }
+              ]
+            },
+            "description": "OAuth scope: `organization.read`\n\nRetrieves detailed information about a specific business account identified by its ID.\n\nIt is useful for retrieving up-to-date information, including the current balance and authorized balance of the account.\n\nYou can use this endpoint when you need to display account details or verify available funds before initiating a transfer.\n\n\n### Restricted Fields\n\nFull details of a business account are restricted to users with specific permissions ([more on permissions](https://support-fr.qonto.com/hc/en-us/articles/23947722927249-What-are-the-different-roles-available)). **Owners and admins can access all fields.** Other users, such as managers, will only see a limited set of fields unless granted the appropriate permissions.\n\n**Fields Available to All Users**:\n- `id`\n- `name`\n- `status`\n- `main`\n- `organization_id`\n\n**Fields Available to Users with Balance Authorization Read**:\n- `currency`\n- `balance`\n- `balance_cents`\n- `authorized_balance`\n- `authorized_balance_cents`\n\nDepending on the user's permissions, the corresponding fields will be included in the response."
+          },
+          "response": [
+            {
+              "name": "Business account retrieved successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/bank_accounts/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "bank_accounts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"bank_account\": {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"organization_id\": \"<uuid>\",\n    \"status\": \"closed\",\n    \"main\": \"<boolean>\",\n    \"iban\": \"<string>\",\n    \"bic\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"balance\": \"<float>\",\n    \"balance_cents\": \"<integer>\",\n    \"authorized_balance\": \"<float>\",\n    \"authorized_balance_cents\": \"<integer>\",\n    \"updated_at\": \"<dateTime>\",\n    \"is_external_account\": \"<boolean>\",\n    \"account_number\": \"<string>\"\n  }\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/bank_accounts/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "bank_accounts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/bank_accounts/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "bank_accounts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Business account not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/bank_accounts/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "bank_accounts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"description\": \"Returns a bad request error.\",\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {},\n      \"examples\": {\n        \"Authorization field missing\": {\n          \"value\": {\n            \"errors\": [\n              {\n                \"code\": \"bad_request\",\n                \"detail\": \"Authorization field missing\"\n              }\n            ]\n          }\n        }\n      }\n    }\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update a business account",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bank_account\": {\n    \"name\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v2/bank_accounts/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "bank_accounts",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) ID of the business account to update"
+                }
+              ]
+            },
+            "description": "OAuth scope: `bank_account.write`\n\nUpdates the details of a specific business account identified by its ID. Currently, it supports only updating the account name.\n\nBusiness accounts can be named based on your needs (e.g., Primary Account, Project ABC, Tax Pots). This flexibility helps you organize your finances and allocate funds for specific purposes."
+          },
+          "response": [
+            {
+              "name": "Business account updated successfully",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bank_account\": {\n    \"name\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/bank_accounts/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "bank_accounts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"bank_account\": {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"organization_id\": \"<uuid>\",\n    \"status\": \"closed\",\n    \"main\": \"<boolean>\",\n    \"iban\": \"<string>\",\n    \"bic\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"balance\": \"<float>\",\n    \"balance_cents\": \"<integer>\",\n    \"authorized_balance\": \"<float>\",\n    \"authorized_balance_cents\": \"<integer>\",\n    \"updated_at\": \"<dateTime>\",\n    \"is_external_account\": \"<boolean>\",\n    \"account_number\": \"<string>\"\n  }\n}"
+            },
+            {
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bank_account\": {\n    \"name\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/bank_accounts/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "bank_accounts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"description\": \"Returns a bad request error.\",\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {},\n      \"examples\": {\n        \"Authorization field missing\": {\n          \"value\": {\n            \"errors\": [\n              {\n                \"code\": \"bad_request\",\n                \"detail\": \"Authorization field missing\"\n              }\n            ]\n          }\n        }\n      }\n    }\n  }\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bank_account\": {\n    \"name\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/bank_accounts/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "bank_accounts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bank_account\": {\n    \"name\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/bank_accounts/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "bank_accounts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a not found error.",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bank_account\": {\n    \"name\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/bank_accounts/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "bank_accounts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Close a business account",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "X-Qonto-Sca-Session-Token",
+                "value": "<string>",
+                "description": "SCA session token for strong customer authentication"
+              },
+              {
+                "key": "X-Qonto-MFA",
+                "value": "<string>",
+                "description": "MFA token for strong customer authentication"
+              },
+              {
+                "key": "X-Qonto-2fa-Preference",
+                "value": "{{X-Qonto-2fa-Preference}}",
+                "description": "2FA preference for the request"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v2/bank_accounts/:id/close",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "bank_accounts",
+                ":id",
+                "close"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) ID of the business account to close"
+                }
+              ]
+            },
+            "description": "OAuth scope: `bank_account.write`\n\nAccessible only using [Strong Customer Authentication](/get-started/business-api/authentication/sca).\n\n<Info>\n  Example of SCA usage: [**Postman visual flow**](https://www.postman.com/qontoteam/workspace/qonto-public-api/flow/6670429eb7bd63003156bd57)\n</Info>\n\nCloses a specific business account identified by its ID.\n\nOnce closed, the account can no longer be used for transactions. Before closing an account,\nensure it has a zero balance and no pending transactions. The main account cannot be closed.\n\n**Restrictions:**\n- You cannot close your main account.\n- You cannot close an businesss account with a non-zero balance.\n- External businesss accounts cannot be closed through this API."
+          },
+          "response": [
+            {
+              "name": "Business account closed successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "SCA session token for strong customer authentication",
+                    "key": "X-Qonto-Sca-Session-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "MFA token for strong customer authentication",
+                    "key": "X-Qonto-MFA",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "2FA preference for the request",
+                    "key": "X-Qonto-2fa-Preference",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/bank_accounts/:id/close",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "bank_accounts",
+                    ":id",
+                    "close"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"bank_account\": {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"organization_id\": \"<uuid>\",\n    \"status\": \"closed\",\n    \"main\": \"<boolean>\",\n    \"iban\": \"<string>\",\n    \"bic\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"balance\": \"<float>\",\n    \"balance_cents\": \"<integer>\",\n    \"authorized_balance\": \"<float>\",\n    \"authorized_balance_cents\": \"<integer>\",\n    \"updated_at\": \"<dateTime>\",\n    \"is_external_account\": \"<boolean>\",\n    \"account_number\": \"<string>\"\n  }\n}"
+            },
+            {
+              "name": "Unprocessable entity",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "SCA session token for strong customer authentication",
+                    "key": "X-Qonto-Sca-Session-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "MFA token for strong customer authentication",
+                    "key": "X-Qonto-MFA",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "2FA preference for the request",
+                    "key": "X-Qonto-2fa-Preference",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/bank_accounts/:id/close",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "bank_accounts",
+                    ":id",
+                    "close"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"description\": \"Returns a bad request error.\",\n  \"content\": {\n    \"application/json\": {\n      \"schema\": {},\n      \"examples\": {\n        \"Authorization field missing\": {\n          \"value\": {\n            \"errors\": [\n              {\n                \"code\": \"bad_request\",\n                \"detail\": \"Authorization field missing\"\n              }\n            ]\n          }\n        }\n      }\n    }\n  }\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "SCA session token for strong customer authentication",
+                    "key": "X-Qonto-Sca-Session-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "MFA token for strong customer authentication",
+                    "key": "X-Qonto-MFA",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "2FA preference for the request",
+                    "key": "X-Qonto-2fa-Preference",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/bank_accounts/:id/close",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "bank_accounts",
+                    ":id",
+                    "close"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "SCA session token for strong customer authentication",
+                    "key": "X-Qonto-Sca-Session-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "MFA token for strong customer authentication",
+                    "key": "X-Qonto-MFA",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "2FA preference for the request",
+                    "key": "X-Qonto-2fa-Preference",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/bank_accounts/:id/close",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "bank_accounts",
+                    ":id",
+                    "close"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a not found error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "SCA session token for strong customer authentication",
+                    "key": "X-Qonto-Sca-Session-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "MFA token for strong customer authentication",
+                    "key": "X-Qonto-MFA",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "2FA preference for the request",
+                    "key": "X-Qonto-2fa-Preference",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/bank_accounts/:id/close",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "bank_accounts",
+                    ":id",
+                    "close"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "value",
+        "value": "{{login}}:{{secret}}",
+        "type": "string"
+      },
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

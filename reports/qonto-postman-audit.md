@@ -1,0 +1,155 @@
+# Qonto Postman vs n8n Node Audit
+
+Generated: 2026-02-04T13:59:07.114Z
+
+## Stats
+
+- Postman requests: 127
+- Node operations: 123
+- Matched operations by method/path: 119
+- Postman requests missing in node: 8
+- Node operations without matching Postman request: 4
+
+## Collections
+
+- SEPA Transfers: 21
+- Cards: 13
+- Client Invoices: 10
+- International Transfers: 10
+- Payment Links: 8
+- Attachments: 6
+- Requests: 6
+- Quotes: 6
+- Authentication: 5
+- Business Accounts: 5
+- Clients: 5
+- Insurance Contracts: 5
+- Webhooks: 5
+- Memberships: 3
+- Supplier Invoices: 3
+- Labels: 2
+- Transactions: 2
+- Credit Notes: 2
+- Teams: 2
+- Statements: 2
+- E-invoicing: 1
+- Organizations: 1
+- Internal Transfers: 1
+- Encoded Requests: 1
+- Embed Auth Links: 1
+- TEST: 1
+
+## Missing in Node (Top 50)
+
+- GET oauth2/auth (Authentication -> Initiate the login)
+- POST oauth2/token (Authentication -> Generate first token)
+- POST oauth2/token (Authentication -> Refresh token)
+- DELETE oauth2/consents (Authentication -> Revoke OAuth 2 consents)
+- GET sca_sessions/:sca_session_token (Authentication -> Poll SCA session)
+- POST v1/encoded_requests/dispatch (Encoded Requests -> Dispatch an encoded request)
+- POST v1/embed_auth_links (Embed Auth Links -> Create an Embed Auth Link)
+- GET  (TEST -> TEST)
+
+## Parameter Mismatches (Top 50)
+
+- GET sepa/transfers / sepaTransfers.listSepaTransfers
+  - Missing query params in code: beneficiary_ids[], ids, page, per_page, recurring_transfer_ids, scheduled_date_from, scheduled_date_to, sort_by, status, updated_at_from, updated_at_to
+- POST sepa/transfers / sepaTransfers.createSepaTransfer
+  - Likely missing body inputs: activity_tag, amount, attachment_ids, bank_account_id, beneficiary, beneficiary_id, bic, email, iban, name, note, reference, scheduled_date, transfer, vop_proof_token
+- GET sepa/bulk_transfers / sepaTransfers.listSepaBulkTransfers
+  - Missing query params in code: page, per_page
+- POST sepa/bulk_transfers / sepaTransfers.createSepaBulkTransfer
+  - Likely missing body inputs: bank_account_id, bulk_transfers, vop_proof_token
+- GET sepa/recurring_transfers / sepaTransfers.listSepaRecurringTransfers
+  - Missing query params in code: page, per_page
+- POST sepa/recurring_transfers / sepaTransfers.createSepaRecurringTransfer
+  - Likely missing body inputs: activity_tag, amount, attachment_ids, bank_account_id, beneficiary, beneficiary_id, bic, email, first_execution_date, frequency, iban, last_execution_date, name, note, recurring_transfer, reference, vop_proof_token
+- POST sepa/verify_payee / sepaTransfers.verifySepaPayee
+  - Likely missing body inputs: beneficiary_name, iban
+- POST sepa/bulk_verify_payee / sepaTransfers.bulkVerifySepaPayee
+  - Likely missing body inputs: requests
+- POST sepa/skip_verify_payee / sepaTransfers.skipVerifySepaPayee
+  - Likely missing body inputs: requests
+- GET international/currencies / internationalTransfers.getInternationalCurrencies
+  - Missing query params in code: source
+- POST international/quotes / internationalTransfers.createInternationalQuote
+  - Likely missing body inputs: source_amount, source_currency, target_amount, target_currency
+- POST international/beneficiaries/requirements / internationalTransfers.listInternationalBeneficiaryRequirements
+  - Likely missing body inputs: beneficiary_id, currency, details, quote_id, type
+- GET international/beneficiaries / internationalTransfers.listInternationalBeneficiaries
+  - Missing query params in code: currency, page, per_page
+- POST international/beneficiaries / internationalTransfers.createInternationalBeneficiary
+  - Likely missing body inputs: currency, details, quote_id, type
+- PUT international/beneficiaries/:beneficiaryId / internationalTransfers.updateInternationalBeneficiary
+  - Likely missing body inputs: currency, details, quote_id, type
+- POST international/transfers / internationalTransfers.createInternationalTransfer
+  - Likely missing body inputs: attachment_ids, bank_account_id, beneficiary_id, currency, details, quote_id, source_amount, target_account_id, target_amount, value
+- POST international/transfers/requirements / internationalTransfers.listInternationalTransferRequirements
+  - Likely missing body inputs: details, quote_id, target_account_id
+- GET sepa/beneficiaries / beneficiaries.listBeneficiaries
+  - Missing query params in code: iban, page, per_page, status
+- POST sepa/beneficiaries / beneficiaries.createBeneficiary
+  - Likely missing body inputs: activity_tag, beneficiary, bic, email
+- PATCH sepa/beneficiaries/:id / beneficiaries.updateBeneficiary
+  - Likely missing body inputs: activity_tag, beneficiary, email, name
+- POST attachments / attachment.uploadAttachment
+  - Likely missing body inputs: file
+- GET labels / labels.listLabels
+  - Missing query params in code: page, per_page
+- GET memberships / memberships.listMemberships
+  - Missing query params in code: page, per_page
+- POST memberships/invite_employee_or_accountant / memberships.createMembership
+  - Likely missing body inputs: membership
+- GET bank_accounts / bankAccounts.listBankAccounts
+  - Missing query params in code: page, per_page
+- POST bank_accounts / bankAccounts.createBankAccount
+  - Likely missing body inputs: bank_account, name
+- PATCH bank_accounts/:accountId / bankAccounts.updateBankAccount
+  - Likely missing body inputs: bank_account, name
+- POST transactions/:transactionId/attachments / attachmentsInATransaction.uploadAttachmentToATransaction
+  - Likely missing body inputs: file
+- GET transactions/:transactionId/attachments / attachmentsInATransaction.listAttachmentsInATransaction
+  - Missing query params in code: page, per_page
+- GET transactions / transactions.listTransactions
+  - Missing query params in code: page, per_page
+- GET transactions/:id / transactions.showTransaction
+  - Missing query params in code: includes[]
+- POST internal_transfers / internalTransactions.createInternalTransfer
+  - Likely missing body inputs: internal_transfer
+- POST payment_links/connections / paymentLinks.connectPaymentLinksProvider
+  - Likely missing body inputs: business_description, partner_callback_url, user_bank_account_id, user_phone_number, user_website_url
+- POST payment_links / paymentLinks.createPaymentLink
+  - Likely missing body inputs: items, payment_link, potential_payment_methods, reusable
+- GET payment_links / paymentLinks.listPaymentLinks
+  - Missing query params in code: page, per_page, sort_by, status
+- GET payment_links/:paymentLinkId/payments / paymentLinks.listPaymentLinkPayments
+  - Missing query params in code: page, per_page, sort_by, status
+- GET payment_links/payment_methods / paymentLinks.listPaymentLinkMethods
+  - Missing query params in code: amount, currency, locale
+- GET quotes / quotes.listQuotes
+  - Missing query params in code: filter[created_at_from], filter[created_at_to], filter[status], page, per_page, sort_by
+- POST quotes / quotes.createQuote
+  - Likely missing body inputs: client_id, commercial_register_number, company_leadership, currency, discount, district_court, expiry_date, footer, header, issue_date, items, number, payment_reason, rate, reason, settings, stamp_duty_amount, tax_number, terms_and_conditions, type, value, vat_number, welfare_fund, withholding_tax
+- POST quotes/:quoteId/send / quotes.sendQuote
+  - Likely missing body inputs: copy_to_self, email_body, email_title, send_to
+- PATCH quotes/:quoteId / quotes.updateQuote
+  - Likely missing body inputs: commercial_register_number, company_leadership, currency, discount, district_court, expiry_date, footer, header, issue_date, items, number, payment_reason, rate, reason, settings, stamp_duty_amount, tax_number, terms_and_conditions, type, value, vat_number, welfare_fund, withholding_tax
+- GET requests / requests.listRequests
+  - Missing query params in code: page, per_page, request_type[], sort_by, status[]
+- POST requests/flash_cards / requests.createFlashCardRequest
+  - Likely missing body inputs: request_flash_card
+- POST requests/virtual_cards / requests.createVirtualCardRequest
+  - Likely missing body inputs: request_virtual_card
+- POST requests/multi_transfers / requests.createMultiTransferRequest
+  - Likely missing body inputs: request_multi_transfer
+- GET supplier_invoices / supplierInvoices.getSupplierInvoices
+  - Missing query params in code: filter[approver_id][], filter[attachment_id], filter[attachment_id][], filter[created_at_from], filter[created_at_to], filter[document_type], filter[document_type][], filter[due_date], filter[exclude_credit_notes], filter[issue_date], filter[issue_date_from], filter[matched_transactions], filter[missing_data], filter[payable_amount], filter[payment_date], filter[status], filter[updated_at_from], filter[updated_at_to], page, per_page, query, query_fields, sort_by
+- POST supplier_invoices/bulk / supplierInvoices.createSupplierInvoices
+  - Likely missing body inputs: meta, skip_attachment_matcher, source, supplier_invoices
+- GET client_invoices / clientsInvoices.listInvoices
+  - Missing query params in code: page, per_page
+- POST client_invoices / clientsInvoices.createClientInvoice
+  - Likely missing body inputs: client_id, commercial_register_number, company_leadership, conditions, discount_conditions, district_court, due_date, footer, header, iban, issue_date, late_payment_penalties, legal_capital_share, legal_fixed_compensation, method, number, payment_methods, payment_reason, payment_reporting, performance_end_date, performance_start_date, purchase_order, rate, reason, report_einvoicing, settings, stamp_duty_amount, status, tax_number, terms_and_conditions, transaction_type, type, value, vat_number, vat_payment_condition, welfare_fund, withholding_tax
+- PATCH client_invoices/:invoiceId / clientsInvoices.updateClientInvoice
+  - Likely missing body inputs: client_id, commercial_register_number, company_leadership, conditions, currency, discount_conditions, district_court, due_date, footer, header, iban, issue_date, items, late_payment_penalties, legal_capital_share, legal_fixed_compensation, method, number, payment_methods, payment_reason, payment_reporting, performance_date, purchase_order, rate, reason, report_einvoicing, settings, stamp_duty_amount, tax_number, terms_and_conditions, transaction_type, type, value, vat_number, vat_payment_condition, welfare_fund, withholding_tax
+- ... 21 more

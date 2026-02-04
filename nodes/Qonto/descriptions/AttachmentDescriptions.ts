@@ -1,12 +1,9 @@
-import {
-	INodeProperties,
-} from 'n8n-workflow';
+import { INodeProperties } from 'n8n-workflow';
 
 export const attachmentOperations: INodeProperties[] = [
-
-// ------------------------
-//      ATTACHMENTS
-// ------------------------
+	// ------------------------
+	//      ATTACHMENTS
+	// ------------------------
 	{
 		displayName: 'Operation',
 		name: 'operation',
@@ -14,9 +11,7 @@ export const attachmentOperations: INodeProperties[] = [
 		noDataExpression: true,
 		displayOptions: {
 			show: {
-				resource: [
-					'attachment',
-				],
+				resource: ['attachment'],
 			},
 		},
 		options: [
@@ -34,9 +29,9 @@ export const attachmentOperations: INodeProperties[] = [
 		default: 'showAttachment',
 	},
 
-// ------------------------
-//      ATTACHMENTS - Upload attachment
-// ------------------------
+	// ------------------------
+	//      ATTACHMENTS - Upload attachment
+	// ------------------------
 	{
 		displayName: 'Attachments Binary',
 		name: 'attachment_ids',
@@ -44,21 +39,17 @@ export const attachmentOperations: INodeProperties[] = [
 		required: true,
 		displayOptions: {
 			show: {
-				resource: [
-					'attachment',
-				],
-				operation: [
-					'uploadAttachment',
-				],
+				resource: ['attachment'],
+				operation: ['uploadAttachment'],
 			},
 		},
 		default: 'data',
 		description: 'Object property name which holds binary data',
 	},
 
-// ------------------------
-//      ATTACHMENTS - Show attachment
-// ------------------------
+	// ------------------------
+	//      ATTACHMENTS - Show attachment
+	// ------------------------
 	{
 		displayName: 'ID',
 		name: 'id',
@@ -66,12 +57,8 @@ export const attachmentOperations: INodeProperties[] = [
 		required: true,
 		displayOptions: {
 			show: {
-				resource: [
-					'attachment',
-				],
-				operation: [
-					'showAttachment',
-				],
+				resource: ['attachment'],
+				operation: ['showAttachment'],
 			},
 		},
 		placeholder: 'e72f6e43-0f27-4415-8781-ad648a89b47f',

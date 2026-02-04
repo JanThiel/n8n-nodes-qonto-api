@@ -1,0 +1,1304 @@
+{
+  "info": {
+    "_postman_id": "6cd699bb-5c88-43ea-953d-d5dad07615ca",
+    "name": "Business API :: Transactions",
+    "description": "## 🧰 [Getting started](https://docs.qonto.com/get-started/business-api/overview)\n\n## 🔐 [Authentication](https://docs.qonto.com/get-started/business-api/authentication/introduction)\n\n## 🙋 [Troubleshooting](https://docs.qonto.com/get-started/general/troubleshooting)\n\n## ❓ [FAQ](https://docs.qonto.com/faq-articles/faq-home)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17853903"
+  },
+  "item": [
+    {
+      "name": "Transactions",
+      "item": [
+        {
+          "name": "List transactions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{login}}:{{secret}}",
+                "description": "(Optional) Use only if you authenticate yourself with your API key",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v2/transactions?bank_account_id=<string>&iban=<string>&includes[]=labels&includes[]=attachments&status[]=completed&updated_at_from=<string>&updated_at_to=<string>&emitted_at_from=<string>&emitted_at_to=<string>&settled_at_from=<string>&settled_at_to=<string>&side=credit&operation_type[]=<string>&operation_type[]=<string>&with_attachments=true&sort_by=`settled_at:desc`&page=<string>&per_page=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "transactions"
+              ],
+              "query": [
+                {
+                  "key": "bank_account_id",
+                  "value": "<string>",
+                  "description": "`id` of the bank account for which transactions will be retrieved. Use [/v2/organization](openapi_v2.yml/paths/~1v2~1organization/get) to get this parameter. If both `bank_account_id` and `iban` are specified, `bank_account_id` takes precedence."
+                },
+                {
+                  "key": "iban",
+                  "value": "<string>",
+                  "description": "IBAN of the bank account for which transactions will be retrieved. Use [/v2/organization](openapi_v2.yml/paths/~1v2~1organization/get) to get this parameter. If both `bank_account_id` and `iban` are specified, `bank_account_id` takes precedence."
+                },
+                {
+                  "key": "includes[]",
+                  "value": "labels",
+                  "description": "Use this query parameter to embed the associated resources (labels, attachments and/or VAT details) of the transactions in the JSON response."
+                },
+                {
+                  "key": "includes[]",
+                  "value": "attachments",
+                  "description": "Use this query parameter to embed the associated resources (labels, attachments and/or VAT details) of the transactions in the JSON response."
+                },
+                {
+                  "key": "status[]",
+                  "value": "completed",
+                  "description": "Transactions can be filtered by their `status` property. <br>Possible values:  <br>- `pending`: a transaction that is processing and has impacted the bank account's `auth_balance` but not its `balance`;<br>- `declined`: a transaction that has been declined;<br>- `completed`: a transaction that is completed, and has impacted the bank account's `balance`."
+                },
+                {
+                  "key": "updated_at_from",
+                  "value": "<string>",
+                  "description": "Transactions can be filtered by their `updated_at` property. This filter can be used in combination with the `updated_at_to` query parameter to get transactions updated within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance). "
+                },
+                {
+                  "key": "updated_at_to",
+                  "value": "<string>",
+                  "description": "Transactions can be filtered by their `updated_at` property. This filter can be used in combination with the `updated_at_to` query parameter to get transactions updated within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance)."
+                },
+                {
+                  "key": "emitted_at_from",
+                  "value": "<string>",
+                  "description": "Transactions can be filtered by their `emitted_at` property. Can be use in combination with the `emitted_at_to` query parameter to get transactions emitted within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance)."
+                },
+                {
+                  "key": "emitted_at_to",
+                  "value": "<string>",
+                  "description": "Transactions can be filtered by their `emitted_at` property. This filter can be used in combination with the `emitted_at_from` query parameter to get transactions emitted within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance)."
+                },
+                {
+                  "key": "settled_at_from",
+                  "value": "<string>",
+                  "description": "Transactions can be filtered by their `settled_at` property. This filter can be used in combination with the `settled_at_to` query parameter to get transactions settled within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance)."
+                },
+                {
+                  "key": "settled_at_to",
+                  "value": "<string>",
+                  "description": "Transactions can be filtered by their `settled_at` property. This filter can be used in combination with the `settled_at_from` query parameter to get transactions settled within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance)."
+                },
+                {
+                  "key": "side",
+                  "value": "credit",
+                  "description": "Transactions can be filtered by their `side` property."
+                },
+                {
+                  "key": "operation_type[]",
+                  "value": "<string>",
+                  "description": "Transactions can be filtered by their `operation_type` property."
+                },
+                {
+                  "key": "operation_type[]",
+                  "value": "<string>",
+                  "description": "Transactions can be filtered by their `operation_type` property."
+                },
+                {
+                  "key": "with_attachments",
+                  "value": "true",
+                  "description": "Transactions can be filtered based on the presence of one or more attachments."
+                },
+                {
+                  "key": "sort_by",
+                  "value": "`settled_at:desc`",
+                  "description": "Transactions can be sorted by a specific property and order. <br>👉 Property: `updated_at`, `settled_at` or `emitted_at` <br>👉 Order: `asc` (Ascending) / `desc` (Descending)"
+                },
+                {
+                  "key": "page",
+                  "value": "<string>",
+                  "description": "Returned page (cf. [Pagination](/get-started/general/pagination))."
+                },
+                {
+                  "key": "per_page",
+                  "value": "<string>",
+                  "description": "Number of transactions per page (cf. [Pagination](/get-started/general/pagination))."
+                }
+              ]
+            },
+            "description": "OAuth scope: `organization.read`\n\nRetrieves the list of transactions for the bank account identified by the `bank_account_id` / `iban` query parameter.\n\nYou can filter (ex: only retrieve the latest transactions) and sort this list by using [query parameters](#Query-Parameters) 👇\n\n<Info>\n  All transactions visible in Qonto's UI can be retrieved, as of API V2.\n</Info>\n"
+          },
+          "response": [
+            {
+              "name": "Returns the list of transactions for the specified bank account.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/transactions?bank_account_id=<string>&iban=<string>&includes[]=attachments&status[]=completed&updated_at_from=<string>&updated_at_to=<string>&emitted_at_from=<string>&emitted_at_to=<string>&settled_at_from=<string>&settled_at_to=<string>&side=credit&operation_type[]=<string>&with_attachments=true&sort_by=`settled_at:desc`&page=<string>&per_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "description": "`id` of the bank account for which transactions will be retrieved. Use [/v2/organization](openapi_v2.yml/paths/~1v2~1organization/get) to get this parameter. If both `bank_account_id` and `iban` are specified, `bank_account_id` takes precedence.",
+                      "key": "bank_account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "IBAN of the bank account for which transactions will be retrieved. Use [/v2/organization](openapi_v2.yml/paths/~1v2~1organization/get) to get this parameter. If both `bank_account_id` and `iban` are specified, `bank_account_id` takes precedence.",
+                      "key": "iban",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Use this query parameter to embed the associated resources (labels, attachments and/or VAT details) of the transactions in the JSON response.",
+                      "key": "includes[]",
+                      "value": "attachments"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `status` property. <br>Possible values:  <br>- `pending`: a transaction that is processing and has impacted the bank account's `auth_balance` but not its `balance`;<br>- `declined`: a transaction that has been declined;<br>- `completed`: a transaction that is completed, and has impacted the bank account's `balance`.",
+                      "key": "status[]",
+                      "value": "completed"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `updated_at` property. This filter can be used in combination with the `updated_at_to` query parameter to get transactions updated within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance). ",
+                      "key": "updated_at_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `updated_at` property. This filter can be used in combination with the `updated_at_to` query parameter to get transactions updated within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "updated_at_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `emitted_at` property. Can be use in combination with the `emitted_at_to` query parameter to get transactions emitted within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "emitted_at_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `emitted_at` property. This filter can be used in combination with the `emitted_at_from` query parameter to get transactions emitted within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "emitted_at_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `settled_at` property. This filter can be used in combination with the `settled_at_to` query parameter to get transactions settled within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "settled_at_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `settled_at` property. This filter can be used in combination with the `settled_at_from` query parameter to get transactions settled within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "settled_at_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `side` property.",
+                      "key": "side",
+                      "value": "credit"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `operation_type` property.",
+                      "key": "operation_type[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered based on the presence of one or more attachments.",
+                      "key": "with_attachments",
+                      "value": "true"
+                    },
+                    {
+                      "description": "Transactions can be sorted by a specific property and order. <br>👉 Property: `updated_at`, `settled_at` or `emitted_at` <br>👉 Order: `asc` (Ascending) / `desc` (Descending)",
+                      "key": "sort_by",
+                      "value": "`settled_at:desc`"
+                    },
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of transactions per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"transactions\": [\n    {\n      \"id\": \"<string>\",\n      \"transaction_id\": \"<string>\",\n      \"amount\": \"<float>\",\n      \"amount_cents\": \"<integer>\",\n      \"settled_balance\": \"<number>\",\n      \"settled_balance_cents\": 0,\n      \"attachment_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"logo\": {\n        \"small\": \"<string>\",\n        \"medium\": \"<string>\"\n      },\n      \"local_amount\": \"<float>\",\n      \"local_amount_cents\": \"<integer>\",\n      \"side\": \"<string>\",\n      \"operation_type\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"local_currency\": \"<string>\",\n      \"label\": \"<string>\",\n      \"clean_counterparty_name\": \"<string>\",\n      \"settled_at\": \"<string>\",\n      \"emitted_at\": \"<string>\",\n      \"updated_at\": \"<string>\",\n      \"status\": \"<string>\",\n      \"note\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"vat_amount\": \"<float>\",\n      \"vat_amount_cents\": \"<integer>\",\n      \"vat_rate\": \"<float>\",\n      \"initiator_id\": \"<string>\",\n      \"label_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"attachment_lost\": \"<boolean>\",\n      \"attachment_required\": \"<boolean>\",\n      \"card_last_digits\": \"<string>\",\n      \"category\": \"<string>\",\n      \"cashflow_category\": {\n        \"name\": \"<string>\"\n      },\n      \"cashflow_subcategory\": {\n        \"name\": \"<string>\"\n      },\n      \"subject_type\": \"<string>\",\n      \"bank_account_id\": \"<string>\",\n      \"is_external_transaction\": \"<boolean>\",\n      \"attachments\": [\n        {\n          \"id\": \"<string>\",\n          \"created_at\": \"<string>\",\n          \"file_name\": \"<string>\",\n          \"file_size\": \"<string>\",\n          \"file_content_type\": \"<string>\",\n          \"url\": \"<string>\",\n          \"probative_attachment\": {\n            \"status\": \"<string>\"\n          }\n        },\n        {\n          \"id\": \"<string>\",\n          \"created_at\": \"<string>\",\n          \"file_name\": \"<string>\",\n          \"file_size\": \"<string>\",\n          \"file_content_type\": \"<string>\",\n          \"url\": \"<string>\",\n          \"probative_attachment\": {\n            \"status\": \"<string>\"\n          }\n        }\n      ],\n      \"labels\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"parent_id\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"parent_id\": \"<string>\"\n        }\n      ],\n      \"vat_details\": {\n        \"items\": [\n          {\n            \"amount\": \"<string>\",\n            \"amount_cents\": \"<string>\",\n            \"amount_excluding_vat\": \"<string>\",\n            \"amount_excluding_vat_cents\": \"<string>\",\n            \"rate\": \"<string>\"\n          },\n          {\n            \"amount\": \"<string>\",\n            \"amount_cents\": \"<string>\",\n            \"amount_excluding_vat\": \"<string>\",\n            \"amount_excluding_vat_cents\": \"<string>\",\n            \"rate\": \"<string>\"\n          }\n        ]\n      },\n      \"transfer\": {\n        \"counterparty_account_number\": \"<string>\",\n        \"counterparty_account_number_format\": \"<string>\",\n        \"counterparty_bank_identifier\": \"<string>\",\n        \"counterparty_bank_identifier_format\": \"<string>\"\n      },\n      \"income\": {\n        \"counterparty_account_number\": \"<string>\",\n        \"counterparty_account_number_format\": \"<string>\",\n        \"counterparty_bank_identifier\": \"<string>\",\n        \"counterparty_bank_identifier_format\": \"<string>\"\n      },\n      \"swift_income\": {\n        \"counterparty_account_number\": \"<string>\",\n        \"counterparty_account_number_format\": \"<string>\",\n        \"counterparty_bank_identifier\": \"<string>\",\n        \"counterparty_bank_identifier_format\": \"<string>\"\n      },\n      \"direct_debit\": {\n        \"counterparty_account_number\": \"<string>\",\n        \"counterparty_account_number_format\": \"<string>\",\n        \"counterparty_bank_identifier\": \"<string>\",\n        \"counterparty_bank_identifier_format\": \"<string>\"\n      },\n      \"check\": {\n        \"check_number\": \"<string>\",\n        \"check_key\": \"<string>\"\n      },\n      \"financing_installment\": {\n        \"total_installments_number\": \"<integer>\",\n        \"current_installment_number\": \"<integer>\"\n      },\n      \"pagopa_payment\": {\n        \"notice_number\": \"<string>\",\n        \"creditor_fiscal_code\": \"<string>\",\n        \"iuv\": \"<string>\"\n      },\n      \"direct_debit_collection\": {\n        \"counterparty_account_number\": \"<string>\",\n        \"counterparty_account_number_format\": \"<string>\",\n        \"counterparty_bank_identifier\": \"<string>\",\n        \"counterparty_bank_identifier_format\": \"<string>\"\n      },\n      \"direct_debit_hold\": {\n        \"guarding_rate\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"transaction_id\": \"<string>\",\n      \"amount\": \"<float>\",\n      \"amount_cents\": \"<integer>\",\n      \"settled_balance\": \"<number>\",\n      \"settled_balance_cents\": 0,\n      \"attachment_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"logo\": {\n        \"small\": \"<string>\",\n        \"medium\": \"<string>\"\n      },\n      \"local_amount\": \"<float>\",\n      \"local_amount_cents\": \"<integer>\",\n      \"side\": \"<string>\",\n      \"operation_type\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"local_currency\": \"<string>\",\n      \"label\": \"<string>\",\n      \"clean_counterparty_name\": \"<string>\",\n      \"settled_at\": \"<string>\",\n      \"emitted_at\": \"<string>\",\n      \"updated_at\": \"<string>\",\n      \"status\": \"<string>\",\n      \"note\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"vat_amount\": \"<float>\",\n      \"vat_amount_cents\": \"<integer>\",\n      \"vat_rate\": \"<float>\",\n      \"initiator_id\": \"<string>\",\n      \"label_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"attachment_lost\": \"<boolean>\",\n      \"attachment_required\": \"<boolean>\",\n      \"card_last_digits\": \"<string>\",\n      \"category\": \"<string>\",\n      \"cashflow_category\": {\n        \"name\": \"<string>\"\n      },\n      \"cashflow_subcategory\": {\n        \"name\": \"<string>\"\n      },\n      \"subject_type\": \"<string>\",\n      \"bank_account_id\": \"<string>\",\n      \"is_external_transaction\": \"<boolean>\",\n      \"attachments\": [\n        {\n          \"id\": \"<string>\",\n          \"created_at\": \"<string>\",\n          \"file_name\": \"<string>\",\n          \"file_size\": \"<string>\",\n          \"file_content_type\": \"<string>\",\n          \"url\": \"<string>\",\n          \"probative_attachment\": {\n            \"status\": \"<string>\"\n          }\n        },\n        {\n          \"id\": \"<string>\",\n          \"created_at\": \"<string>\",\n          \"file_name\": \"<string>\",\n          \"file_size\": \"<string>\",\n          \"file_content_type\": \"<string>\",\n          \"url\": \"<string>\",\n          \"probative_attachment\": {\n            \"status\": \"<string>\"\n          }\n        }\n      ],\n      \"labels\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"parent_id\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"parent_id\": \"<string>\"\n        }\n      ],\n      \"vat_details\": {\n        \"items\": [\n          {\n            \"amount\": \"<string>\",\n            \"amount_cents\": \"<string>\",\n            \"amount_excluding_vat\": \"<string>\",\n            \"amount_excluding_vat_cents\": \"<string>\",\n            \"rate\": \"<string>\"\n          },\n          {\n            \"amount\": \"<string>\",\n            \"amount_cents\": \"<string>\",\n            \"amount_excluding_vat\": \"<string>\",\n            \"amount_excluding_vat_cents\": \"<string>\",\n            \"rate\": \"<string>\"\n          }\n        ]\n      },\n      \"transfer\": {\n        \"counterparty_account_number\": \"<string>\",\n        \"counterparty_account_number_format\": \"<string>\",\n        \"counterparty_bank_identifier\": \"<string>\",\n        \"counterparty_bank_identifier_format\": \"<string>\"\n      },\n      \"income\": {\n        \"counterparty_account_number\": \"<string>\",\n        \"counterparty_account_number_format\": \"<string>\",\n        \"counterparty_bank_identifier\": \"<string>\",\n        \"counterparty_bank_identifier_format\": \"<string>\"\n      },\n      \"swift_income\": {\n        \"counterparty_account_number\": \"<string>\",\n        \"counterparty_account_number_format\": \"<string>\",\n        \"counterparty_bank_identifier\": \"<string>\",\n        \"counterparty_bank_identifier_format\": \"<string>\"\n      },\n      \"direct_debit\": {\n        \"counterparty_account_number\": \"<string>\",\n        \"counterparty_account_number_format\": \"<string>\",\n        \"counterparty_bank_identifier\": \"<string>\",\n        \"counterparty_bank_identifier_format\": \"<string>\"\n      },\n      \"check\": {\n        \"check_number\": \"<string>\",\n        \"check_key\": \"<string>\"\n      },\n      \"financing_installment\": {\n        \"total_installments_number\": \"<integer>\",\n        \"current_installment_number\": \"<integer>\"\n      },\n      \"pagopa_payment\": {\n        \"notice_number\": \"<string>\",\n        \"creditor_fiscal_code\": \"<string>\",\n        \"iuv\": \"<string>\"\n      },\n      \"direct_debit_collection\": {\n        \"counterparty_account_number\": \"<string>\",\n        \"counterparty_account_number_format\": \"<string>\",\n        \"counterparty_bank_identifier\": \"<string>\",\n        \"counterparty_bank_identifier_format\": \"<string>\"\n      },\n      \"direct_debit_hold\": {\n        \"guarding_rate\": \"<string>\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"current_page\": \"<integer>\",\n    \"next_page\": \"<integer>\",\n    \"prev_page\": \"<integer>\",\n    \"total_pages\": \"<integer>\",\n    \"total_count\": \"<integer>\",\n    \"per_page\": \"<integer>\"\n  }\n}"
+            },
+            {
+              "name": "Returns a bad request error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/transactions?bank_account_id=<string>&iban=<string>&includes[]=attachments&status[]=completed&updated_at_from=<string>&updated_at_to=<string>&emitted_at_from=<string>&emitted_at_to=<string>&settled_at_from=<string>&settled_at_to=<string>&side=credit&operation_type[]=<string>&with_attachments=true&sort_by=`settled_at:desc`&page=<string>&per_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "description": "`id` of the bank account for which transactions will be retrieved. Use [/v2/organization](openapi_v2.yml/paths/~1v2~1organization/get) to get this parameter. If both `bank_account_id` and `iban` are specified, `bank_account_id` takes precedence.",
+                      "key": "bank_account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "IBAN of the bank account for which transactions will be retrieved. Use [/v2/organization](openapi_v2.yml/paths/~1v2~1organization/get) to get this parameter. If both `bank_account_id` and `iban` are specified, `bank_account_id` takes precedence.",
+                      "key": "iban",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Use this query parameter to embed the associated resources (labels, attachments and/or VAT details) of the transactions in the JSON response.",
+                      "key": "includes[]",
+                      "value": "attachments"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `status` property. <br>Possible values:  <br>- `pending`: a transaction that is processing and has impacted the bank account's `auth_balance` but not its `balance`;<br>- `declined`: a transaction that has been declined;<br>- `completed`: a transaction that is completed, and has impacted the bank account's `balance`.",
+                      "key": "status[]",
+                      "value": "completed"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `updated_at` property. This filter can be used in combination with the `updated_at_to` query parameter to get transactions updated within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance). ",
+                      "key": "updated_at_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `updated_at` property. This filter can be used in combination with the `updated_at_to` query parameter to get transactions updated within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "updated_at_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `emitted_at` property. Can be use in combination with the `emitted_at_to` query parameter to get transactions emitted within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "emitted_at_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `emitted_at` property. This filter can be used in combination with the `emitted_at_from` query parameter to get transactions emitted within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "emitted_at_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `settled_at` property. This filter can be used in combination with the `settled_at_to` query parameter to get transactions settled within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "settled_at_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `settled_at` property. This filter can be used in combination with the `settled_at_from` query parameter to get transactions settled within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "settled_at_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `side` property.",
+                      "key": "side",
+                      "value": "credit"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `operation_type` property.",
+                      "key": "operation_type[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered based on the presence of one or more attachments.",
+                      "key": "with_attachments",
+                      "value": "true"
+                    },
+                    {
+                      "description": "Transactions can be sorted by a specific property and order. <br>👉 Property: `updated_at`, `settled_at` or `emitted_at` <br>👉 Order: `asc` (Ascending) / `desc` (Descending)",
+                      "key": "sort_by",
+                      "value": "`settled_at:desc`"
+                    },
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of transactions per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/transactions?bank_account_id=<string>&iban=<string>&includes[]=attachments&status[]=completed&updated_at_from=<string>&updated_at_to=<string>&emitted_at_from=<string>&emitted_at_to=<string>&settled_at_from=<string>&settled_at_to=<string>&side=credit&operation_type[]=<string>&with_attachments=true&sort_by=`settled_at:desc`&page=<string>&per_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "description": "`id` of the bank account for which transactions will be retrieved. Use [/v2/organization](openapi_v2.yml/paths/~1v2~1organization/get) to get this parameter. If both `bank_account_id` and `iban` are specified, `bank_account_id` takes precedence.",
+                      "key": "bank_account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "IBAN of the bank account for which transactions will be retrieved. Use [/v2/organization](openapi_v2.yml/paths/~1v2~1organization/get) to get this parameter. If both `bank_account_id` and `iban` are specified, `bank_account_id` takes precedence.",
+                      "key": "iban",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Use this query parameter to embed the associated resources (labels, attachments and/or VAT details) of the transactions in the JSON response.",
+                      "key": "includes[]",
+                      "value": "attachments"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `status` property. <br>Possible values:  <br>- `pending`: a transaction that is processing and has impacted the bank account's `auth_balance` but not its `balance`;<br>- `declined`: a transaction that has been declined;<br>- `completed`: a transaction that is completed, and has impacted the bank account's `balance`.",
+                      "key": "status[]",
+                      "value": "completed"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `updated_at` property. This filter can be used in combination with the `updated_at_to` query parameter to get transactions updated within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance). ",
+                      "key": "updated_at_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `updated_at` property. This filter can be used in combination with the `updated_at_to` query parameter to get transactions updated within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "updated_at_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `emitted_at` property. Can be use in combination with the `emitted_at_to` query parameter to get transactions emitted within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "emitted_at_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `emitted_at` property. This filter can be used in combination with the `emitted_at_from` query parameter to get transactions emitted within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "emitted_at_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `settled_at` property. This filter can be used in combination with the `settled_at_to` query parameter to get transactions settled within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "settled_at_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `settled_at` property. This filter can be used in combination with the `settled_at_from` query parameter to get transactions settled within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "settled_at_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `side` property.",
+                      "key": "side",
+                      "value": "credit"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `operation_type` property.",
+                      "key": "operation_type[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered based on the presence of one or more attachments.",
+                      "key": "with_attachments",
+                      "value": "true"
+                    },
+                    {
+                      "description": "Transactions can be sorted by a specific property and order. <br>👉 Property: `updated_at`, `settled_at` or `emitted_at` <br>👉 Order: `asc` (Ascending) / `desc` (Descending)",
+                      "key": "sort_by",
+                      "value": "`settled_at:desc`"
+                    },
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of transactions per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/transactions?bank_account_id=<string>&iban=<string>&includes[]=attachments&status[]=completed&updated_at_from=<string>&updated_at_to=<string>&emitted_at_from=<string>&emitted_at_to=<string>&settled_at_from=<string>&settled_at_to=<string>&side=credit&operation_type[]=<string>&with_attachments=true&sort_by=`settled_at:desc`&page=<string>&per_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "description": "`id` of the bank account for which transactions will be retrieved. Use [/v2/organization](openapi_v2.yml/paths/~1v2~1organization/get) to get this parameter. If both `bank_account_id` and `iban` are specified, `bank_account_id` takes precedence.",
+                      "key": "bank_account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "IBAN of the bank account for which transactions will be retrieved. Use [/v2/organization](openapi_v2.yml/paths/~1v2~1organization/get) to get this parameter. If both `bank_account_id` and `iban` are specified, `bank_account_id` takes precedence.",
+                      "key": "iban",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Use this query parameter to embed the associated resources (labels, attachments and/or VAT details) of the transactions in the JSON response.",
+                      "key": "includes[]",
+                      "value": "attachments"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `status` property. <br>Possible values:  <br>- `pending`: a transaction that is processing and has impacted the bank account's `auth_balance` but not its `balance`;<br>- `declined`: a transaction that has been declined;<br>- `completed`: a transaction that is completed, and has impacted the bank account's `balance`.",
+                      "key": "status[]",
+                      "value": "completed"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `updated_at` property. This filter can be used in combination with the `updated_at_to` query parameter to get transactions updated within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance). ",
+                      "key": "updated_at_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `updated_at` property. This filter can be used in combination with the `updated_at_to` query parameter to get transactions updated within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "updated_at_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `emitted_at` property. Can be use in combination with the `emitted_at_to` query parameter to get transactions emitted within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "emitted_at_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `emitted_at` property. This filter can be used in combination with the `emitted_at_from` query parameter to get transactions emitted within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "emitted_at_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `settled_at` property. This filter can be used in combination with the `settled_at_to` query parameter to get transactions settled within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "settled_at_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `settled_at` property. This filter can be used in combination with the `settled_at_from` query parameter to get transactions settled within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "settled_at_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `side` property.",
+                      "key": "side",
+                      "value": "credit"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `operation_type` property.",
+                      "key": "operation_type[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered based on the presence of one or more attachments.",
+                      "key": "with_attachments",
+                      "value": "true"
+                    },
+                    {
+                      "description": "Transactions can be sorted by a specific property and order. <br>👉 Property: `updated_at`, `settled_at` or `emitted_at` <br>👉 Order: `asc` (Ascending) / `desc` (Descending)",
+                      "key": "sort_by",
+                      "value": "`settled_at:desc`"
+                    },
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of transactions per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unprocessable entity error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/transactions?bank_account_id=<string>&iban=<string>&includes[]=attachments&status[]=completed&updated_at_from=<string>&updated_at_to=<string>&emitted_at_from=<string>&emitted_at_to=<string>&settled_at_from=<string>&settled_at_to=<string>&side=credit&operation_type[]=<string>&with_attachments=true&sort_by=`settled_at:desc`&page=<string>&per_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "description": "`id` of the bank account for which transactions will be retrieved. Use [/v2/organization](openapi_v2.yml/paths/~1v2~1organization/get) to get this parameter. If both `bank_account_id` and `iban` are specified, `bank_account_id` takes precedence.",
+                      "key": "bank_account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "IBAN of the bank account for which transactions will be retrieved. Use [/v2/organization](openapi_v2.yml/paths/~1v2~1organization/get) to get this parameter. If both `bank_account_id` and `iban` are specified, `bank_account_id` takes precedence.",
+                      "key": "iban",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Use this query parameter to embed the associated resources (labels, attachments and/or VAT details) of the transactions in the JSON response.",
+                      "key": "includes[]",
+                      "value": "attachments"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `status` property. <br>Possible values:  <br>- `pending`: a transaction that is processing and has impacted the bank account's `auth_balance` but not its `balance`;<br>- `declined`: a transaction that has been declined;<br>- `completed`: a transaction that is completed, and has impacted the bank account's `balance`.",
+                      "key": "status[]",
+                      "value": "completed"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `updated_at` property. This filter can be used in combination with the `updated_at_to` query parameter to get transactions updated within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance). ",
+                      "key": "updated_at_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `updated_at` property. This filter can be used in combination with the `updated_at_to` query parameter to get transactions updated within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "updated_at_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `emitted_at` property. Can be use in combination with the `emitted_at_to` query parameter to get transactions emitted within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "emitted_at_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `emitted_at` property. This filter can be used in combination with the `emitted_at_from` query parameter to get transactions emitted within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "emitted_at_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `settled_at` property. This filter can be used in combination with the `settled_at_to` query parameter to get transactions settled within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "settled_at_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `settled_at` property. This filter can be used in combination with the `settled_at_from` query parameter to get transactions settled within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "settled_at_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `side` property.",
+                      "key": "side",
+                      "value": "credit"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `operation_type` property.",
+                      "key": "operation_type[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered based on the presence of one or more attachments.",
+                      "key": "with_attachments",
+                      "value": "true"
+                    },
+                    {
+                      "description": "Transactions can be sorted by a specific property and order. <br>👉 Property: `updated_at`, `settled_at` or `emitted_at` <br>👉 Order: `asc` (Ascending) / `desc` (Descending)",
+                      "key": "sort_by",
+                      "value": "`settled_at:desc`"
+                    },
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of transactions per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": {\n    \"code\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"status\": \"<string>\",\n    \"message\": \"<string>\",\n    \"source\": {\n      \"pointer\": \"<string>\"\n    }\n  }\n}"
+            },
+            {
+              "name": "Returns an internal server error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/transactions?bank_account_id=<string>&iban=<string>&includes[]=attachments&status[]=completed&updated_at_from=<string>&updated_at_to=<string>&emitted_at_from=<string>&emitted_at_to=<string>&settled_at_from=<string>&settled_at_to=<string>&side=credit&operation_type[]=<string>&with_attachments=true&sort_by=`settled_at:desc`&page=<string>&per_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "description": "`id` of the bank account for which transactions will be retrieved. Use [/v2/organization](openapi_v2.yml/paths/~1v2~1organization/get) to get this parameter. If both `bank_account_id` and `iban` are specified, `bank_account_id` takes precedence.",
+                      "key": "bank_account_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "IBAN of the bank account for which transactions will be retrieved. Use [/v2/organization](openapi_v2.yml/paths/~1v2~1organization/get) to get this parameter. If both `bank_account_id` and `iban` are specified, `bank_account_id` takes precedence.",
+                      "key": "iban",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Use this query parameter to embed the associated resources (labels, attachments and/or VAT details) of the transactions in the JSON response.",
+                      "key": "includes[]",
+                      "value": "attachments"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `status` property. <br>Possible values:  <br>- `pending`: a transaction that is processing and has impacted the bank account's `auth_balance` but not its `balance`;<br>- `declined`: a transaction that has been declined;<br>- `completed`: a transaction that is completed, and has impacted the bank account's `balance`.",
+                      "key": "status[]",
+                      "value": "completed"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `updated_at` property. This filter can be used in combination with the `updated_at_to` query parameter to get transactions updated within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance). ",
+                      "key": "updated_at_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `updated_at` property. This filter can be used in combination with the `updated_at_to` query parameter to get transactions updated within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "updated_at_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `emitted_at` property. Can be use in combination with the `emitted_at_to` query parameter to get transactions emitted within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "emitted_at_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `emitted_at` property. This filter can be used in combination with the `emitted_at_from` query parameter to get transactions emitted within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "emitted_at_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `settled_at` property. This filter can be used in combination with the `settled_at_to` query parameter to get transactions settled within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "settled_at_from",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `settled_at` property. This filter can be used in combination with the `settled_at_from` query parameter to get transactions settled within a specific timeframe. Please use a valid date time format (**ISO 8601** for instance).",
+                      "key": "settled_at_to",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `side` property.",
+                      "key": "side",
+                      "value": "credit"
+                    },
+                    {
+                      "description": "Transactions can be filtered by their `operation_type` property.",
+                      "key": "operation_type[]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Transactions can be filtered based on the presence of one or more attachments.",
+                      "key": "with_attachments",
+                      "value": "true"
+                    },
+                    {
+                      "description": "Transactions can be sorted by a specific property and order. <br>👉 Property: `updated_at`, `settled_at` or `emitted_at` <br>👉 Order: `asc` (Ascending) / `desc` (Descending)",
+                      "key": "sort_by",
+                      "value": "`settled_at:desc`"
+                    },
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of transactions per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Retrieve a transaction",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "{{login}}:{{secret}}",
+                "description": "(Optional) Use only if you authenticate yourself with your API key",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v2/transactions/:id?includes[]=attachments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "transactions",
+                ":id"
+              ],
+              "query": [
+                {
+                  "key": "includes[]",
+                  "value": "attachments",
+                  "description": "Use this parameter to embed the associated resources (labels, attachments and/or VAT details) of the transactions in the JSON response."
+                }
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) UUID of the transaction to retrieve."
+                }
+              ]
+            },
+            "description": "OAuth scope: `organization.read`\n\n\n\nRetrieves the transaction identified by the `id` path parameter."
+          },
+          "response": [
+            {
+              "name": "Returns the transaction identified by the `id` path parameter.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/transactions/:id?includes[]=attachments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "transactions",
+                    ":id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Use this parameter to embed the associated resources (labels, attachments and/or VAT details) of the transactions in the JSON response.",
+                      "key": "includes[]",
+                      "value": "attachments"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"transaction\": {\n    \"id\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"amount\": \"<float>\",\n    \"amount_cents\": \"<integer>\",\n    \"settled_balance\": \"<number>\",\n    \"settled_balance_cents\": 0,\n    \"attachment_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"logo\": {\n      \"small\": \"<string>\",\n      \"medium\": \"<string>\"\n    },\n    \"local_amount\": \"<float>\",\n    \"local_amount_cents\": \"<integer>\",\n    \"side\": \"<string>\",\n    \"operation_type\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"local_currency\": \"<string>\",\n    \"label\": \"<string>\",\n    \"clean_counterparty_name\": \"<string>\",\n    \"settled_at\": \"<string>\",\n    \"emitted_at\": \"<string>\",\n    \"updated_at\": \"<string>\",\n    \"status\": \"<string>\",\n    \"note\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"vat_amount\": \"<float>\",\n    \"vat_amount_cents\": \"<integer>\",\n    \"vat_rate\": \"<float>\",\n    \"initiator_id\": \"<string>\",\n    \"label_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"attachment_lost\": \"<boolean>\",\n    \"attachment_required\": \"<boolean>\",\n    \"card_last_digits\": \"<string>\",\n    \"category\": \"<string>\",\n    \"cashflow_category\": {\n      \"name\": \"<string>\"\n    },\n    \"cashflow_subcategory\": {\n      \"name\": \"<string>\"\n    },\n    \"subject_type\": \"<string>\",\n    \"bank_account_id\": \"<string>\",\n    \"is_external_transaction\": \"<boolean>\",\n    \"attachments\": [\n      {\n        \"id\": \"<string>\",\n        \"created_at\": \"<string>\",\n        \"file_name\": \"<string>\",\n        \"file_size\": \"<string>\",\n        \"file_content_type\": \"<string>\",\n        \"url\": \"<string>\",\n        \"probative_attachment\": {\n          \"status\": \"<string>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"created_at\": \"<string>\",\n        \"file_name\": \"<string>\",\n        \"file_size\": \"<string>\",\n        \"file_content_type\": \"<string>\",\n        \"url\": \"<string>\",\n        \"probative_attachment\": {\n          \"status\": \"<string>\"\n        }\n      }\n    ],\n    \"labels\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"parent_id\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"parent_id\": \"<string>\"\n      }\n    ],\n    \"vat_details\": {\n      \"items\": [\n        {\n          \"amount\": \"<string>\",\n          \"amount_cents\": \"<string>\",\n          \"amount_excluding_vat\": \"<string>\",\n          \"amount_excluding_vat_cents\": \"<string>\",\n          \"rate\": \"<string>\"\n        },\n        {\n          \"amount\": \"<string>\",\n          \"amount_cents\": \"<string>\",\n          \"amount_excluding_vat\": \"<string>\",\n          \"amount_excluding_vat_cents\": \"<string>\",\n          \"rate\": \"<string>\"\n        }\n      ]\n    },\n    \"transfer\": {\n      \"counterparty_account_number\": \"<string>\",\n      \"counterparty_account_number_format\": \"<string>\",\n      \"counterparty_bank_identifier\": \"<string>\",\n      \"counterparty_bank_identifier_format\": \"<string>\"\n    },\n    \"income\": {\n      \"counterparty_account_number\": \"<string>\",\n      \"counterparty_account_number_format\": \"<string>\",\n      \"counterparty_bank_identifier\": \"<string>\",\n      \"counterparty_bank_identifier_format\": \"<string>\"\n    },\n    \"swift_income\": {\n      \"counterparty_account_number\": \"<string>\",\n      \"counterparty_account_number_format\": \"<string>\",\n      \"counterparty_bank_identifier\": \"<string>\",\n      \"counterparty_bank_identifier_format\": \"<string>\"\n    },\n    \"direct_debit\": {\n      \"counterparty_account_number\": \"<string>\",\n      \"counterparty_account_number_format\": \"<string>\",\n      \"counterparty_bank_identifier\": \"<string>\",\n      \"counterparty_bank_identifier_format\": \"<string>\"\n    },\n    \"check\": {\n      \"check_number\": \"<string>\",\n      \"check_key\": \"<string>\"\n    },\n    \"financing_installment\": {\n      \"total_installments_number\": \"<integer>\",\n      \"current_installment_number\": \"<integer>\"\n    },\n    \"pagopa_payment\": {\n      \"notice_number\": \"<string>\",\n      \"creditor_fiscal_code\": \"<string>\",\n      \"iuv\": \"<string>\"\n    },\n    \"direct_debit_collection\": {\n      \"counterparty_account_number\": \"<string>\",\n      \"counterparty_account_number_format\": \"<string>\",\n      \"counterparty_bank_identifier\": \"<string>\",\n      \"counterparty_bank_identifier_format\": \"<string>\"\n    },\n    \"direct_debit_hold\": {\n      \"guarding_rate\": \"<string>\"\n    }\n  }\n}"
+            },
+            {
+              "name": "Returns a bad request error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/transactions/:id?includes[]=attachments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "transactions",
+                    ":id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Use this parameter to embed the associated resources (labels, attachments and/or VAT details) of the transactions in the JSON response.",
+                      "key": "includes[]",
+                      "value": "attachments"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/transactions/:id?includes[]=attachments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "transactions",
+                    ":id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Use this parameter to embed the associated resources (labels, attachments and/or VAT details) of the transactions in the JSON response.",
+                      "key": "includes[]",
+                      "value": "attachments"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/transactions/:id?includes[]=attachments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "transactions",
+                    ":id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Use this parameter to embed the associated resources (labels, attachments and/or VAT details) of the transactions in the JSON response.",
+                      "key": "includes[]",
+                      "value": "attachments"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a not found error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/transactions/:id?includes[]=attachments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "transactions",
+                    ":id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Use this parameter to embed the associated resources (labels, attachments and/or VAT details) of the transactions in the JSON response.",
+                      "key": "includes[]",
+                      "value": "attachments"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": {\n    \"code\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"source\": {\n      \"parameter\": \"<string>\"\n    }\n  }\n}"
+            },
+            {
+              "name": "Returns an internal server error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/transactions/:id?includes[]=attachments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "transactions",
+                    ":id"
+                  ],
+                  "query": [
+                    {
+                      "description": "Use this parameter to embed the associated resources (labels, attachments and/or VAT details) of the transactions in the JSON response.",
+                      "key": "includes[]",
+                      "value": "attachments"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "value",
+        "value": "{{login}}:{{secret}}",
+        "type": "string"
+      },
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

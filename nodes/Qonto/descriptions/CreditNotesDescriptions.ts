@@ -3,42 +3,38 @@
 import { INodeProperties } from 'n8n-workflow';
 
 // Descriptions for the "Get a list of credit notes" operation
-	export const creditNotesOperations: INodeProperties[] = [
+export const creditNotesOperations: INodeProperties[] = [
+	// ------------------------
+	//      creditNotes
+	// ------------------------
 
-		// ------------------------
-		//      creditNotes
-		// ------------------------
-
-			{
-				displayName: 'Operation',
-				name: 'operation',
-				type: 'options',
-				noDataExpression: true,
-				displayOptions: {
-					show: {
-						resource: [
-							'creditNotes',
-						],
-					},
-				},
-				options: [
-					{
-						name: 'Get a List of Credit Notes',
-						value: 'getListCreditNotes',
-						action: 'Get a list of credit notes',
-					},
-					{
-						name: 'Get Details of Credit Note',
-						value: 'getDetailsCreditNotes',
-						action: 'Get details of credit note',
-					},
-
-				],
-				default: 'getListCreditNotes',
+	{
+		displayName: 'Operation',
+		name: 'operation',
+		type: 'options',
+		noDataExpression: true,
+		displayOptions: {
+			show: {
+				resource: ['creditNotes'],
 			},
-		// ------------------------
-		//      creditNotes - Get a list of credit notes
-		// ------------------------
+		},
+		options: [
+			{
+				name: 'Get a List of Credit Notes',
+				value: 'getListCreditNotes',
+				action: 'Get a list of credit notes',
+			},
+			{
+				name: 'Get Details of Credit Note',
+				value: 'getDetailsCreditNotes',
+				action: 'Get details of credit note',
+			},
+		],
+		default: 'getListCreditNotes',
+	},
+	// ------------------------
+	//      creditNotes - Get a list of credit notes
+	// ------------------------
 
 	{
 		displayName: 'Return All',
@@ -48,12 +44,8 @@ import { INodeProperties } from 'n8n-workflow';
 		description: 'Whether to return all results or only up to a given limit',
 		displayOptions: {
 			show: {
-				resource: [
-					'creditNotes',
-				],
-				operation: [
-					'getListCreditNotes',
-				],
+				resource: ['creditNotes'],
+				operation: ['getListCreditNotes'],
 			},
 		},
 	},
@@ -63,15 +55,9 @@ import { INodeProperties } from 'n8n-workflow';
 		type: 'number',
 		displayOptions: {
 			show: {
-				resource: [
-					'creditNotes',
-				],
-				operation: [
-					'getListCreditNotes',
-				],
-				returnAll: [
-					false,
-				],
+				resource: ['creditNotes'],
+				operation: ['getListCreditNotes'],
+				returnAll: [false],
 			},
 		},
 		typeOptions: {
@@ -80,60 +66,52 @@ import { INodeProperties } from 'n8n-workflow';
 		default: 50,
 		description: 'Max number of results to return',
 	},
-    {
-        displayName: 'Filters',
-        name: 'filters',
-        type: 'collection',
-        placeholder: 'Add Filter',
-        default: {},
-        displayOptions: {
-            show: {
-                resource: [
-                    'creditNotes',
-                ],
-                operation: [
-                    'getListCreditNotes',
-                ],
-            },
-        },
-        options: [
-            {
-                displayName: 'Created At From',
-                name: 'created_at_from',
-                type: 'dateTime',
-                default: '',
-                description: 'Fetch credit notes created after this date',
-            },
-            {
-                displayName: 'Created At To',
-                name: 'created_at_to',
-                type: 'dateTime',
-                default: '',
-                description: 'Fetch credit notes created before this date',
-            },
-        ],
-    },
+	{
+		displayName: 'Filters',
+		name: 'filters',
+		type: 'collection',
+		placeholder: 'Add Filter',
+		default: {},
+		displayOptions: {
+			show: {
+				resource: ['creditNotes'],
+				operation: ['getListCreditNotes'],
+			},
+		},
+		options: [
+			{
+				displayName: 'Created At From',
+				name: 'created_at_from',
+				type: 'dateTime',
+				default: '',
+				description: 'Fetch credit notes created after this date',
+			},
+			{
+				displayName: 'Created At To',
+				name: 'created_at_to',
+				type: 'dateTime',
+				default: '',
+				description: 'Fetch credit notes created before this date',
+			},
+		],
+	},
 
-		// ------------------------
-		//      creditNotes - Get details of credit note
-		// ------------------------
+	// ------------------------
+	//      creditNotes - Get details of credit note
+	// ------------------------
 
-    {
-        displayName: 'Credit Note ID',
-        name: 'creditNoteId',
-        type: 'string',
-				displayOptions: {
-					show: {
-						resource: [
-							'creditNotes',
-						],
-						operation: [
-							'getDetailsCreditNotes',
-						],
-					},
-				},
-        default: '',
-        required: true,
-        description: 'The unique identifier of the credit note',
-    },
+	{
+		displayName: 'Credit Note ID',
+		name: 'creditNoteId',
+		type: 'string',
+		displayOptions: {
+			show: {
+				resource: ['creditNotes'],
+				operation: ['getDetailsCreditNotes'],
+			},
+		},
+		default: '',
+		required: true,
+		description: 'The unique identifier of the credit note',
+	},
 ];

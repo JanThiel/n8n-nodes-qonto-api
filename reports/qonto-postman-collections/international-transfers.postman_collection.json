@@ -1,0 +1,3710 @@
+{
+  "info": {
+    "_postman_id": "6cd699bb-5c88-43ea-953d-d5dad07615ca",
+    "name": "Business API :: International Transfers",
+    "description": "## 🧰 [Getting started](https://docs.qonto.com/get-started/business-api/overview)\n\n## 🔐 [Authentication](https://docs.qonto.com/get-started/business-api/authentication/introduction)\n\n## 🙋 [Troubleshooting](https://docs.qonto.com/get-started/general/troubleshooting)\n\n## ❓ [FAQ](https://docs.qonto.com/faq-articles/faq-home)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17853903"
+  },
+  "item": [
+    {
+      "name": "International Transfers",
+      "item": [
+        {
+          "name": "Check if the organization is eligible for international transfers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v2/international/eligibility",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "international",
+                "eligibility"
+              ]
+            },
+            "description": "OAuth scope: `organization.read`\n\nChecks if the organization is eligible for international transfers.\n\n<Info>\nThis endpoint is still in **beta**. Please get in touch with our team if you have any question or feedback: [here](https://getqonto.atlassian.net/servicedesk/customer/portals).\n</Info>"
+          },
+          "response": [
+            {
+              "name": "Returns the organization's eligibility.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/eligibility",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "eligibility"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"eligible\": \"ineligible\",\n  \"reason\": \"unknown\"\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/eligibility",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "eligibility"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/eligibility",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "eligibility"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an internal server error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/eligibility",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "eligibility"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Get available currencies for international transfers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v2/international/currencies?source=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "international",
+                "currencies"
+              ],
+              "query": [
+                {
+                  "key": "source",
+                  "value": "<string>",
+                  "description": "(Required) The source currency for the transfer"
+                }
+              ]
+            },
+            "description": "OAuth scope: `organization.read`\n\nChecks if the organization is eligible for international transfers.\n\n<Info>\nThis endpoint is still in **beta**. Please get in touch with our team if you have any question or feedback: [here](https://getqonto.atlassian.net/servicedesk/customer/portals).\n</Info>"
+          },
+          "response": [
+            {
+              "name": "Returns the created international transfer quote.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/currencies?source=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "currencies"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The source currency for the transfer",
+                      "key": "source",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"currencies\": [\n    {\n      \"currency_code\": \"<string>\",\n      \"country_code\": \"<string>\",\n      \"suggestion_priority\": \"<integer>\"\n    },\n    {\n      \"currency_code\": \"<string>\",\n      \"country_code\": \"<string>\",\n      \"suggestion_priority\": \"<integer>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/currencies?source=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "currencies"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The source currency for the transfer",
+                      "key": "source",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/currencies?source=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "currencies"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The source currency for the transfer",
+                      "key": "source",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an internal server error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/currencies?source=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "currencies"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The source currency for the transfer",
+                      "key": "source",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Create a new international transfer quote",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source_currency\": \"<string>\",\n  \"target_currency\": \"<string>\",\n  \"source_amount\": \"<string>\",\n  \"target_amount\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v2/international/quotes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "international",
+                "quotes"
+              ]
+            },
+            "description": "OAuth scope: `international_transfers.write`\n\nCreates a new international transfer quote.\n\n<Info>\nThis endpoint is still in **beta**. Please get in touch with our team if you have any question or feedback: [here](https://getqonto.atlassian.net/servicedesk/customer/portals).\n</Info>"
+          },
+          "response": [
+            {
+              "name": "Returns the created international transfer quote.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_currency\": \"<string>\",\n  \"target_currency\": \"<string>\",\n  \"source_amount\": \"<string>\",\n  \"target_amount\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/quotes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "quotes"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"quote\": {\n    \"id\": \"<uuid>\",\n    \"status\": \"FUNDED\",\n    \"created_at\": \"<dateTime>\",\n    \"expired_at\": \"<dateTime>\",\n    \"source_amount\": {\n      \"currency\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"target_amount\": {\n      \"currency\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"rate\": \"<number>\",\n    \"fees\": {\n      \"total_amount\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"details\": [\n        {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    }\n  }\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_currency\": \"<string>\",\n  \"target_currency\": \"<string>\",\n  \"source_amount\": \"<string>\",\n  \"target_amount\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/quotes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "quotes"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_currency\": \"<string>\",\n  \"target_currency\": \"<string>\",\n  \"source_amount\": \"<string>\",\n  \"target_amount\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/quotes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "quotes"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unprocessable entity error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_currency\": \"<string>\",\n  \"target_currency\": \"<string>\",\n  \"source_amount\": \"<string>\",\n  \"target_amount\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/quotes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "quotes"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"message\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"status\": \"<string>\",\n      \"message\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an internal server error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_currency\": \"<string>\",\n  \"target_currency\": \"<string>\",\n  \"source_amount\": \"<string>\",\n  \"target_amount\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/quotes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "quotes"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "List requirements for an international beneficiary",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept-Language",
+                "value": "en",
+                "description": "Language to be used to display the requirements. Languages supported: en, it, es, de, fr, pt"
+              },
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"payload\": {\n    \"currency\": \"<string>\",\n    \"details\": {},\n    \"type\": \"<string>\"\n  },\n  \"beneficiary_id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v2/international/beneficiaries/requirements",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "international",
+                "beneficiaries",
+                "requirements"
+              ]
+            },
+            "description": "OAuth scope: `international_transfers.write`\n\nGet the list of requirements needed to create or use an existing beneficiary for the given quote.\n\n<Info>\nThis endpoint is still in **beta**. Please get in touch with our team if you have any question or feedback: [here](https://getqonto.atlassian.net/servicedesk/customer/portals).\n</Info>"
+          },
+          "response": [
+            {
+              "name": "Returns the list of requirements for the given beneficiary and quote.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Language to be used to display the requirements. Languages supported: en, it, es, de, fr, pt",
+                    "key": "Accept-Language",
+                    "value": "en"
+                  },
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"payload\": {\n    \"currency\": \"<string>\",\n    \"details\": {},\n    \"type\": \"<string>\"\n  },\n  \"beneficiary_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries/requirements",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries",
+                    "requirements"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"requirements\": [\n    {\n      \"type\": \"<string>\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"group\": [\n            {\n              \"key\": \"<string>\",\n              \"name\": \"<string>\",\n              \"type\": \"date\",\n              \"refresh_requirements_on_change\": \"<boolean>\",\n              \"required\": \"<boolean>\",\n              \"display_format\": \"<string>\",\n              \"example\": \"<string>\",\n              \"min_length\": \"<number>\",\n              \"max_length\": \"<number>\",\n              \"validation_regexp\": \"<string>\",\n              \"values_allowed\": [\n                {\n                  \"key\": \"<string>\",\n                  \"value\": \"<string>\"\n                },\n                {\n                  \"key\": \"<string>\",\n                  \"value\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"key\": \"<string>\",\n              \"name\": \"<string>\",\n              \"type\": \"radio\",\n              \"refresh_requirements_on_change\": \"<boolean>\",\n              \"required\": \"<boolean>\",\n              \"display_format\": \"<string>\",\n              \"example\": \"<string>\",\n              \"min_length\": \"<number>\",\n              \"max_length\": \"<number>\",\n              \"validation_regexp\": \"<string>\",\n              \"values_allowed\": [\n                {\n                  \"key\": \"<string>\",\n                  \"value\": \"<string>\"\n                },\n                {\n                  \"key\": \"<string>\",\n                  \"value\": \"<string>\"\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"group\": [\n            {\n              \"key\": \"<string>\",\n              \"name\": \"<string>\",\n              \"type\": \"select\",\n              \"refresh_requirements_on_change\": \"<boolean>\",\n              \"required\": \"<boolean>\",\n              \"display_format\": \"<string>\",\n              \"example\": \"<string>\",\n              \"min_length\": \"<number>\",\n              \"max_length\": \"<number>\",\n              \"validation_regexp\": \"<string>\",\n              \"values_allowed\": [\n                {\n                  \"key\": \"<string>\",\n                  \"value\": \"<string>\"\n                },\n                {\n                  \"key\": \"<string>\",\n                  \"value\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"key\": \"<string>\",\n              \"name\": \"<string>\",\n              \"type\": \"radio\",\n              \"refresh_requirements_on_change\": \"<boolean>\",\n              \"required\": \"<boolean>\",\n              \"display_format\": \"<string>\",\n              \"example\": \"<string>\",\n              \"min_length\": \"<number>\",\n              \"max_length\": \"<number>\",\n              \"validation_regexp\": \"<string>\",\n              \"values_allowed\": [\n                {\n                  \"key\": \"<string>\",\n                  \"value\": \"<string>\"\n                },\n                {\n                  \"key\": \"<string>\",\n                  \"value\": \"<string>\"\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"type\": \"<string>\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"group\": [\n            {\n              \"key\": \"<string>\",\n              \"name\": \"<string>\",\n              \"type\": \"select\",\n              \"refresh_requirements_on_change\": \"<boolean>\",\n              \"required\": \"<boolean>\",\n              \"display_format\": \"<string>\",\n              \"example\": \"<string>\",\n              \"min_length\": \"<number>\",\n              \"max_length\": \"<number>\",\n              \"validation_regexp\": \"<string>\",\n              \"values_allowed\": [\n                {\n                  \"key\": \"<string>\",\n                  \"value\": \"<string>\"\n                },\n                {\n                  \"key\": \"<string>\",\n                  \"value\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"key\": \"<string>\",\n              \"name\": \"<string>\",\n              \"type\": \"text\",\n              \"refresh_requirements_on_change\": \"<boolean>\",\n              \"required\": \"<boolean>\",\n              \"display_format\": \"<string>\",\n              \"example\": \"<string>\",\n              \"min_length\": \"<number>\",\n              \"max_length\": \"<number>\",\n              \"validation_regexp\": \"<string>\",\n              \"values_allowed\": [\n                {\n                  \"key\": \"<string>\",\n                  \"value\": \"<string>\"\n                },\n                {\n                  \"key\": \"<string>\",\n                  \"value\": \"<string>\"\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"group\": [\n            {\n              \"key\": \"<string>\",\n              \"name\": \"<string>\",\n              \"type\": \"date\",\n              \"refresh_requirements_on_change\": \"<boolean>\",\n              \"required\": \"<boolean>\",\n              \"display_format\": \"<string>\",\n              \"example\": \"<string>\",\n              \"min_length\": \"<number>\",\n              \"max_length\": \"<number>\",\n              \"validation_regexp\": \"<string>\",\n              \"values_allowed\": [\n                {\n                  \"key\": \"<string>\",\n                  \"value\": \"<string>\"\n                },\n                {\n                  \"key\": \"<string>\",\n                  \"value\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"key\": \"<string>\",\n              \"name\": \"<string>\",\n              \"type\": \"text\",\n              \"refresh_requirements_on_change\": \"<boolean>\",\n              \"required\": \"<boolean>\",\n              \"display_format\": \"<string>\",\n              \"example\": \"<string>\",\n              \"min_length\": \"<number>\",\n              \"max_length\": \"<number>\",\n              \"validation_regexp\": \"<string>\",\n              \"values_allowed\": [\n                {\n                  \"key\": \"<string>\",\n                  \"value\": \"<string>\"\n                },\n                {\n                  \"key\": \"<string>\",\n                  \"value\": \"<string>\"\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a bad request error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Language to be used to display the requirements. Languages supported: en, it, es, de, fr, pt",
+                    "key": "Accept-Language",
+                    "value": "en"
+                  },
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"payload\": {\n    \"currency\": \"<string>\",\n    \"details\": {},\n    \"type\": \"<string>\"\n  },\n  \"beneficiary_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries/requirements",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries",
+                    "requirements"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Language to be used to display the requirements. Languages supported: en, it, es, de, fr, pt",
+                    "key": "Accept-Language",
+                    "value": "en"
+                  },
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"payload\": {\n    \"currency\": \"<string>\",\n    \"details\": {},\n    \"type\": \"<string>\"\n  },\n  \"beneficiary_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries/requirements",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries",
+                    "requirements"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Language to be used to display the requirements. Languages supported: en, it, es, de, fr, pt",
+                    "key": "Accept-Language",
+                    "value": "en"
+                  },
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"payload\": {\n    \"currency\": \"<string>\",\n    \"details\": {},\n    \"type\": \"<string>\"\n  },\n  \"beneficiary_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries/requirements",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries",
+                    "requirements"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a not found error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Language to be used to display the requirements. Languages supported: en, it, es, de, fr, pt",
+                    "key": "Accept-Language",
+                    "value": "en"
+                  },
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"payload\": {\n    \"currency\": \"<string>\",\n    \"details\": {},\n    \"type\": \"<string>\"\n  },\n  \"beneficiary_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries/requirements",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries",
+                    "requirements"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an internal server error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Language to be used to display the requirements. Languages supported: en, it, es, de, fr, pt",
+                    "key": "Accept-Language",
+                    "value": "en"
+                  },
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"payload\": {\n    \"currency\": \"<string>\",\n    \"details\": {},\n    \"type\": \"<string>\"\n  },\n  \"beneficiary_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries/requirements",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries",
+                    "requirements"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "List international beneficiaries",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v2/international/beneficiaries?currency=<string>&page=<string>&per_page=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "international",
+                "beneficiaries"
+              ],
+              "query": [
+                {
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "(Required) The currency of the international beneficiaries to retrieve (ISO 4217 format, alpha 3)"
+                },
+                {
+                  "key": "page",
+                  "value": "<string>",
+                  "description": "Returned page (cf. [Pagination](/get-started/general/pagination))."
+                },
+                {
+                  "key": "per_page",
+                  "value": "<string>",
+                  "description": "Number of beneficiaries per page (cf. [Pagination](/get-started/general/pagination))."
+                }
+              ]
+            },
+            "description": "OAuth scope: `organization.read`\n\nList international beneficiaries by currency\n\n<Info>\nThis endpoint is still in **beta**. Please get in touch with our team if you have any question or feedback: [here](https://getqonto.atlassian.net/servicedesk/customer/portals).\n</Info>"
+          },
+          "response": [
+            {
+              "name": "Returns international beneficiaries",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries?currency=<string>&page=<string>&per_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The currency of the international beneficiaries to retrieve (ISO 4217 format, alpha 3)",
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of beneficiaries per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"beneficiaries\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"country\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"payment_type\": \"<string>\",\n      \"account_identifier\": \"<string>\",\n      \"bank_identifier\": \"<string>\",\n      \"branch_identifier\": \"<string>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"country\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"payment_type\": \"<string>\",\n      \"account_identifier\": \"<string>\",\n      \"bank_identifier\": \"<string>\",\n      \"branch_identifier\": \"<string>\"\n    }\n  ],\n  \"meta\": {\n    \"current_page\": \"<integer>\",\n    \"next_page\": \"<integer>\",\n    \"prev_page\": \"<integer>\",\n    \"total_pages\": \"<integer>\",\n    \"total_count\": \"<integer>\",\n    \"per_page\": \"<integer>\"\n  }\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries?currency=<string>&page=<string>&per_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The currency of the international beneficiaries to retrieve (ISO 4217 format, alpha 3)",
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of beneficiaries per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries?currency=<string>&page=<string>&per_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The currency of the international beneficiaries to retrieve (ISO 4217 format, alpha 3)",
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of beneficiaries per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an internal server error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries?currency=<string>&page=<string>&per_page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The currency of the international beneficiaries to retrieve (ISO 4217 format, alpha 3)",
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Returned page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of beneficiaries per page (cf. [Pagination](/get-started/general/pagination)).",
+                      "key": "per_page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Create an international beneficiary",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"payload\": {\n    \"currency\": \"<string>\",\n    \"type\": \"swift_code\",\n    \"details\": {}\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v2/international/beneficiaries",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "international",
+                "beneficiaries"
+              ]
+            },
+            "description": "OAuth scope: `international_transfers.write`\n\nCreate an international beneficiary\n\n<Info>\nThis endpoint is still in **beta**. Please get in touch with our team if you have any question or feedback: [here](https://getqonto.atlassian.net/servicedesk/customer/portals).\n</Info>"
+          },
+          "response": [
+            {
+              "name": "Returns the international beneficiary created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"payload\": {\n    \"currency\": \"<string>\",\n    \"type\": \"swift_code\",\n    \"details\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"beneficiary\": {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"country\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"payment_type\": \"<string>\",\n    \"account_identifier\": \"<string>\",\n    \"bank_identifier\": \"<string>\",\n    \"branch_identifier\": \"<string>\"\n  },\n  \"quote\": {\n    \"id\": \"<uuid>\",\n    \"status\": \"PENDING\",\n    \"created_at\": \"<dateTime>\",\n    \"expired_at\": \"<dateTime>\",\n    \"source_amount\": {\n      \"currency\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"target_amount\": {\n      \"currency\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"rate\": \"<number>\",\n    \"fees\": {\n      \"total_amount\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"details\": [\n        {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"target_account_id\": \"<string>\"\n}"
+            },
+            {
+              "name": "Returns a bad request error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"payload\": {\n    \"currency\": \"<string>\",\n    \"type\": \"swift_code\",\n    \"details\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"payload\": {\n    \"currency\": \"<string>\",\n    \"type\": \"swift_code\",\n    \"details\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"payload\": {\n    \"currency\": \"<string>\",\n    \"type\": \"swift_code\",\n    \"details\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a not found error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"payload\": {\n    \"currency\": \"<string>\",\n    \"type\": \"swift_code\",\n    \"details\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an internal server error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"payload\": {\n    \"currency\": \"<string>\",\n    \"type\": \"swift_code\",\n    \"details\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Update an international beneficiary",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"payload\": {\n    \"currency\": \"<string>\",\n    \"type\": \"swift_code\",\n    \"details\": {}\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v2/international/beneficiaries/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "international",
+                "beneficiaries",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "description": "OAuth scope: `international_transfers.write`\n\nUpdate an international beneficiary\n\n<Info>\nThis endpoint is still in **beta**. Please get in touch with our team if you have any question or feedback: [here](https://getqonto.atlassian.net/servicedesk/customer/portals).\n</Info>"
+          },
+          "response": [
+            {
+              "name": "Returns the international beneficiary update",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"payload\": {\n    \"currency\": \"<string>\",\n    \"type\": \"swift_code\",\n    \"details\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"beneficiary\": {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"country\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"payment_type\": \"<string>\",\n    \"account_identifier\": \"<string>\",\n    \"bank_identifier\": \"<string>\",\n    \"branch_identifier\": \"<string>\"\n  },\n  \"quote\": {\n    \"id\": \"<uuid>\",\n    \"status\": \"PENDING\",\n    \"created_at\": \"<dateTime>\",\n    \"expired_at\": \"<dateTime>\",\n    \"source_amount\": {\n      \"currency\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"target_amount\": {\n      \"currency\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"rate\": \"<number>\",\n    \"fees\": {\n      \"total_amount\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"details\": [\n        {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"target_account_id\": \"<string>\"\n}"
+            },
+            {
+              "name": "Returns a bad request error.",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"payload\": {\n    \"currency\": \"<string>\",\n    \"type\": \"swift_code\",\n    \"details\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"payload\": {\n    \"currency\": \"<string>\",\n    \"type\": \"swift_code\",\n    \"details\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"payload\": {\n    \"currency\": \"<string>\",\n    \"type\": \"swift_code\",\n    \"details\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a not found error.",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"payload\": {\n    \"currency\": \"<string>\",\n    \"type\": \"swift_code\",\n    \"details\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an internal server error.",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"payload\": {\n    \"currency\": \"<string>\",\n    \"type\": \"swift_code\",\n    \"details\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Delete an international beneficiary",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/v2/international/beneficiaries/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "international",
+                "beneficiaries",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "description": "OAuth scope: `international_transfers.write`\n\nDelete an international beneficiary\n\n<Info>\nThis endpoint is still in **beta**. Please get in touch with our team if you have any question or feedback: [here](https://getqonto.atlassian.net/servicedesk/customer/portals).\n</Info>"
+          },
+          "response": [
+            {
+              "name": "Beneficiary deleted",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a not found error.",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an internal server error.",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/beneficiaries/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "beneficiaries",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Create an international transfer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Qonto-2fa-Preference",
+                "value": "{{X-Qonto-2fa-Preference}}",
+                "description": "Learn more in [Strong Customer Authentication](/get-started/business-api/authentication/sca)."
+              },
+              {
+                "key": "X-Qonto-Idempotency-Key",
+                "value": "<string>",
+                "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests)."
+              },
+              {
+                "key": "X-Qonto-Sca-Session-Token",
+                "value": "<string>",
+                "description": "Learn more in [Strong Customer Authentication](/get-started/business-api/authentication/sca)."
+              },
+              {
+                "key": "X-Qonto-MFA",
+                "value": "<string>",
+                "description": "Learn more in the [SMS OTP Flow](/get-started/business-api/authentication/sca#sms-otp-flow)."
+              },
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"beneficiary_id\": \"<uuid>\",\n  \"quote_id\": \"<uuid>\",\n  \"details\": {},\n  \"target_account_id\": \"<string>\",\n  \"source_amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"target_amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"bank_account_id\": \"<uuid>\",\n  \"attachment_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v2/international/transfers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "international",
+                "transfers"
+              ]
+            },
+            "description": "OAuth scope: `international_transfers.write`\n\nCreates a new international transfer.\n\n<Note>\n  Example of SCA usage: [Postman visual flow](https://www.postman.com/qontoteam/workspace/qonto-public-api/flow/6670429eb7bd63003156bd57)\n</Note>\n\n<Info>\nThis endpoint is still in **beta**. Please get in touch with our team if you have any question or feedback: [here](https://getqonto.atlassian.net/servicedesk/customer/portals).\n</Info>"
+          },
+          "response": [
+            {
+              "name": "Returns the created international transfer.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Learn more in [Strong Customer Authentication](/get-started/business-api/authentication/sca).",
+                    "key": "X-Qonto-2fa-Preference",
+                    "value": "paired-device"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Learn more in [Strong Customer Authentication](/get-started/business-api/authentication/sca).",
+                    "key": "X-Qonto-Sca-Session-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Learn more in the [SMS OTP Flow](/get-started/business-api/authentication/sca#sms-otp-flow).",
+                    "key": "X-Qonto-MFA",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"beneficiary_id\": \"<uuid>\",\n  \"quote_id\": \"<uuid>\",\n  \"details\": {},\n  \"target_account_id\": \"<string>\",\n  \"source_amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"target_amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"bank_account_id\": \"<uuid>\",\n  \"attachment_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "transfers"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"transfer\": {\n    \"id\": \"<uuid>\",\n    \"beneficiary_id\": \"<uuid>\",\n    \"bank_account_id\": \"<uuid>\",\n    \"source_amount\": {\n      \"currency\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"target_amount\": {\n      \"currency\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"status\": \"PROCESSING\"\n  }\n}"
+            },
+            {
+              "name": "Returns a bad request error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Learn more in [Strong Customer Authentication](/get-started/business-api/authentication/sca).",
+                    "key": "X-Qonto-2fa-Preference",
+                    "value": "paired-device"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Learn more in [Strong Customer Authentication](/get-started/business-api/authentication/sca).",
+                    "key": "X-Qonto-Sca-Session-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Learn more in the [SMS OTP Flow](/get-started/business-api/authentication/sca#sms-otp-flow).",
+                    "key": "X-Qonto-MFA",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"beneficiary_id\": \"<uuid>\",\n  \"quote_id\": \"<uuid>\",\n  \"details\": {},\n  \"target_account_id\": \"<string>\",\n  \"source_amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"target_amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"bank_account_id\": \"<uuid>\",\n  \"attachment_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "transfers"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Learn more in [Strong Customer Authentication](/get-started/business-api/authentication/sca).",
+                    "key": "X-Qonto-2fa-Preference",
+                    "value": "paired-device"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Learn more in [Strong Customer Authentication](/get-started/business-api/authentication/sca).",
+                    "key": "X-Qonto-Sca-Session-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Learn more in the [SMS OTP Flow](/get-started/business-api/authentication/sca#sms-otp-flow).",
+                    "key": "X-Qonto-MFA",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"beneficiary_id\": \"<uuid>\",\n  \"quote_id\": \"<uuid>\",\n  \"details\": {},\n  \"target_account_id\": \"<string>\",\n  \"source_amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"target_amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"bank_account_id\": \"<uuid>\",\n  \"attachment_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "transfers"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Learn more in [Strong Customer Authentication](/get-started/business-api/authentication/sca).",
+                    "key": "X-Qonto-2fa-Preference",
+                    "value": "paired-device"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Learn more in [Strong Customer Authentication](/get-started/business-api/authentication/sca).",
+                    "key": "X-Qonto-Sca-Session-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Learn more in the [SMS OTP Flow](/get-started/business-api/authentication/sca#sms-otp-flow).",
+                    "key": "X-Qonto-MFA",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"beneficiary_id\": \"<uuid>\",\n  \"quote_id\": \"<uuid>\",\n  \"details\": {},\n  \"target_account_id\": \"<string>\",\n  \"source_amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"target_amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"bank_account_id\": \"<uuid>\",\n  \"attachment_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "transfers"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a not found error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Learn more in [Strong Customer Authentication](/get-started/business-api/authentication/sca).",
+                    "key": "X-Qonto-2fa-Preference",
+                    "value": "paired-device"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Learn more in [Strong Customer Authentication](/get-started/business-api/authentication/sca).",
+                    "key": "X-Qonto-Sca-Session-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Learn more in the [SMS OTP Flow](/get-started/business-api/authentication/sca#sms-otp-flow).",
+                    "key": "X-Qonto-MFA",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"beneficiary_id\": \"<uuid>\",\n  \"quote_id\": \"<uuid>\",\n  \"details\": {},\n  \"target_account_id\": \"<string>\",\n  \"source_amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"target_amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"bank_account_id\": \"<uuid>\",\n  \"attachment_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "transfers"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Invalid SCA session token",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Learn more in [Strong Customer Authentication](/get-started/business-api/authentication/sca).",
+                    "key": "X-Qonto-2fa-Preference",
+                    "value": "paired-device"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Learn more in [Strong Customer Authentication](/get-started/business-api/authentication/sca).",
+                    "key": "X-Qonto-Sca-Session-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Learn more in the [SMS OTP Flow](/get-started/business-api/authentication/sca#sms-otp-flow).",
+                    "key": "X-Qonto-MFA",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"beneficiary_id\": \"<uuid>\",\n  \"quote_id\": \"<uuid>\",\n  \"details\": {},\n  \"target_account_id\": \"<string>\",\n  \"source_amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"target_amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"bank_account_id\": \"<uuid>\",\n  \"attachment_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "transfers"
+                  ]
+                }
+              },
+              "status": "Precondition Failed",
+              "code": 412,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<string>\"\n}"
+            },
+            {
+              "name": "Returns SCA precondition required error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Learn more in [Strong Customer Authentication](/get-started/business-api/authentication/sca).",
+                    "key": "X-Qonto-2fa-Preference",
+                    "value": "paired-device"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Learn more in [Strong Customer Authentication](/get-started/business-api/authentication/sca).",
+                    "key": "X-Qonto-Sca-Session-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Learn more in the [SMS OTP Flow](/get-started/business-api/authentication/sca#sms-otp-flow).",
+                    "key": "X-Qonto-MFA",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"beneficiary_id\": \"<uuid>\",\n  \"quote_id\": \"<uuid>\",\n  \"details\": {},\n  \"target_account_id\": \"<string>\",\n  \"source_amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"target_amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"bank_account_id\": \"<uuid>\",\n  \"attachment_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "transfers"
+                  ]
+                }
+              },
+              "status": "Precondition Required",
+              "code": 428,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an internal server error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Learn more in [Strong Customer Authentication](/get-started/business-api/authentication/sca).",
+                    "key": "X-Qonto-2fa-Preference",
+                    "value": "paired-device"
+                  },
+                  {
+                    "description": "(Required) Learn more in [Idempotent Requests](/get-started/general/idempotent-requests).",
+                    "key": "X-Qonto-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Learn more in [Strong Customer Authentication](/get-started/business-api/authentication/sca).",
+                    "key": "X-Qonto-Sca-Session-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Learn more in the [SMS OTP Flow](/get-started/business-api/authentication/sca#sms-otp-flow).",
+                    "key": "X-Qonto-MFA",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"beneficiary_id\": \"<uuid>\",\n  \"quote_id\": \"<uuid>\",\n  \"details\": {},\n  \"target_account_id\": \"<string>\",\n  \"source_amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"target_amount\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"bank_account_id\": \"<uuid>\",\n  \"attachment_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "transfers"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "List international transfer requirements",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept-Language",
+                "value": "en",
+                "description": "Language to be used to display the requirements. Languages supported: en, it, es, de, fr, pt"
+              },
+              {
+                "key": "X-Qonto-Staging-Token",
+                "value": "{{X-Qonto-Staging-Token}}",
+                "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/)."
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"target_account_id\": \"<string>\",\n  \"details\": {}\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v2/international/transfers/requirements",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "international",
+                "transfers",
+                "requirements"
+              ]
+            },
+            "description": "OAuth scope: `international_transfers.write`\n\nCreates a new international transfer.\n\n<Info>\nThis endpoint is still in **beta**. Please get in touch with our team if you have any question or feedback: [here](https://getqonto.atlassian.net/servicedesk/customer/portals).\n</Info>"
+          },
+          "response": [
+            {
+              "name": "Returns the list of international transfer's requirements",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Language to be used to display the requirements. Languages supported: en, it, es, de, fr, pt",
+                    "key": "Accept-Language",
+                    "value": "en"
+                  },
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"target_account_id\": \"<string>\",\n  \"details\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/transfers/requirements",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "transfers",
+                    "requirements"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"requirements\": [\n    {\n      \"type\": \"<string>\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"group\": [\n            {\n              \"key\": \"<string>\",\n              \"name\": \"<string>\",\n              \"type\": \"select\",\n              \"refresh_requirements_on_change\": \"<boolean>\",\n              \"required\": \"<boolean>\",\n              \"display_format\": \"<string>\",\n              \"example\": \"<string>\",\n              \"min_length\": \"<number>\",\n              \"max_length\": \"<number>\",\n              \"validation_regexp\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"name\": \"<string>\",\n              \"type\": \"select\",\n              \"refresh_requirements_on_change\": \"<boolean>\",\n              \"required\": \"<boolean>\",\n              \"display_format\": \"<string>\",\n              \"example\": \"<string>\",\n              \"min_length\": \"<number>\",\n              \"max_length\": \"<number>\",\n              \"validation_regexp\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"group\": [\n            {\n              \"key\": \"<string>\",\n              \"name\": \"<string>\",\n              \"type\": \"date\",\n              \"refresh_requirements_on_change\": \"<boolean>\",\n              \"required\": \"<boolean>\",\n              \"display_format\": \"<string>\",\n              \"example\": \"<string>\",\n              \"min_length\": \"<number>\",\n              \"max_length\": \"<number>\",\n              \"validation_regexp\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"name\": \"<string>\",\n              \"type\": \"radio\",\n              \"refresh_requirements_on_change\": \"<boolean>\",\n              \"required\": \"<boolean>\",\n              \"display_format\": \"<string>\",\n              \"example\": \"<string>\",\n              \"min_length\": \"<number>\",\n              \"max_length\": \"<number>\",\n              \"validation_regexp\": \"<string>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"type\": \"<string>\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"group\": [\n            {\n              \"key\": \"<string>\",\n              \"name\": \"<string>\",\n              \"type\": \"radio\",\n              \"refresh_requirements_on_change\": \"<boolean>\",\n              \"required\": \"<boolean>\",\n              \"display_format\": \"<string>\",\n              \"example\": \"<string>\",\n              \"min_length\": \"<number>\",\n              \"max_length\": \"<number>\",\n              \"validation_regexp\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"name\": \"<string>\",\n              \"type\": \"text\",\n              \"refresh_requirements_on_change\": \"<boolean>\",\n              \"required\": \"<boolean>\",\n              \"display_format\": \"<string>\",\n              \"example\": \"<string>\",\n              \"min_length\": \"<number>\",\n              \"max_length\": \"<number>\",\n              \"validation_regexp\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"group\": [\n            {\n              \"key\": \"<string>\",\n              \"name\": \"<string>\",\n              \"type\": \"date\",\n              \"refresh_requirements_on_change\": \"<boolean>\",\n              \"required\": \"<boolean>\",\n              \"display_format\": \"<string>\",\n              \"example\": \"<string>\",\n              \"min_length\": \"<number>\",\n              \"max_length\": \"<number>\",\n              \"validation_regexp\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"name\": \"<string>\",\n              \"type\": \"text\",\n              \"refresh_requirements_on_change\": \"<boolean>\",\n              \"required\": \"<boolean>\",\n              \"display_format\": \"<string>\",\n              \"example\": \"<string>\",\n              \"min_length\": \"<number>\",\n              \"max_length\": \"<number>\",\n              \"validation_regexp\": \"<string>\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a bad request error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Language to be used to display the requirements. Languages supported: en, it, es, de, fr, pt",
+                    "key": "Accept-Language",
+                    "value": "en"
+                  },
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"target_account_id\": \"<string>\",\n  \"details\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/transfers/requirements",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "transfers",
+                    "requirements"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an unauthorized error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Language to be used to display the requirements. Languages supported: en, it, es, de, fr, pt",
+                    "key": "Accept-Language",
+                    "value": "en"
+                  },
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"target_account_id\": \"<string>\",\n  \"details\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/transfers/requirements",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "transfers",
+                    "requirements"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a forbidden error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Language to be used to display the requirements. Languages supported: en, it, es, de, fr, pt",
+                    "key": "Accept-Language",
+                    "value": "en"
+                  },
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"target_account_id\": \"<string>\",\n  \"details\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/transfers/requirements",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "transfers",
+                    "requirements"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns a not found error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Language to be used to display the requirements. Languages supported: en, it, es, de, fr, pt",
+                    "key": "Accept-Language",
+                    "value": "en"
+                  },
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"target_account_id\": \"<string>\",\n  \"details\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/transfers/requirements",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "transfers",
+                    "requirements"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"code\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}"
+            },
+            {
+              "name": "Returns an internal server error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Language to be used to display the requirements. Languages supported: en, it, es, de, fr, pt",
+                    "key": "Accept-Language",
+                    "value": "en"
+                  },
+                  {
+                    "description": "Required only for Sandbox API requests; to get one, please sign up to the [Developer Portal](https://developers.qonto.com/).",
+                    "key": "X-Qonto-Staging-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quote_id\": \"<uuid>\",\n  \"target_account_id\": \"<string>\",\n  \"details\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/international/transfers/requirements",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "international",
+                    "transfers",
+                    "requirements"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "value",
+        "value": "{{login}}:{{secret}}",
+        "type": "string"
+      },
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

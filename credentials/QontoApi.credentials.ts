@@ -11,7 +11,7 @@ export class QontoApi implements ICredentialType {
 	displayName = 'Qonto API';
 	documentationUrl = 'https://api-doc.qonto.com/docs/business-api';
 	icon: Icon = 'file:../icons/qonto.svg';
-	
+
 	properties: INodeProperties[] = [
 		{
 			displayName: 'Environment Type',
@@ -74,12 +74,14 @@ export class QontoApi implements ICredentialType {
 
 	test: ICredentialTestRequest = {
 		request: {
-			baseURL: '={{$credentials.environment === "sandbox" ? "https://thirdparty-sandbox.staging.qonto.co/v2" : "https://thirdparty.qonto.com/v2"}}',
+			baseURL:
+				'={{$credentials.environment === "sandbox" ? "https://thirdparty-sandbox.staging.qonto.co/v2" : "https://thirdparty.qonto.com/v2"}}',
 			url: '/organization',
 			method: 'GET',
 			headers: {
-				'X-Qonto-Staging-Token': '={{$credentials.environment === "sandbox" ? $credentials.stagingToken : undefined}}',
-			}
+				'X-Qonto-Staging-Token':
+					'={{$credentials.environment === "sandbox" ? $credentials.stagingToken : undefined}}',
+			},
 		},
 	};
 }
